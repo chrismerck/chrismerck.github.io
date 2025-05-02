@@ -74,4 +74,33 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
     linear-gradient(rgba(240, 240, 240, 0.1) 1px, transparent 1px),
     linear-gradient(90deg, rgba(240, 240, 240, 0.1) 1px, transparent 1px);
   background-size: 20px 20px;
+}
+
+/* Mobile optimization - make content wider on small screens */
+@media screen and (max-width: 768px) {
+  .md-main__inner {
+    max-width: 100%;
+  }
+  
+  .md-content {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+  
+  .md-grid {
+    max-width: 100%;
+    margin: 0;
+  }
+  
+  .md-sidebar {
+    width: auto;
+  }
+}
+
+/* Reduce margins further on very small screens */
+@media screen and (max-width: 480px) {
+  .md-content {
+    padding: 0.75rem;
+    margin: 0.25rem;
+  }
 } 
