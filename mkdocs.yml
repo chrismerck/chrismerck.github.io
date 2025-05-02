@@ -1,0 +1,70 @@
+site_name: "Chris Merck"
+site_description: "Research Notebook"
+site_author: "Chris Merck"
+site_url: https://chrismerck.github.io/
+repo_url: https://github.com/chrismerck/chrismerck.github.io
+
+# Use Material for MkDocs to match the look and feel of tinygrad docs
+# See https://squidfunk.github.io/mkdocs-material/ for full options
+
+theme:
+  name: material
+  icon:
+    repo: fontawesome/brands/github
+  logo: assets/favicon.png
+  favicon: assets/favicon.png
+  palette:
+    # Feel free to tweak these colors later
+    scheme: default
+    primary: grey
+    accent: indigo
+  features:
+    # Removing instant navigation which conflicts with MathJax
+    # - navigation.instant
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - toc.integrate
+    - search.highlight
+    - search.share
+  font:
+    # Current selection
+    # text: "Caveat"
+    # code: "Fira Code"
+    
+    # More readable handwritten options:
+    text: "Architects Daughter"  # Clear, readable handwriting style
+    #text: "Indie Flower"  # Friendly and more legible than Caveat
+    #text: "Patrick Hand"  # Clean, rounded handwriting
+    #text: "Kalam"  # Neat handwriting with good readability
+    #text: "Sriracha"  # Casual but readable
+    code: "Fira Code"
+
+# Extra CSS files
+extra_css:
+  - assets/stylesheets/custom.css
+
+nav:
+  - Home: index.md
+  - Research:
+      - Overview: research/index.md
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - footnotes
+  - meta
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+
+plugins:
+  - search 
+
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js 
