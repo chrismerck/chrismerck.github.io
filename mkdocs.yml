@@ -1,7 +1,7 @@
 site_name: "Chris Merck"
 site_description: "Research Notebook"
 site_author: "Chris Merck"
-site_url: https://chrismerck.github.io/
+site_url: https://chrismerck.github.io
 repo_url: https://github.com/chrismerck/chrismerck.github.io
 
 # Use Material for MkDocs to match the look and feel of tinygrad docs
