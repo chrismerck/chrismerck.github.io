@@ -28,16 +28,13 @@ theme:
     - search.highlight
     - search.share
   font:
-    # Current selection
-    # text: "Caveat"
-    # code: "Fira Code"
-    
-    # More readable handwritten options:
-    text: "Architects Daughter"  # Clear, readable handwriting style
-    #text: "Indie Flower"  # Friendly and more legible than Caveat
-    #text: "Patrick Hand"  # Clean, rounded handwriting
-    #text: "Kalam"  # Neat handwriting with good readability
-    #text: "Sriracha"  # Casual but readable
+    # Vintage fonts with 1940s aesthetic:
+    text: "Special Elite"  # Classic weathered typewriter font
+    #text: "Courier Prime"  # Authentic typewriter font with vintage feel
+    #text: "American Typewriter"  # Classic mid-century typewriter style
+    #text: "Josefin Slab"  # Elegant vintage slab serif
+    #text: "Playfair Display"  # Sophisticated vintage typography
+    #text: "Old Standard TT"  # Classic book and newspaper style
     code: "Fira Code"
 
 # Extra CSS files
@@ -47,7 +44,7 @@ extra_css:
 nav:
   - Home: index.md
   - Research:
-      - Overview: research/index.md
+      - Three Digit Math: research/threedigit-notes.md
 
 markdown_extensions:
   - admonition
@@ -60,11 +57,16 @@ markdown_extensions:
       generic: true
   - pymdownx.highlight:
       anchor_linenums: true
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
 
 plugins:
   - search 
 
 extra_javascript:
   - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js 
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js 

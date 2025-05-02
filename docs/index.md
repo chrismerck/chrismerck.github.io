@@ -14,10 +14,8 @@ My primary research interest at this time is AI interpretability, specifically h
 
 Otherwise I spend my time covering sad girl music, taking friends foraging, ever so gradually learning Latin, and teaching kids to solder and code.
 
-## Latest research notes
+## research
 
-<!-- TODO: add most recent research notes here -->
+### Three Digit Math
 
-* [Research Overview](research/index.md)
-
-Feel free to reach out on [GitHub](https://github.com/chrismerck) if you have any questions or suggestions! 
+I'm exploring how neural networks "grok" mathematical operations in my [Three Digit Math](/research/threedigit-notes) project, investigating the phenomenon where models suddenly generalize after extended training periods.
