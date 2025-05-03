@@ -15,7 +15,7 @@ theme:
   favicon: assets/favicon.png
   palette:
     # Feel free to tweak these colors later
-    scheme: default
+    scheme: slate
     primary: grey
     accent: indigo
   features:

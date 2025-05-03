@@ -91,9 +91,6 @@ graph LR
     end
     
     I --> O
-    
-    style I fill:#f9f9f9,stroke:#333,stroke-width:2px
-    style O fill:#f9f9f9,stroke:#333,stroke-width:2px
 ```
 
 ### the math
@@ -148,14 +145,6 @@ graph LR
     b --> Z_vec
     Z_vec -->|"Reshape"| Z_mat
     Z_mat -->|"Softmax<br/>per row"| Y_mat
-
-    style X_mat fill:#f9f9f9,stroke:#333,stroke-width:1px
-    style X_vec fill:#f9f9f9,stroke:#333,stroke-width:1px
-    style W fill:#eee,stroke:#333,stroke-width:1px
-    style b fill:#eee,stroke:#333,stroke-width:1px
-    style Z_vec fill:#f9f9f9,stroke:#333,stroke-width:1px
-    style Z_mat fill:#f9f9f9,stroke:#333,stroke-width:1px
-    style Y_mat fill:#ccffcc,stroke:#333,stroke-width:1px
 ```
 
 To be continued...
