@@ -14,10 +14,21 @@ theme:
   logo: assets/favicon.png
   favicon: assets/favicon.png
   palette:
-    # Feel free to tweak these colors later
-    scheme: slate
-    primary: grey
-    accent: indigo
+    # Palette toggle for light/dark mode
+    - media: "(prefers-color-scheme: light)" # Light mode
+      scheme: default
+      primary: grey
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)" # Dark mode
+      scheme: slate
+      primary: grey
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
   features:
     # Removing instant navigation which conflicts with MathJax
     # - navigation.instant
