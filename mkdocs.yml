@@ -24,6 +24,9 @@ theme:
     - navigation.sections
     - navigation.expand
     - navigation.top
+    - navigation.indexes
+    # - navigation.tabs
+    # - navigation.tabs.sticky
     - toc.integrate
     - search.highlight
     - search.share
@@ -67,6 +70,6 @@ plugins:
   - search 
 
 extra_javascript:
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  # - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   - https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js 
