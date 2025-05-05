@@ -114,37 +114,6 @@ This gives us probability distributions over the 10 possible values for each of 
 
 Our little "simplest model" already has 1830 parameters!
 
-### let's fire up tinygrad
-
-So if we visualize the model, we've got a data flow like this:
-
-```mermaid
-graph LR
-    subgraph Input
-        X_mat["X (6x10)<br/>One-hot Digits"]
-    end
-
-    subgraph Flatten
-        X_vec["X (60)"]
-    end
-    
-    subgraph Linear Layer
-        W["W (30x60)"]
-        b["b (30)"]
-        Z_vec["Z = WX + b<br/>(30)"]
-    end
-
-    subgraph Reshape & Softmax
-        Z_mat["Z (3x10)"]
-        Y_mat["Y (3x10)<br/>Softmax(Z, axis=1)"]
-    end
-
-    X_mat -->|"Flatten"| X_vec
-    X_vec --> Z_vec
-    W --> Z_vec
-    b --> Z_vec
-    Z_vec -->|"Reshape"| Z_mat
-    Z_mat -->|"Softmax<br/>per row"| Y_mat
-```
+### let's fire up an autograd?
 
 To be continued...

@@ -57,8 +57,8 @@ extra_css:
 
 nav:
   - Home: index.md
-  - Research:
-      - Three Digit Math: research/threedigit-notes.md
+  - Blog:
+    - blog/index.md
 
 markdown_extensions:
   - admonition
@@ -76,9 +76,13 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+  - attr_list
+  - md_in_html
+  - pymdownx.superfences
 
 plugins:
   - search 
+  - blog
 
 extra_javascript:
   # - https://polyfill.io/v3/polyfill.min.js?features=es6

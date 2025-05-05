@@ -1,0 +1,3 @@
+[submodule "src/charformers"]
+	path = src/charformers
+	url = git@github.com:chrismerck/charformers.git
