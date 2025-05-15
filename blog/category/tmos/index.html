@@ -564,32 +564,30 @@
     </div>
   </header>
   <div class="md-post__content md-typeset">
-    <h2 id="5-in-2-superposition"><a class="toclink" href="../../2025/05/14/5-in-2-superposition/">5-in-2 Superposition</a></h2>
-<p>Wherein I implement a toy model of feature superposition,
-and give a visual explaination of how gradient descent lands in a local minimum
-in a specific training run.</p>
-<h2 id="pentagonal-superposition"><a class="toclink" href="../../2025/05/14/5-in-2-superposition/#pentagonal-superposition">Pentagonal Superposition</a></h2>
+    <h2 id="demonstrating-superposition"><a class="toclink" href="../../2025/05/14/demonstrating-superposition/">Demonstrating Superposition</a></h2>
+<p>Wherein I implement a toy model of feature superposition by hand in C as a remedial exercise,
+and create a video showing the model learning a suboptimal representation.</p>
+<hr />
 <blockquote>
 <p>In the unlikely scenario where all of this makes total sense and you feel like you're ready to make contributions, [...]<br />
 - Scott Alexander <a href="https://www.astralcodexten.com/p/god-help-us-lets-try-to-understand">Nov 2023</a></p>
 </blockquote>
-<p>Reading that in ACX the fall before last got me interested in interpretability,
-and I now feel ready to try my hand at this.</p>
+<hr />
 <p>In this post, I will manually reproduce the intro figure from <a href="https://transformer-circuits.pub/2022/toy_model/index.html">Toy Models of Superposition</a>
 without using anything but the C standard library,
-so as not to hide any of the details.</p>
-<p>The paper comes with a PyTorch implementation,
+so as not to hide any of the details.
+The paper comes with a PyTorch implementation,
 but autograds do so much work I feel I need to earn the right to use them
 by working out the toy model math and code myself.</p>
-<p>The result is this little animation showing how the model learns the pentagonal representation
+<p>The basic result is this little animation showing how the model learns the pentagonal representation
 from the paper's intro:</p>
 <video controls width="100%">
   <source src="/assets/tmos_sec2_pentagon.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
-<h3 id="the-data"><a class="toclink" href="../../2025/05/14/5-in-2-superposition/#the-data">The Data</a></h3>
-<p>First off, we need to generate the synthetic data. We want samples with dimension <span class="arithmatex">\(n=20\)</span>,
+<h3 id="the-data"><a class="toclink" href="../../2025/05/14/demonstrating-superposition/#the-data">The Data</a></h3>
+<p>First off, we need to generate the synthetic data. We want samples with dimension <span class="arithmatex">\(n=5\)</span>,
 where features are <em>sparse</em> (being non-zero with probability <span class="arithmatex">\(1 - S\)</span>) and uniformly 
 distributed on the unit interval when they do appear, which we can write down as a 
 mixture of two distributions:</p>
@@ -597,8 +595,9 @@ mixture of two distributions:</p>
 \delta(0) &amp; S \\
 \text{U}(0, 1) &amp; (1 - S)
 \end{cases}\]</div>
-<h4 id="synthesizing-data-in-c"><a class="toclink" href="../../2025/05/14/5-in-2-superposition/#synthesizing-data-in-c">Synthesizing Data in C</a></h4>
-<p class="annotate">Now let's build sample data (the C stdlib doesn't have a uniform random function so I wrote one (1)):</p>
+<p>Here <span class="arithmatex">\(\delta\)</span> is the Dirac delta function, i.e. the point mass distribution.</p>
+<h4 id="synthesizing-data-in-c"><a class="toclink" href="../../2025/05/14/demonstrating-superposition/#synthesizing-data-in-c">Synthesizing Data in C</a></h4>
+<p class="annotate">The C stdlib doesn't have a uniform random function so I wrote one (1) and used it to generate the data:</p>
 <ol>
 <li><div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
 <a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
@@ -671,16 +670,16 @@ X=
 \end{bmatrix}
 \]</div>
 <p>And we see ~2 dimensions are non-zero in each datapoint, as expected.</p>
-<h3 id="the-model"><a class="toclink" href="../../2025/05/14/5-in-2-superposition/#the-model">The Model</a></h3>
+<h3 id="the-model"><a class="toclink" href="../../2025/05/14/demonstrating-superposition/#the-model">The Model</a></h3>
 <p>The model is a 2-layer feedforward network,
-where the hidden layer maps down from <span class="arithmatex">\(n=20\)</span> to <span class="arithmatex">\(m=5\)</span> dimensions
+where the hidden layer maps down from <span class="arithmatex">\(n=5\)</span> to <span class="arithmatex">\(m=2\)</span> dimensions
 without any activation function,
 and then the output layer uses the transpose of the hidden-layer weights
 plus a bias term and a ReLU activation function. 
 This is, as far as I can tell, basically an autoencoder.</p>
 <p>In matrix notation we have:</p>
 <div class="arithmatex">\[y = \verb|ReLU|(W^T W x + b).\]</div>
-<h4 id="the-forward-pass"><a class="toclink" href="../../2025/05/14/5-in-2-superposition/#the-forward-pass">The Forward Pass</a></h4>
+<h4 id="the-forward-pass"><a class="toclink" href="../../2025/05/14/demonstrating-superposition/#the-forward-pass">The Forward Pass</a></h4>
 <p>Breaking down into steps with indecies we have:</p>
 <div class="arithmatex">\[
 \begin{aligned}
@@ -710,7 +709,7 @@ y_j &amp;= \max(0, a_j),
 <a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a><span class="p">}</span>
 </code></pre></div>
-<h4 id="importance-and-loss"><a class="toclink" href="../../2025/05/14/5-in-2-superposition/#importance-and-loss">Importance and Loss</a></h4>
+<h4 id="importance-and-loss"><a class="toclink" href="../../2025/05/14/demonstrating-superposition/#importance-and-loss">Importance and Loss</a></h4>
 <p>We want the model to prioritize representation of certain dimensions,
 so we assign an <em>importance</em> <span class="arithmatex">\(I_i\)</span> to each dimension, which we 
 make decrease geometrically: <span class="arithmatex">\(I_i = 0.7^i\)</span>.
@@ -720,10 +719,11 @@ A weighted least-squares loss is then:</p>
 We then should be able to visualize the weights and see feature superposition
 emerging as a function of sparsity.</p>
 <p>Note that in the paper they do not specify any regularization.
-I threw in the L2 regularization term
-knowing we can always set <span class="arithmatex">\(\alpha = 0\)</span> if we don't need it.</p>
-<h3 id="training"><a class="toclink" href="../../2025/05/14/5-in-2-superposition/#training">Training</a></h3>
-<h4 id="finding-the-gradient"><a class="toclink" href="../../2025/05/14/5-in-2-superposition/#finding-the-gradient">Finding the Gradient</a></h4>
+I threw in the L2 regularization term because I saw that a weight-decay 
+optimizer was used in the paper's code example on CoLab,
+but it turns out to be totally unnecessary if we pick the learning rate right.</p>
+<h3 id="training"><a class="toclink" href="../../2025/05/14/demonstrating-superposition/#training">Training</a></h3>
+<h4 id="finding-the-gradient"><a class="toclink" href="../../2025/05/14/demonstrating-superposition/#finding-the-gradient">Finding the Gradient</a></h4>
 <p>As I'm a bit rusty on my calculus, I'll go step by step through the gradient
 computation.
 Taking the derivative with respect to an arbitrary weight
@@ -772,7 +772,7 @@ to the value of <span class="arithmatex">\(h_k\)</span>, but then we need to add
 that <span class="arithmatex">\(h_k\)</span> itself is also increased proportional to both the
 <span class="arithmatex">\(i\)</span>th input and the current value of the weight.
 So our calculation seems intuitively correct.</p>
-<h4 id="computing-the-gradient-in-c"><a class="toclink" href="../../2025/05/14/5-in-2-superposition/#computing-the-gradient-in-c">Computing the Gradient in C</a></h4>
+<h4 id="computing-the-gradient-in-c"><a class="toclink" href="../../2025/05/14/demonstrating-superposition/#computing-the-gradient-in-c">Computing the Gradient in C</a></h4>
 <p>To compute the gradient in C, 
 we implement a gradient function that adds to a gradient accumulator:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kt">float</span><span class="w"> </span><span class="nf">gradient</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">params_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="n">N</span><span class="p">],</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">alpha</span><span class="p">,</span><span class="w"> </span><span class="n">params_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">grad</span><span class="p">);</span>
@@ -860,9 +860,13 @@ For example the hidden layer computation now looks like:</p>
 <a id="__codelineno-22-69" name="__codelineno-22-69" href="#__codelineno-22-69"></a><span class="p">}</span>
 </code></pre></div></li>
 </ol>
-<h4 id="the-training-loop"><a class="toclink" href="../../2025/05/14/5-in-2-superposition/#the-training-loop">The Training Loop</a></h4>
-<p>Now we put it all together, adding in a batch size of 1024 as in the paper's code example on CoLab:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">params_t</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+<h4 id="the-training-loop"><a class="toclink" href="../../2025/05/14/demonstrating-superposition/#the-training-loop">The Training Loop</a></h4>
+<p class="annotate">Now we put it all together (1), adding in a random batch of size 1024 which provides
+some stochasticity to the gradient descent.
+Note that I'm not using any optimizer,
+and I've got regularization turned off.</p>
+<ol>
+<li><div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">params_t</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
 <a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">p</span><span class="p">));</span>
 <a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="c1">// initialize with random weights and biases</span>
 <a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -884,54 +888,37 @@ For example the hidden layer computation now looks like:</p>
 <a id="__codelineno-23-20" name="__codelineno-23-20" href="#__codelineno-23-20"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;run: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">);</span>
 <a id="__codelineno-23-21" name="__codelineno-23-21" href="#__codelineno-23-21"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;L: %1.04f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">L</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">batch_size</span><span class="p">);</span>
 <a id="__codelineno-23-22" name="__codelineno-23-22" href="#__codelineno-23-22"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">99</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-23-23" name="__codelineno-23-23" href="#__codelineno-23-23"></a><span class="w">        </span><span class="c1">// compute W^T W and print it</span>
-<a id="__codelineno-23-24" name="__codelineno-23-24" href="#__codelineno-23-24"></a><span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">WTW</span><span class="p">[</span><span class="n">N</span><span class="p">][</span><span class="n">N</span><span class="p">];</span>
-<a id="__codelineno-23-25" name="__codelineno-23-25" href="#__codelineno-23-25"></a><span class="w">        </span><span class="n">memset</span><span class="p">(</span><span class="n">WTW</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">WTW</span><span class="p">));</span>
-<a id="__codelineno-23-26" name="__codelineno-23-26" href="#__codelineno-23-26"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-23-27" name="__codelineno-23-27" href="#__codelineno-23-27"></a><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">M</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-23-28" name="__codelineno-23-28" href="#__codelineno-23-28"></a><span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-23-29" name="__codelineno-23-29" href="#__codelineno-23-29"></a><span class="w">                    </span><span class="n">WTW</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">W</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">W</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
-<a id="__codelineno-23-30" name="__codelineno-23-30" href="#__codelineno-23-30"></a><span class="w">                </span><span class="p">}</span>
-<a id="__codelineno-23-31" name="__codelineno-23-31" href="#__codelineno-23-31"></a><span class="w">            </span><span class="p">}</span>
-<a id="__codelineno-23-32" name="__codelineno-23-32" href="#__codelineno-23-32"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-23-33" name="__codelineno-23-33" href="#__codelineno-23-33"></a><span class="w">        </span><span class="n">printmat</span><span class="p">(</span><span class="s">&quot;W^T W&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">WTW</span><span class="p">);</span>
-<a id="__codelineno-23-34" name="__codelineno-23-34" href="#__codelineno-23-34"></a><span class="w">        </span><span class="c1">// print b</span>
-<a id="__codelineno-23-35" name="__codelineno-23-35" href="#__codelineno-23-35"></a><span class="w">        </span><span class="n">printmat</span><span class="p">(</span><span class="s">&quot;b&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">b</span><span class="p">);</span>
-<a id="__codelineno-23-36" name="__codelineno-23-36" href="#__codelineno-23-36"></a><span class="w">        </span><span class="c1">// print W</span>
-<a id="__codelineno-23-37" name="__codelineno-23-37" href="#__codelineno-23-37"></a><span class="w">        </span><span class="n">printmat</span><span class="p">(</span><span class="s">&quot;W&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">W</span><span class="p">);</span>
-<a id="__codelineno-23-38" name="__codelineno-23-38" href="#__codelineno-23-38"></a><span class="w">        </span><span class="c1">// print grad w and b</span>
-<a id="__codelineno-23-39" name="__codelineno-23-39" href="#__codelineno-23-39"></a><span class="w">        </span><span class="n">printmat</span><span class="p">(</span><span class="s">&quot;grad w&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">grad</span><span class="p">.</span><span class="n">W</span><span class="p">);</span>
-<a id="__codelineno-23-40" name="__codelineno-23-40" href="#__codelineno-23-40"></a><span class="w">        </span><span class="n">printmat</span><span class="p">(</span><span class="s">&quot;grad b&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">grad</span><span class="p">.</span><span class="n">b</span><span class="p">);</span>
-<a id="__codelineno-23-41" name="__codelineno-23-41" href="#__codelineno-23-41"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-23-42" name="__codelineno-23-42" href="#__codelineno-23-42"></a><span class="w">    </span><span class="n">fflush</span><span class="p">(</span><span class="n">stdout</span><span class="p">);</span>
-<a id="__codelineno-23-43" name="__codelineno-23-43" href="#__codelineno-23-43"></a><span class="p">}</span>
-</code></pre></div>
-<p>Note that I'm not using any optimizer,
-and I've got regularization turned off.
-It took only a little bit of trial and error to get the learning rate right.</p>
-<p>This outputs a long log of the weights and loss during the training run.</p>
-<p>I then asked <code>o3</code> to animate it for me, and we get the video shared at the top.
-One of the hardest parts of learning to use LLMs I find is knowing when and when <em>not</em>
+<a id="__codelineno-23-23" name="__codelineno-23-23" href="#__codelineno-23-23"></a><span class="w">        </span><span class="c1">// print b</span>
+<a id="__codelineno-23-24" name="__codelineno-23-24" href="#__codelineno-23-24"></a><span class="w">        </span><span class="n">printmat</span><span class="p">(</span><span class="s">&quot;b&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">b</span><span class="p">);</span>
+<a id="__codelineno-23-25" name="__codelineno-23-25" href="#__codelineno-23-25"></a><span class="w">        </span><span class="c1">// print W</span>
+<a id="__codelineno-23-26" name="__codelineno-23-26" href="#__codelineno-23-26"></a><span class="w">        </span><span class="n">printmat</span><span class="p">(</span><span class="s">&quot;W&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">W</span><span class="p">);</span>
+<a id="__codelineno-23-27" name="__codelineno-23-27" href="#__codelineno-23-27"></a><span class="w">        </span><span class="c1">// print grad w and b</span>
+<a id="__codelineno-23-28" name="__codelineno-23-28" href="#__codelineno-23-28"></a><span class="w">        </span><span class="n">printmat</span><span class="p">(</span><span class="s">&quot;grad w&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">grad</span><span class="p">.</span><span class="n">W</span><span class="p">);</span>
+<a id="__codelineno-23-29" name="__codelineno-23-29" href="#__codelineno-23-29"></a><span class="w">        </span><span class="n">printmat</span><span class="p">(</span><span class="s">&quot;grad b&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">grad</span><span class="p">.</span><span class="n">b</span><span class="p">);</span>
+<a id="__codelineno-23-30" name="__codelineno-23-30" href="#__codelineno-23-30"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-23-31" name="__codelineno-23-31" href="#__codelineno-23-31"></a><span class="w">    </span><span class="n">fflush</span><span class="p">(</span><span class="n">stdout</span><span class="p">);</span>
+<a id="__codelineno-23-32" name="__codelineno-23-32" href="#__codelineno-23-32"></a><span class="p">}</span>
+</code></pre></div></li>
+</ol>
+<p>This C program outputs a long log of the weights and loss during the training run.
+Runs take about 10 seconds for 10000 batches, which is enough to fully converge.</p>
+<p>It took only a little bit of trial and error to get the learning rate right.</p>
+<p class="annotate">I then asked <code>o3</code> (1) to take the outputted log and make an animation, resulting in the video shared at the top.
+Here was the prompt that got me 90% of the way to a working animation:</p>
+<ol>
+<li>One of the hardest parts of learning to use LLMs I find is knowing when and when <em>not</em>
 to use them. For building visualizations, I find LLMs incredibly helpful,
-while for <em>learning</em>, it's best to battle through the details oneself.
-Anyways, here was my prompt for the animation which got 90% of the way there:</p>
+while for <em>learning</em>, it's best to battle through the details oneself.</li>
+</ol>
 <blockquote>
 <p>Please write a Python program that takes a file called log with this format:
 (pasted example log snippet)
 and uses matplotlib to render loss as a function of the run,
 and the W matrix showing how each unit input vector is mapped to the hidden dimensions (2d) which should be a plot with one scatter dot for each of the 5 input unit vectors. Make this an animation showing how the points migrated over time, keeping the xy limits fixed so it is stable. Include a moving average of the loss as a line plot.</p>
 </blockquote>
-<h3 id="getting-stuck-in-a-local-minimum"><a class="toclink" href="../../2025/05/14/5-in-2-superposition/#getting-stuck-in-a-local-minimum">Getting Stuck in a Local Minimum</a></h3>
-<p>We can see from the animation something that was not covered in the paper.
-The model does not immediately or smoothly converge to the pentagonal representation.
-In fact, it almost seems to get stuck in a local minimum where the feature labeled "4"
-is near zero in the hidden layer.</p>
-<p>What is nice about the animation is that we can see how feature 4 seems to push
-the others out of the way, giving an intuitive sense of how strongly superposed
-features may behave, suggesting other toy experiments such as exploring 
-local minima by construction.</p>
-<p>I'll close with an animation of the same model but with <span class="arithmatex">\(n=11\)</span> features,
-and importance decaying as <span class="arithmatex">\(0.9^i\)</span>. Notice how <strong>it indeed converges to a suboptimal solution</strong>!</p>
+<h3 id="intiution-about-local-minima"><a class="toclink" href="../../2025/05/14/demonstrating-superposition/#intiution-about-local-minima">Intiution about Local Minima</a></h3>
+<p>I'll close with an animation of the same model but with <span class="arithmatex">\(n=32\)</span> features,
+and importance decaying as <span class="arithmatex">\(0.9^i\)</span>. Notice how <strong>it converges to a suboptimal solution</strong>!</p>
 <video controls width="100%">
   <source src="/assets/tmos_sec2_hexagon.mp4" type="video/mp4">
   Your browser does not support the video tag.
@@ -944,6 +931,8 @@ Why is that? It seems to be because features 5 and 6
 were unlucky enough to be on the side of the pentagon shared with higher-importance features
 while 7 had the good fortune of being near the relatively weaker feature 4
 which it could push out of the way.</p>
+<p>Bottom line: there are non-trivial local minima even in simple models <em>and</em> we can actually have some hope of gaining
+intuition about them.</p>
     
   </div>
 </article>
