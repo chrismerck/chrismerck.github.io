@@ -2,3 +2,4 @@ mkdocs>=1.5
 mkdocs-material>=9.5
 pymdown-extensions>=10.0
 mkdocs-blog-plugin>=0.25 
+mkdocs-mermaid2-plugin
