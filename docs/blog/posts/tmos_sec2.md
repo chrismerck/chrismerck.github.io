@@ -1,32 +1,31 @@
 ---
-title: 5-in-2 Superposition
+title: Demonstrating Superposition
 date: 2025-05-14
 description: Reproducing the intro figure from Toy Models of Superposition
 categories:
   - tmos
 ---
 
-Wherein I implement a toy model of feature superposition,
-and give a visual explaination of how gradient descent lands in a local minimum
-in a specific training run.
+# Demonstrating Superposition
 
-# Pentagonal Superposition
+Wherein I implement a toy model of feature superposition by hand in C as a remedial exercise,
+and create a video showing the model learning a suboptimal representation.
+
+---
 
 > In the unlikely scenario where all of this makes total sense and you feel like you're ready to make contributions, [...]  
 > - Scott Alexander [Nov 2023](https://www.astralcodexten.com/p/god-help-us-lets-try-to-understand)
 
-Reading that in ACX the fall before last got me interested in interpretability,
-and I now feel ready to try my hand at this.
+---
 
 In this post, I will manually reproduce the intro figure from [Toy Models of Superposition](https://transformer-circuits.pub/2022/toy_model/index.html)
 without using anything but the C standard library,
 so as not to hide any of the details.
-
 The paper comes with a PyTorch implementation,
 but autograds do so much work I feel I need to earn the right to use them
 by working out the toy model math and code myself.
 
-The result is this little animation showing how the model learns the pentagonal representation
+The basic result is this little animation showing how the model learns the pentagonal representation
 from the paper's intro:
 
 <video controls width="100%">
@@ -36,7 +35,7 @@ from the paper's intro:
 
 ## The Data
 
-First off, we need to generate the synthetic data. We want samples with dimension $n=20$,
+First off, we need to generate the synthetic data. We want samples with dimension $n=5$,
 where features are _sparse_ (being non-zero with probability $1 - S$) and uniformly 
 distributed on the unit interval when they do appear, which we can write down as a 
 mixture of two distributions:
@@ -46,9 +45,11 @@ $$x_i \sim \sum \begin{cases}
 \text{U}(0, 1) & (1 - S)
 \end{cases}$$
 
+Here $\delta$ is the Dirac delta function, i.e. the point mass distribution.
+
 ### Synthesizing Data in C
 
-Now let's build sample data (the C stdlib doesn't have a uniform random function so I wrote one (1)):
+The C stdlib doesn't have a uniform random function so I wrote one (1) and used it to generate the data:
 { .annotate }
 
 1. 
@@ -134,7 +135,7 @@ And we see ~2 dimensions are non-zero in each datapoint, as expected.
 ## The Model
 
 The model is a 2-layer feedforward network,
-where the hidden layer maps down from $n=20$ to $m=5$ dimensions
+where the hidden layer maps down from $n=5$ to $m=2$ dimensions
 without any activation function,
 and then the output layer uses the transpose of the hidden-layer weights
 plus a bias term and a ReLU activation function. 
@@ -194,8 +195,9 @@ We then should be able to visualize the weights and see feature superposition
 emerging as a function of sparsity.
 
 Note that in the paper they do not specify any regularization.
-I threw in the L2 regularization term
-knowing we can always set $\alpha = 0$ if we don't need it.
+I threw in the L2 regularization term because I saw that a weight-decay 
+optimizer was used in the paper's code example on CoLab,
+but it turns out to be totally unnecessary if we pick the learning rate right.
 
 ## Training
 
@@ -356,8 +358,13 @@ float gradient(const params_t * p, const float x[N], float alpha, params_t * gra
 
 ### The Training Loop
 
-Now we put it all together, adding in a batch size of 1024 as in the paper's code example on CoLab:
+Now we put it all together (1), adding in a random batch of size 1024 which provides
+some stochasticity to the gradient descent.
+Note that I'm not using any optimizer,
+and I've got regularization turned off.
+{ .annotate }
 
+1. 
 ```c
 params_t p;
 memset(&p, 0, sizeof(p));
@@ -381,17 +388,6 @@ for (int r = 0; r < runs; r++) {
     printf("run: %d\n", r);
     printf("L: %1.04f\n", L / batch_size);
     if (r % 100 == 99) {
-        // compute W^T W and print it
-        float WTW[N][N];
-        memset(WTW, 0, sizeof(WTW));
-        for (int j = 0; j < N; j++) {
-            for (int k = 0; k < M; k++) {
-                for (int i = 0; i < N; i++) {
-                    WTW[j][i] += p.W[k][j] * p.W[k][i];
-                }
-            }
-        }
-        printmat("W^T W", N, N, WTW);
         // print b
         printmat("b", 1, N, p.b);
         // print W
@@ -404,37 +400,29 @@ for (int r = 0; r < runs; r++) {
 }
 ```
 
-Note that I'm not using any optimizer,
-and I've got regularization turned off.
+This C program outputs a long log of the weights and loss during the training run.
+Runs take about 10 seconds for 10000 batches, which is enough to fully converge.
+
 It took only a little bit of trial and error to get the learning rate right.
 
-This outputs a long log of the weights and loss during the training run.
+I then asked `o3` (1) to take the outputted log and make an animation, resulting in the video shared at the top.
+Here was the prompt that got me 90% of the way to a working animation:
+{ .annotate }
 
-I then asked `o3` to animate it for me, and we get the video shared at the top.
+1. 
 One of the hardest parts of learning to use LLMs I find is knowing when and when _not_
 to use them. For building visualizations, I find LLMs incredibly helpful,
 while for _learning_, it's best to battle through the details oneself.
-Anyways, here was my prompt for the animation which got 90% of the way there:
 
 > Please write a Python program that takes a file called log with this format:
 > (pasted example log snippet)
 > and uses matplotlib to render loss as a function of the run,
 > and the W matrix showing how each unit input vector is mapped to the hidden dimensions (2d) which should be a plot with one scatter dot for each of the 5 input unit vectors. Make this an animation showing how the points migrated over time, keeping the xy limits fixed so it is stable. Include a moving average of the loss as a line plot.
 
-## Getting Stuck in a Local Minimum
+## Intiution about Local Minima 
 
-We can see from the animation something that was not covered in the paper.
-The model does not immediately or smoothly converge to the pentagonal representation.
-In fact, it almost seems to get stuck in a local minimum where the feature labeled "4"
-is near zero in the hidden layer.
-
-What is nice about the animation is that we can see how feature 4 seems to push
-the others out of the way, giving an intuitive sense of how strongly superposed
-features may behave, suggesting other toy experiments such as exploring 
-local minima by construction.
-
-I'll close with an animation of the same model but with $n=11$ features,
-and importance decaying as $0.9^i$. Notice how **it indeed converges to a suboptimal solution**!
+I'll close with an animation of the same model but with $n=32$ features,
+and importance decaying as $0.9^i$. Notice how **it converges to a suboptimal solution**!
 
 <video controls width="100%">
   <source src="/assets/tmos_sec2_hexagon.mp4" type="video/mp4">
@@ -448,3 +436,6 @@ Why is that? It seems to be because features 5 and 6
 were unlucky enough to be on the side of the pentagon shared with higher-importance features
 while 7 had the good fortune of being near the relatively weaker feature 4
 which it could push out of the way.
+
+Bottom line: there are non-trivial local minima even in simple models _and_ we can actually have some hope of gaining
+intuition about them.
