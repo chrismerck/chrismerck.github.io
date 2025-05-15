@@ -14,13 +14,13 @@
 #include "string.h"
 #include "stdlib.h" // for random
 
-#define N 5
+#define N 32
 #define M 2
 const long n_samples = 100000;
 float importance(int n) { return pow(0.9, n); }
 float eta = 1;
 float alpha = 0;
-const int runs = 10000;
+const int runs = 30000;
 const long batch_size = 1024;
 float S_ = 0.01;
 
@@ -66,15 +66,14 @@ void forward(params_t * p, float x[N], float * y) {
     }
 }
 
-/// gradient descent on single sample, learning rate eta
 float gradient(const params_t * p, const float x[N], float alpha, params_t * grad) {
     // unlike the forward pass, we keep track of intermediate
     // values that appear in the gradient
     // our toy model is so small that all this fits comfortably 
     // in the thread stack
-    // alpha = L1 regularization co-efficient
+    // alpha = L2 regularization co-efficient
+    // grad is a pointer to the gradient accumulator
     // returns loss
-    // adds to grad, but does not update
     float wkj_xj[M][N];
     float hk[M];
     float y[N];
@@ -112,15 +111,15 @@ float gradient(const params_t * p, const float x[N], float alpha, params_t * gra
     for (int n = 0; n < N; n++) {
         if (y[n] <= 0) continue;
         for (int m = 0; m < M; m++) {
-            L += alpha * fabs(p->W[m][n]);
+            L += alpha * p->W[m][n] * p->W[m][n];
         }
-        L += alpha * fabs(p->b[n]);
+        L += alpha * p->b[n] * p->b[n];
     }
     L /= 2;
     for (int m = 0; m < M; m++) {
         for (int n = 0; n < N; n++) {
             if (y[n] <= 0) continue;
-            dL_wkj[m][n] = importance(n) * delta[n] * (hk[m] + wkj_xj[m][n]) + alpha * (p->W[m][n] > 0 ? 1 : -1);
+            dL_wkj[m][n] = importance(n) * delta[n] * (hk[m] + wkj_xj[m][n]) + alpha * p->W[m][n];
         }
     }
     // add to gradient accumulator
@@ -131,7 +130,7 @@ float gradient(const params_t * p, const float x[N], float alpha, params_t * gra
     }
     for (int n = 0; n < N; n++) {
         if (y[n] <= 0) continue;
-        grad->b[n] -= delta[n] + alpha * (p->b[n] > 0 ? 1 : -1);
+        grad->b[n] -= delta[n] + alpha * p->b[n];
     }
     return L;
 }
