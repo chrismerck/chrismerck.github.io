@@ -2,34 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://chrismerck.github.io/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-05-15</lastmod>
     </url>
     <url>
          <loc>https://chrismerck.github.io/blog/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-05-15</lastmod>
     </url>
     <url>
-         <loc>https://chrismerck.github.io/blog/2024/05/05/crashes-in-the-field/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <loc>https://chrismerck.github.io/blog/2025/05/14/5-in-2-superposition/</loc>
+         <lastmod>2025-05-15</lastmod>
     </url>
     <url>
          <loc>https://chrismerck.github.io/embedded/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-05-15</lastmod>
     </url>
     <url>
          <loc>https://chrismerck.github.io/research/charformers/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-05-15</lastmod>
     </url>
     <url>
          <loc>https://chrismerck.github.io/research/threedigit-notes/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-05-15</lastmod>
     </url>
     <url>
-         <loc>https://chrismerck.github.io/blog/archive/2024/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <loc>https://chrismerck.github.io/blog/archive/2025/</loc>
+         <lastmod>2025-05-15</lastmod>
     </url>
     <url>
-         <loc>https://chrismerck.github.io/blog/category/embedded/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <loc>https://chrismerck.github.io/blog/category/tmos/</loc>
+         <lastmod>2025-05-15</lastmod>
     </url>
 </urlset>
