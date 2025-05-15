@@ -6,13 +6,17 @@ categories:
   - tmos
 ---
 
+Wherein I implement a toy model of feature superposition,
+and give a visual explaination of how gradient descent lands in a local minimum
+in a specific training run.
+
 # Pentagonal Superposition
 
 > In the unlikely scenario where all of this makes total sense and you feel like you're ready to make contributions, [...]  
 > - Scott Alexander [Nov 2023](https://www.astralcodexten.com/p/god-help-us-lets-try-to-understand)
 
 Reading that in ACX the fall before last got me interested in interpretability,
-and my life has finally settled enough to dive in, so...
+and I now feel ready to try my hand at this.
 
 In this post, I will manually reproduce the intro figure from [Toy Models of Superposition](https://transformer-circuits.pub/2022/toy_model/index.html)
 without using anything but the C standard library,
@@ -56,9 +60,9 @@ float frand() {
     return (random() / (float) RAND_MAX);
 }
 ```
-macOS manpages emplore us to use the cryptographically secure RNG `arc4random()`, 
+macOS manpages implore us to use the cryptographically secure RNG `arc4random()`, 
 but I think the polynomial PRNG is good enough for this application, 
-and I like that we can use `srandom(0)` to force reproducability.
+and I like that we can use `srandom(0)` to force reproducibility.
 
 ```c
 void synthesize(int n, long count, float X[n][count], float S_) {
@@ -284,7 +288,7 @@ float gradient(const params_t * p, const float x[N], float alpha, params_t * gra
     // values that appear in the gradient
     // our toy model is so small that all this fits comfortably 
     // in the thread stack
-    // alpha = L1 regularization co-efficient
+    // alpha = L1 regularization coefficient
     // grad is a pointer to the gradient accumulator
     // returns loss
     float wkj_xj[M][N];
@@ -439,8 +443,8 @@ and importance decaying as $0.9^i$. Notice how **it indeed converges to a subopt
 
 You can see that the pentagon quickly forms out of features 0 through 4,
 and then features 5, 6, and 7 start to emerge,
-but then it is the less important features 7 which pushes its way out to form 
-a stable hexagon. Why is that? It seems to be because features 5 and 6 
-where unlucky enough to be on the side of the pentagon shared with higher-importance features
+but then it is the less important feature 7 which pushes its way out to form a stable hexagon. 
+Why is that? It seems to be because features 5 and 6 
+were unlucky enough to be on the side of the pentagon shared with higher-importance features
 while 7 had the good fortune of being near the relatively weaker feature 4
 which it could push out of the way.
