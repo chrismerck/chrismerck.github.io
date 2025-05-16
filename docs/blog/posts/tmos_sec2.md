@@ -328,7 +328,6 @@ float gradient(const params_t * p, const float x[N], float alpha, params_t * gra
         L += Ij * delta[n] * delta[n];
     }
     for (int n = 0; n < N; n++) {
-        if (y[n] <= 0) continue;
         for (int m = 0; m < M; m++) {
             L += alpha * fabs(p->W[m][n]);
         }
