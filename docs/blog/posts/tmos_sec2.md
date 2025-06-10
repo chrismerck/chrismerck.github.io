@@ -79,7 +79,8 @@ void synthesize(int n, long count, float X[n][count], float S_) {
 ```
 
 Now we can generate some samples with sparsity 1-S = 0.1, 
-using a little `printmat` function (1) to visualize:
+using a little `printmat` function (1) to check our work.
+Below we see the result for four 5-D samples.
 { .annotate }
 
 1. 
@@ -107,30 +108,18 @@ printmat("X", (float *) X, N, count);
 ```
 
 $$
-X=
-\begin{bmatrix}
-  0       & 0       & 0       & 0      \\
-  0       & 0       & 0       & 0      \\
-  0.067   & 0       & 0       & 0      \\
-  0       & 0       & 0       & 0      \\
-  0       & 0       & 0       & 0      \\
-  0       & 0       & 0       & 0.658  \\
-  0.643   & 0       & 0       & 0      \\
-  0.976   & 0       & 0       & 0      \\
-  0       & 0       & 0.137   & 0.696  \\
-  0       & 0       & 0       & 0      \\
-  0       & 0       & 0       & 0      \\
-  0.836   & 0       & 0.160   & 0      \\
-  0       & 0       & 0       & 0      \\
-  0       & 0       & 0       & 0      \\
-  0       & 0.758   & 0       & 0      \\
-  0       & 0       & 0       & 0      \\
-  0       & 0       & 0       & 0      \\
-  0       & 0       & 0       & 0      
+X=\begin{bmatrix}
+0 & 0 & 0 & 0 \
+0 & 0 & 0 & 0 \
+0.522 & 0 & 0 & 0 \
+0 & 0.568 & 0 & 0 \
+0 & 0 & 0 & 0 \
 \end{bmatrix}
 $$
 
-And we see ~2 dimensions are non-zero in each datapoint, as expected.
+Here we see that only ~2 of the 20 elements are non-zero,
+as expected with this sparsity level.
+
 
 ## The Model
 
