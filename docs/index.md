@@ -12,6 +12,8 @@ I'm an entrepreneur-engineer, researcher, musician, and linguaphile. I am co-fou
  - how character-level transformer models may learn morphemes and their meanings
  - training through self-play, in games and mathematics
 
+You can find my [senior thesis on physical model theory](assets/Merck-Physical_Model_Theory-2010.pdf) from my undergraduate work.
+
 Otherwise I spend my time doodling on guitar, taking friends foraging, ever so gradually learning Latin, and teaching kids to solder and code.
 
 My intent with this site is to share occasional writeups related to work, research, and adjacent. Try the sidebar menu.
