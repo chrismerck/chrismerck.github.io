@@ -323,6 +323,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      projects
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selected-papers" class="md-nav__link">
+    <span class="md-ellipsis">
+      selected papers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#misc" class="md-nav__link">
+    <span class="md-ellipsis">
+      misc
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -581,15 +608,43 @@
 
 <h1 id="welcome-to-my-digital-lab-notebook">welcome to my digital lab notebook<a class="headerlink" href="#welcome-to-my-digital-lab-notebook" title="Permanent link">&para;</a></h1>
 <h2 id="about-me">about me<a class="headerlink" href="#about-me" title="Permanent link">&para;</a></h2>
-<p>I'm an entrepreneur-engineer, researcher, musician, and linguaphile. I am co-founder and CTO at <strong>Olibra (<a href="https://bondhome.io">Bond Home</a>)</strong>, where I lead a team building next-generation user experiences for smart home. I've done research in the past in causal inference (think of it as the less trendy little sister of AI Interpretability), and insofar as I have research interests at the moment, I am toying with:</p>
+<p>I'm an entrepreneur-engineer, erstwhile researcher, amateur musician and radio operator (W2CAM), and linguaphile. I am co-founder and CTO at <strong>Olibra (<a href="https://bondhome.io">Bond Home</a>)</strong>, where I lead a team building next-generation user experiences for smart home. I've done research in the past in causal inference, and I now wish to contribute to the safe development of machine intelligence.</p>
+<p>Research directions I'm particularly interested in:</p>
 <ul>
-<li>technical approaches to AI safety, especially via interpretability</li>
-<li>how character-level transformer models may learn morphemes and their meanings</li>
-<li>training through self-play, in games and mathematics</li>
+<li>safe AI-assisted/automated embedded systems development</li>
+<li>user interfaces for agentic coding -- how do we maintain quality and security as we reduce supervision?</li>
+<li>evaluations of agentic coding against real machines (qemu, attached hardware)</li>
+<li>byte-based transformers (direct machine code generation)</li>
 </ul>
-<p>You can find my <a href="assets/Merck-Physical_Model_Theory-2010.pdf">senior thesis on physical model theory</a> from my undergraduate work.</p>
-<p>Otherwise I spend my time doodling on guitar, taking friends foraging, ever so gradually learning Latin, and teaching kids to solder and code.</p>
-<p>My intent with this site is to share occasional writeups related to work, research, and adjacent. Try the sidebar menu.</p>
+<h2 id="projects">projects<a class="headerlink" href="#projects" title="Permanent link">&para;</a></h2>
+<p>I'm curious about AI interpretability, so I <a href="blog/2025/05/14/demonstrating-superposition/">reproduced the intro figure</a>
+ from Anthropic's Toy Models of Superposition. I wanted a refresher, so rather than use an autograd I worked out the gradients by hand and implemented in C. My small contribution is animating the embedding during learning which gives a physical intuition about local minima.</p>
+<p>I've been dabbling with NLP/ML for a long while. Here's a <a href="https://quasiphysics.wordpress.com/2011/12/13/visualizing-k-nearest-neighbor-regression/">blog post from 2011 on KNN visualization</a> that shows how I can make fully custom figures to communicate mathematical ideas.</p>
+<p>At my smart home company, we've watched as each successive LLM opens new home control capabilities. 
+Together with a front-end engineer, I built a <a href="https://www.youtube.com/watch?v=F_rlwDuOiXU">home control demo</a> the morning that <code>gpt-4o</code> was released.
+The faster inference dropped the latency to the point it made for a compelling demo.</p>
+<p>Lastly, I also do the mundane stuff that has to happen around the research. Here's a figure I drew for one of Kleinberg Lab's papers in grad school. I wrote the video annotation software and fabricated a custom table in a woodshop in addition to coding the ML pipeline.</p>
+<p><img alt="Kleinberg Lab" src="assets/pipeline.png" /></p>
+<h2 id="selected-papers">selected papers<a class="headerlink" href="#selected-papers" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><a href="assets/aaai-2016-merck.pdf">Causal Explaination</a>, AAAI (2016) - Computing the strength of causal relationships between events in a physical model.</p>
+</li>
+<li>
+<p><a href="assets/Merck-Physical_Model_Theory-2010.pdf">Physical Model Theory</a> (2010) - A broad exploration of the simplest world-models used in physics.</p>
+</li>
+<li>
+<p><a href="assets/fuzzy-flip-flop.pdf">Fuzzy Flip-Flops</a> (2010) - Relaxes the binary nature of logic gates to explore continuous-valued logic.</p>
+</li>
+<li>
+<p><a href="assets/finite_machines.pdf">Finite Machines</a> (2009) - A formal exploration of small machines with limited memory.</p>
+</li>
+<li>
+<p><a href="assets/polarimetry.pdf">Sunglint Statistics</a>, Applied Optics (2008) - We study the pattern of light reflected from the ocean surface in order to help remove it from satellite imagery. I'm most proud of the attractor diagrams that reveal structure in the glint time series.</p>
+</li>
+</ul>
+<h2 id="misc">misc<a class="headerlink" href="#misc" title="Permanent link">&para;</a></h2>
+<p>Otherwise I spend my time doodling on guitar, taking friends foraging, ever so gradually learning Latin, and teaching kids to solder and code. My intent with this site is to share occasional writeups related to work, research, and adjacent. Try the sidebar menu.</p>
 
 
 
