@@ -33,15 +33,15 @@ Lastly, I also do the mundane stuff that has to happen around the research. Here
 
 ## selected papers
 
-- [Causal Explaination](assets/aaai-2016-merck.pdf), AAAI (2016) - Computing the strength of causal relationships between events in a physical model.
+- [Causal Explaination](https://github.com/chrismerck/chrismerck.github.io/raw/refs/heads/main/docs/assets/aaai-2016-merck.pdf), AAAI (2016) - Computing the strength of causal relationships between events in a physical model.
 
-- [Physical Model Theory](assets/Merck-Physical_Model_Theory-2010.pdf) (2010) - A broad exploration of the simplest world-models used in physics.
+- [Physical Model Theory](https://github.com/chrismerck/chrismerck.github.io/raw/refs/heads/main/docs/assets/Merck-Physical_Model_Theory-2010.pdf) (2010) - A broad exploration of the simplest world-models used in physics.
 
-- [Fuzzy Flip-Flops](assets/fuzzy-flip-flop.pdf) (2010) - Relaxes the binary nature of logic gates to explore continuous-valued logic.
+- [Fuzzy Flip-Flops](https://github.com/chrismerck/chrismerck.github.io/raw/refs/heads/main/docs/assets/fuzzy-flip-flop.pdf) (2010) - Relaxes the binary nature of logic gates to explore continuous-valued logic.
 
-- [Finite Machines](assets/finite_machines.pdf) (2009) - A formal exploration of small machines with limited memory.
+- [Finite Machines](https://github.com/chrismerck/chrismerck.github.io/raw/refs/heads/main/docs/assets/finite_machines.pdf) (2009) - A formal exploration of small machines with limited memory.
 
-- [Sunglint Statistics](assets/polarimetry.pdf), Applied Optics (2008) - We study the pattern of light reflected from the ocean surface in order to help remove it from satellite imagery. I'm most proud of the attractor diagrams that reveal structure in the glint time series.
+- [Sunglint Statistics](https://github.com/chrismerck/chrismerck.github.io/raw/refs/heads/main/docs/assets/polarimetry.pdf), Applied Optics (2008) - We study the pattern of light reflected from the ocean surface in order to help remove it from satellite imagery. I'm most proud of the attractor diagrams that reveal structure in the glint time series.
 
 
 ## misc
