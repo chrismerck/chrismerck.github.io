@@ -130,10 +130,10 @@ def build_figure_and_animation(runs, interval_ms=600):
         if len(all_loss_vals) >= 3: # Need at least a few points for a meaningful MA
             window_size = max(1, min(len(all_loss_vals) // 10, 500))
             if window_size > 0 and len(all_loss_vals) >= window_size:
-                moving_avg = np.convolve(all_loss_vals, np.ones(window_size)/window_size, mode='valid')
-                # Adjust x-coordinates for the moving average to align center of window or start
-                # For mode='valid', the result is shorter. We align it with the end of the first window.
-                moving_avg_runs = all_loss_runs[window_size-1:]
+                moving_avg = np.convolve(all_loss_vals, np.ones(window_size)/window_size, mode='same')
+                # For mode='same', the result has the same length as all_loss_vals and is centered.
+                # Edge effects from padding will be present at the beginning and end of the MA.
+                moving_avg_runs = all_loss_runs
                 if len(moving_avg_runs) == len(moving_avg):
                     ax_loss.plot(moving_avg_runs, moving_avg, color='black', lw=1.2, linestyle='-', label=f'MA ({window_size})')
                     ax_loss.legend(fontsize='small')

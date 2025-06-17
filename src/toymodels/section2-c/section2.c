@@ -14,17 +14,21 @@
 #include "string.h"
 #include "stdlib.h" // for random
 
-#define N 32
+#define SEED 22
+
+#define N 5
 #define M 2
 const long n_samples = 100000;
-float importance(int n) { return pow(0.9, n); }
-float eta = 1;
-float alpha = 0;
-const int runs = 30000;
+float importance(int n) { return pow(0.5, n); }
+float eta = 1e-2;
+float alpha = 1e-10;
+const int runs = 10e3;
 const long batch_size = 1024;
 float S_ = 0.01;
 
 #define DEBUG 0
+
+#define RELU 0 // 0 for linear
 
 typedef struct {
     float W[M][N];
@@ -98,7 +102,9 @@ float gradient(const params_t * p, const float x[N], float alpha, params_t * gra
         }
         y[n] += p->b[n];
         // ReLU activation
+        #if RELU
         y[n] = y[n] > 0 ? y[n] : 0;
+        #endif
         // compute delta
         delta[n] = y[n] - x[n];
     }
@@ -109,7 +115,6 @@ float gradient(const params_t * p, const float x[N], float alpha, params_t * gra
         L += Ij * delta[n] * delta[n];
     }
     for (int n = 0; n < N; n++) {
-        if (y[n] <= 0) continue;
         for (int m = 0; m < M; m++) {
             L += alpha * p->W[m][n] * p->W[m][n];
         }
@@ -118,7 +123,9 @@ float gradient(const params_t * p, const float x[N], float alpha, params_t * gra
     L /= 2;
     for (int m = 0; m < M; m++) {
         for (int n = 0; n < N; n++) {
+            #if RELU
             if (y[n] <= 0) continue;
+            #endif
             dL_wkj[m][n] = importance(n) * delta[n] * (hk[m] + wkj_xj[m][n]) + alpha * p->W[m][n];
         }
     }
@@ -129,7 +136,9 @@ float gradient(const params_t * p, const float x[N], float alpha, params_t * gra
         }
     }
     for (int n = 0; n < N; n++) {
+        #if RELU
         if (y[n] <= 0) continue;
+        #endif
         grad->b[n] -= delta[n] + alpha * p->b[n];
     }
     return L;
@@ -184,7 +193,7 @@ void batch_indices(long batch_size, long indices[batch_size]) {
 
 
 int main() {
-    srandom(1);
+    srandom(SEED);
     memset(X, 0, sizeof(X));
     synthesize(N, n_samples, X, S_);
 
@@ -193,9 +202,12 @@ int main() {
     // initialize with random weights and biases
     for (int j = 0; j < N; j++) {
         for (int k = 0; k < M; k++) {
-            p.W[k][j] = frand() * 0.001;
+            p.W[k][j] = frand() * 0.1;
         }
-        p.b[j] = frand() * 0.001;
+        int l = (j * 19) % N;
+        p.W[0][j] += sin(l * 2 * M_PI / N) * importance(l);
+        p.W[1][j] += cos(l * 2 * M_PI / N) * importance(l);
+        p.b[j] += frand() * 0.01;
     }
     params_t grad;
     for (int r = 0; r < runs; r++) {
