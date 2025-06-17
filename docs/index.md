@@ -20,11 +20,26 @@ Research directions I'm particularly interested in:
 I'm curious about AI interpretability, so I [reproduced the intro figure](blog/2025/05/14/demonstrating-superposition/)
  from Anthropic's Toy Models of Superposition. I wanted a refresher, so rather than use an autograd I worked out the gradients by hand and implemented in C. My small contribution is animating the embedding during learning which gives a physical intuition about local minima.
 
+---
+
 I've been dabbling with NLP/ML for a long while. Here's a [blog post from 2011 on KNN visualization](https://quasiphysics.wordpress.com/2011/12/13/visualizing-k-nearest-neighbor-regression/) that shows how I can make fully custom figures to communicate mathematical ideas.
+
+---
+
+I once came up with a [backdoor way to align an audio book with the text](https://quasiphysics.wordpress.com/2013/08/08/speech-transcript-alignment/): use even poor quality TTS software that gives timestamps and then use DTW algo to to align the two audio files.
+
+![aligned-spectrograms](assets/aligned-spectrograms.png)
+
+---
 
 At my smart home company, we've watched as each successive LLM opens new home control capabilities. 
 Together with a front-end engineer, I built a [home control demo](https://www.youtube.com/watch?v=F_rlwDuOiXU) the morning that `gpt-4o` was released.
-The faster inference dropped the latency to the point it made for a compelling demo.
+The faster inference dropped the latency to the point it made for a compelling demo. I had originally built this on davinci-003 before tool calling was available, and I still used nearly the same prompt with lots of JSON examples. (1) 
+{ .annotate }
+
+1. I still think it would be amazing to be able to specify a grammar for the LLM to follow. Should be easy to just condition the output probabilities on being grammatical (provided there's no garden paths :hmm:).
+
+---
 
 Lastly, I also do the mundane stuff that has to happen around the research. Here's a figure I drew for one of Kleinberg Lab's papers in grad school. I wrote the video annotation software and fabricated a custom table in a woodshop in addition to coding the ML pipeline.
 
