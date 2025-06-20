@@ -15,6 +15,13 @@ Research directions I'm particularly interested in:
  - evaluations of agentic coding against real machines (qemu, attached hardware)
  - byte-based transformers (direct machine code generation)
 
+## current project
+
+I'm currently enrolled in the **Frontier Language Models** Fractal U course.
+I'm building [**FuBench**](https://github.com/chrismerck/fubench), a little benchmark framework for evaluating 
+mathematical reasoning ability. Right now I'm exploring what kind of questions may have been used in DeepSeek R1 training.
+
+
 ## projects
 
 I'm curious about AI interpretability, so I [reproduced the intro figure](blog/2025/05/14/demonstrating-superposition/)
