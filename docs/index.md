@@ -6,23 +6,25 @@ title: Chris Merck
 
 ## about me
 
-I'm an entrepreneur-engineer, erstwhile researcher, amateur musician and radio operator (W2CAM), and linguaphile. I am co-founder and CTO at **Olibra ([Bond Home](https://bondhome.io))**, where I lead a team building next-generation user experiences for smart home. I've done research in the past in causal inference, and I now wish to contribute to the safe development of machine intelligence.
+I'm an entrepreneur-engineer, erstwhile researcher, amateur musician and radio operator (W2CAM), and linguaphile. I am co-founder and CTO at **Olibra ([Bond Home](https://bondhome.io))**, where I lead a team building next-generation user experiences for smart home. I've done research in causal inference.
+
+I have become deeply concerned about dangers of machine intelligence,
+and my blog here represents my attempt to get up to speed on
+technical AI safety research and perhaps make a contribution
+to this going well.
 
 Research directions I'm particularly interested in:
 
- - safe AI-assisted/automated embedded systems development
- - user interfaces for agentic coding -- how do we maintain quality and security as we reduce supervision?
+ - automated discovery and explaination of reasoning failures
  - evaluations of agentic coding against real machines (qemu, attached hardware)
  - byte-based transformers (direct machine code generation)
 
 ## current project
 
-I'm currently enrolled in the **Frontier Language Models** Fractal U course.
-I'm building [**FuBench**](https://github.com/chrismerck/fubench), a little benchmark framework for evaluating 
-mathematical reasoning ability. Right now I'm exploring what kind of questions may have been used in DeepSeek R1 training.
+I'm currently enrolled in the **Frontier Language Models** Fractal U course, and I'm [blogging](blog) my course projects. Currently
+studying reasoning failures in DeepSeek models.
 
-
-## projects
+## past projects
 
 I'm curious about AI interpretability, so I [reproduced the intro figure](blog/2025/05/14/demonstrating-superposition/)
  from Anthropic's Toy Models of Superposition. I wanted a refresher, so rather than use an autograd I worked out the gradients by hand and implemented in C. My small contribution is animating the embedding during learning which gives a physical intuition about local minima.
