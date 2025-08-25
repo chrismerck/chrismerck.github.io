@@ -1,7 +1,7 @@
 ---
 title: Locating Reasoning Errors with Active Sampling
 date: 2025-08-17
-description: NEMI Workshop poster on locating errors in chains of thought reasoning
+description: NEMI'25 Workshop poster
 categories:
   - research
   - ai-safety
@@ -9,7 +9,7 @@ categories:
 
 # Locating Reasoning Errors with Active Sampling
 
-_Chris Merck (chrismerck@gmail.com) -- NEMI Workshop, August 22, 2025, Northeastern University, Boston_
+_Chris Merck (chrismerck@gmail.com) -- 2nd North East Mechanistic Interpretability Workshop, August 22, 2025, Northeastern University, Boston_
 
 ---
 
