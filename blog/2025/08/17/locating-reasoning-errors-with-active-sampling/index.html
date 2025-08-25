@@ -6,19 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Reasoning Failures in DeepSeek V3 Base">
+        <meta name="description" content="NEMI'25 Workshop poster">
       
       
         <meta name="author" content="Chris Merck">
       
       
-        <link rel="canonical" href="https://chrismerck.github.io/blog/2025/06/22/reasoning-failures-in-deepseek-v3-base/">
+        <link rel="canonical" href="https://chrismerck.github.io/blog/2025/08/17/locating-reasoning-errors-with-active-sampling/">
       
       
-        <link rel="prev" href="../../../05/14/demonstrating-superposition/">
+        <link rel="prev" href="../../../06/22/reasoning-failures-in-deepseek-v3-base/">
       
-      
-        <link rel="next" href="../../../08/17/locating-reasoning-errors-with-active-sampling/">
       
       
       <link rel="icon" href="../../../../../assets/favicon.png">
@@ -26,7 +24,7 @@
     
     
       
-        <title>Reasoning Failures in DeepSeek V3 Base - Chris Merck</title>
+        <title>Locating Reasoning Errors with Active Sampling - Chris Merck</title>
       
     
     
@@ -80,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#reasoning-failures-in-deepseek-v3-base" class="md-skip">
+        <a href="#locating-reasoning-errors-with-active-sampling" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Reasoning Failures in DeepSeek V3 Base
+              Locating Reasoning Errors with Active Sampling
             
           </span>
         </div>
@@ -631,7 +629,7 @@
                     <li class="md-nav__item">
                       <div class="md-nav__link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
-                        <time datetime="2025-06-22 00:00:00+00:00" class="md-ellipsis">June 22, 2025</time>
+                        <time datetime="2025-08-17 00:00:00+00:00" class="md-ellipsis">August 17, 2025</time>
                       </div>
                     </li>
                     
@@ -642,7 +640,8 @@
                           <span class="md-ellipsis">
                             in
                             
-                              <a href="../../../../category/fractal-u/">fractal-u</a></span>
+                              <a href="../../../../category/research/">research</a>, 
+                              <a href="../../../../category/ai-safety/">ai-safety</a></span>
                         </div>
                       </li>
                     
@@ -653,7 +652,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              6 min read
+                              7 min read
                             
                           </span>
                         </div>
@@ -682,69 +681,63 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#intro" class="md-nav__link">
+  <a href="#abstract" class="md-nav__link">
     <span class="md-ellipsis">
-      Intro
+      Abstract
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#method" class="md-nav__link">
+  <a href="#introduction" class="md-nav__link">
     <span class="md-ellipsis">
-      Method
+      Introduction
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#failures" class="md-nav__link">
+  <a href="#active-bayesian-changepoint-detection" class="md-nav__link">
     <span class="md-ellipsis">
-      Failures
+      Active Bayesian Changepoint Detection
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Failures">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#handwaving" class="md-nav__link">
-    <span class="md-ellipsis">
-      Handwaving
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#arithmetic-errors-infinite-loops" class="md-nav__link">
-    <span class="md-ellipsis">
-      Arithmetic Errors &amp; Infinite Loops
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#wishful-thinking" class="md-nav__link">
-    <span class="md-ellipsis">
-      Wishful Thinking
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
+  <a href="#failure-analysis" class="md-nav__link">
     <span class="md-ellipsis">
-      Next Steps
+      Failure Analysis
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitations-and-future-directions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limitations and Future Directions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acknowledgements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Acknowledgements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
     </span>
   </a>
   
@@ -768,135 +761,89 @@
   
 
 
-<h1 id="reasoning-failures-in-deepseek-v3-base">Reasoning Failures in DeepSeek V3 Base<a class="headerlink" href="#reasoning-failures-in-deepseek-v3-base" title="Permanent link">&para;</a></h1>
-<p><em>Wherein we observe arithmatic errors, infinite loops, handwaving, and wishful thinking. -- Coursework for Frontier Language Models (Summer 2025, Fractal U).</em></p>
-<h2 id="intro">Intro<a class="headerlink" href="#intro" title="Permanent link">&para;</a></h2>
-<p class="annotate">In this post, I manually analyze specific reasoning failures
-of DeepSeek V3 Base (1). Why the base model? Because if we are
-to understand how reasoning emerges during RL, we should start
-by studying the nacent reasoning capabilities of the base models
-that are the starting point for the likes of R1 (2) and presumably o3,
-and how failures are avoided. The next post will explore 
-reasoning failures in the R1 model.</p>
-<p>We will investigate a simple verifiable math problem
-for which the base model solves ~75% of the time,
-and which R1 always solves. This way we can see some
-of the failures which GRPO RL is able to optimize away.</p>
-<ol>
-<li><a href="https://arxiv.org/abs/2412.19437v1">DeepSeek V3</a> is a 
-671B parameter Mixture-of-Experts model released in December 2024.</li>
-<li>Just a month after announcing the base model, 
-DeepSeek published a reasoning model
-<a href="https://arxiv.org/abs/2501.12948">DeepSeek R1</a> competative
-with then state-of-the-art OpenAI o1. R1 was
-trained by mostly RL against a rule-based reward function
-of math problems with known solutions and coding challenges 
-that can be checked by compilation and unit tests.</li>
-</ol>
-<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p class="annotate">For the purposes of this post I use a math problem of a kind
-likely used (1) to train R1, a 3x3 linear system of equations:</p>
-<ol>
-<li>We do not know exactly which <em>math problems with deterministic results</em>
-were used by the DeepSeek team.</li>
-</ol>
-<div class="arithmatex">\[
-\left\{
-\begin{aligned}
-4x - 3y + 6z &amp;= 6 \\
--3x + 4y + 5z &amp;= 5 \\
-3x + 9y - 7z &amp;= -7
-\end{aligned}
-\right.
-\]</div>
-<p>This problem is hard enough that we observe frequent and varied failures
-in V3 Base, but easy enough that perfect performance is achieved by R1.</p>
+<h1 id="locating-reasoning-errors-with-active-sampling">Locating Reasoning Errors with Active Sampling<a class="headerlink" href="#locating-reasoning-errors-with-active-sampling" title="Permanent link">&para;</a></h1>
+<p><em>Chris Merck (chrismerck@gmail.com) -- 2nd North East Mechanistic Interpretability Workshop, August 22, 2025, Northeastern University, Boston</em></p>
 <hr />
-<p>I use the exact <em>prompt template</em> given in the DeepSeek R1 paper:</p>
-<blockquote>
-<p>A conversation between User and Assistant. The user asks a question, and the Assistant solves it.
-The assistant first thinks about the reasoning process in the mind and then provides the user
-with the answer. The reasoning process and answer are enclosed within <code>&lt;think&gt;</code> <code>&lt;/think&gt;</code> and
-<code>&lt;answer&gt;</code> <code>&lt;/answer&gt;</code> tags, respectively, i.e., <code>&lt;think&gt;</code> reasoning process here <code>&lt;/think&gt;</code>
-<code>&lt;answer&gt;</code> answer here <code>&lt;/answer&gt;</code>. User: <code>{problem}</code>. Assistant:</p>
-</blockquote>
-<p>And then in this post I'm using just this <code>problem</code>:</p>
-<blockquote>
-<p>Solve the system of equations: 
-<span class="arithmatex">\(4x -3y +6z = 6\)</span>, 
-<span class="arithmatex">\(-3x +4y +5z = 5\)</span>, 
-<span class="arithmatex">\(3x +9y -7z = -7\)</span>.
-Give your solution as a JSON array of integers.</p>
-</blockquote>
-<h2 id="failures">Failures<a class="headerlink" href="#failures" title="Permanent link">&para;</a></h2>
-<p>I ran the above prompt a number of times and sampled several of the
-failure cases below with commentary.</p>
-<h3 id="handwaving">Handwaving<a class="headerlink" href="#handwaving" title="Permanent link">&para;</a></h3>
-<p>Sometimes V3 Base will describe <em>how</em> to solve the problem rather
-than actually solving it. I hypothesize that in the handwaving
-example below, the failure is mediated by the use of the auxiliary 
-verbs <em>can</em> and <em>will</em>. </p>
-<blockquote>
-<p>To solve the system of equations, we can use the method of substitution or elimination. Here, we will use the method of elimination. First, we will eliminate the variable x from the first and second equations. To do this, we will multiply the first equation by 3 and the second equation by 4, and then add the two equations together. This <span style="color:red">will give</span> us a new equation with only y and z. Next, we will eliminate the variable x from the first and third equations. To do this, we will multiply the first equation by 3 and the third equation by 4, and
-then subtract the two equations. This will give us another new equation with only y and z. Now, we have two equations with only y and z. We  can solve these two equations simultaneously to find the values of y and z. Once we have the values of y and z, we can substitute them into any of the original equations to find the value of x. Finally, we will have the values of x, y, and z, which we can represent as a JSON array [x, y, z].</p>
-</blockquote>
-<p>This would be a great preliminary plan, but the model did not actually work through
-the computation steps, and so it then gives the final answer:</p>
-<blockquote>
-<p><code>[1, 2, 3]</code></p>
-</blockquote>
-<p>This looks like an example rather than a guess.
-This is akin to behavior I've seen from OpenAI models where rather than returing a functional
-program safisying my request, they return an "example" of how I could do it. </p>
-<h3 id="arithmetic-errors-infinite-loops">Arithmetic Errors &amp; Infinite Loops<a class="headerlink" href="#arithmetic-errors-infinite-loops" title="Permanent link">&para;</a></h3>
-<p>It is well-known that base models tend to end up in
-repeating patterns. In the completion below,
-we see such a repeating sequence emerge, 
-but looking closely we can see that an arithmetic error
-occurred prior: in simplifying <span class="arithmatex">\(\frac{45}{4}\frac{38}{7}\)</span>,
-the model eliminated the factor of 2 from the nominator
-(yielding <span class="arithmatex">\(45 * 38 / 2 = 855\)</span>) but then did not eliminate
-the factor from the denominator (<span class="arithmatex">\(4 * 7 = 28\)</span> rather than <span class="arithmatex">\(4 * 7 / 2 = 14\)</span>).</p>
-<blockquote>
-<p><code>&lt;think&gt;</code> To solve the system of equations, we can use the method of elimination or substitution. However, since the coefficients of the variables are not the same in all equations, it might be easier to use the method of substitution. First, we can solve the first equation for x: <span class="arithmatex">\(4x = 3y - 6z + 6\)</span> <span class="arithmatex">\(x = \frac{3y - 6z + 6}{4}\)</span> Next, we can substitute this expression for x into the second and third equations: <span class="arithmatex">\(-3(\frac{3y - 6z + 6}{4}) + 4y + 5z = 5\)</span> <span class="arithmatex">\(3(\frac{3y - 6z + 6}{4}) + 9y - 7z = -7\)</span> Simplifying these equations, we get: <span class="arithmatex">\(-\frac{9}{4}y + \frac{9}{2}z - \frac{9}{2} + 4y + 5z = 5\)</span> <span class="arithmatex">\(\frac{9}{4}y - \frac{9}{2}z + \frac{9}{2} + 9y - 7z = -7\)</span> Combining like terms, we get: <span class="arithmatex">\(\frac{7}{4}y + \frac{19}{2}z = \frac{19}{2}\)</span> <span class="arithmatex">\(\frac{45}{4}y - \frac{23}{2}z = -\frac{23}{2}\)</span> Now, we can solve the first equation for y: <span class="arithmatex">\(\frac{7}{4}y = \frac{19}{2} - \frac{19}{2}z\)</span> <span class="arithmatex">\(y = \frac{38}{7} - \frac{38}{7}z\)</span> Substituting this expression for y into the second equation, we get: <span class="arithmatex">\(\frac{45}{4}(\frac{38}{7} - \frac{38}{7}z) - \frac{23}{2}z = -\frac{23}{2}\)</span> Simplifying this equation, we get: <span class="arithmatex">\(\frac{855}{\color{red}{28}} - \frac{855}{28}z - \frac{23}{2}z = -\frac{23}{2}\)</span> Combining like terms, we get: <span class="arithmatex">\(-\frac {855}{28}z - \frac{23}{2}z = -\frac{23}{2} - \frac{855}{28}\)</span> <span class="arithmatex">\(\color{red}{-\frac{855}{28}z - \frac{23}{2}z = -\frac{23}{2} - \frac{855}{28}}\)</span> <span class="arithmatex">\(-\frac{855}{28}z - \frac{23}{2}z = -\frac{23}{2} - \frac{855}{28}\)</span> <span class="arithmatex">\(-\frac{855}{28}z - \frac{23}{2}z = -\frac{23}{2} - \frac{855}{28}\)</span> <span class="arithmatex">\(-\frac{855}{28}z - \frac{23}{2 }z = -\frac{23}{2} - \frac{855}{28}\)</span> <span class="arithmatex">\(-\frac{855}{28}z - \frac{23}{2}z = -\frac{23}{2} - \frac{855}{28}\)</span> <span class="arithmatex">\(-\frac{855}{28}z - \frac{23}{2}z = -\frac{23}{2} - \frac{855}{28}\)</span> </p>
-</blockquote>
-<h3 id="wishful-thinking">Wishful Thinking<a class="headerlink" href="#wishful-thinking" title="Permanent link">&para;</a></h3>
-<p>Lastly, I see a case of what I'll call <em>wishful thinking</em>.
-V3 Base suceeds at eliminating <span class="arithmatex">\(x\)</span> in the first step,
-but then it tries to eliminate <span class="arithmatex">\(y\)</span> in the same way,
-neglecting that a multiplication of one equation by <span class="arithmatex">\(6\)</span> 
-is required in order to achieve elimination.</p>
-<p>Presumably the model at this point had a choice whether to
-actually do the correct computation, leading to an unintended result
-where <span class="arithmatex">\(y\)</span> was not in fact eliminated, or to copy the pattern
-from the first step even though the computation is wrong.
-It chooses the latter, which though of course reduces to 
-statitical pattern matching, has the appearance of
-wishful thinking.</p>
-<blockquote>
-<p><code>&lt;think&gt;</code> To solve the system of equations, we can use the method of elimination or substitution. However, since the equations are already in a form that allows for easy elimination, we will use that method. First, we will eliminate <span class="arithmatex">\(x\)</span> from the second and third equations by adding the first equation to the second and third equations. This gives us the system of equations: <span class="arithmatex">\(4x -3y +6z = 6\)</span>, <span class="arithmatex">\(y +11z = 11\)</span>, <span class="arithmatex">\(6y -z = -1\)</span>. Next, we will eliminate <span class="arithmatex">\(y\)</span> from the third equation by adding the second equation to the third equation. This gives us the system of equations: <span class="arithmatex">\(4x -3y +6z = 6\)</span>, <span class="arithmatex">\(y +11z = 11\)</span>, <span class="arithmatex">\(\color{red}{10z = 10}\)</span>. Finally, we can solve for <span class="arithmatex">\(z\)</span> by dividing both sides of the third equation by 10. This gives us <span class="arithmatex">\(z = 1\)</span>. Substituting this value of <span class="arithmatex">\(z\)</span> into the second equation, we can solve for <span class="arithmatex">\(y\)</span>. This gives us <span class="arithmatex">\(y = 0\)</span>. Substituting these values of <span class="arithmatex">\(y\)</span> and <span class="arithmatex">\(z\)</span> into the first equation, we can solve for <span class="arithmatex">\(x\)</span>. This gives us <span class="arithmatex">\(x = 1\)</span>. Therefore, the solution to the system of equations is <span class="arithmatex">\(x = 1\)</span>, <span class="arithmatex">\(y = 0\)</span>, <span class="arithmatex">\(z = 1\)</span>. <code>&lt;/think&gt;</code> <code>&lt;answer&gt;</code> <code>[1, 0, 1]</code></p>
-</blockquote>
-<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
-<p>I see two directions to take this exploration:</p>
-<ol>
+<h2 id="abstract">Abstract<a class="headerlink" href="#abstract" title="Permanent link">&para;</a></h2>
+<p>Recent advances in chain-of-thought reasoning allow large language models (LLMs) to solve mathematical problems that are beyond the computational power of a single forward pass. This suggests the existence of learned mechanisms operating at the level of reasoning steps in the chain of thought (CoT), yet few techniques exist for identifying these mechanisms. Furthermore, chains of thought can be deceptively interpretable, resembling human internal monologues closely enough that we risk being misled about their causal structure, heightening the need for rigorous interpretability methods. In this work in progress, we develop an algorithm for locating reasoning errors in incorrect base solutions via targeted resampling. This exploration should improve our understanding of chain-of-thought reasoning, particularly how it goes wrong, allowing us to more safely and efficiently operate reasoning models.</p>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>One frame through which to interpret reasoning traces is to treat them as the work of a math student, with the researcher as tutor. Correct answers to unguessable problems may be rewarded without inspecting the work, while the incorrect solutions are more interesting: the tutor scans for the first mistake and circles in red pen, leaving a helpful comment. We aim ultimately to automate this process, with this poster presenting some of the elements of work in progress. We see this work as part of a broad effort to take advantage of the present opportunity for CoT monitoring and interpretability (Korbak et al., 2025) and an application of counterfactual techniques from physical systems (Merck &amp; Kleinberg, 2016).</p>
+<p><strong>Foundational Work.</strong> In their recent groundbreaking preprint, Bogdan et al. (2025) employ several techniques for finding causal structure among the sentences of a CoT reasoning trace, cross-validating counterfactual sampling against attention tracing and masking. They develop the <code>math-rollouts</code> dataset, containing 10 incorrect base solutions to problems from the MATH dataset as generated by DeepSeek R1-Distill Qwen-14B (DeepSeek, 2025), selected for intermediate difficulty (having between a 25% and 75% probability of being solved correctly). The dataset also contains 100 rollouts for each sentence in each reasoning trace, allowing us to explore the probability trajectory and counterfactual scenarios.</p>
+<h2 id="active-bayesian-changepoint-detection">Active Bayesian Changepoint Detection<a class="headerlink" href="#active-bayesian-changepoint-detection" title="Permanent link">&para;</a></h2>
+<p>Although <code>math-rollouts</code> provides a useful starting point, we would like to eventually scale up to using state-of-the-art reasoning models where exhaustively generating many rollouts for each sentence would be prohibitively expensive. So we apply an active sampling algorithm to efficiently find the sentence containing the most prominent error, termed a <em>changepoint</em> after Adams &amp; MacKay (2007), resulting in a ~100X reduction in the number of rollouts required, at least when the trace contains a clear error.</p>
+<p>We propose a Bernoulli process model with a single changepoint τ at which the probability of a correct solution drops from p₁ to p₂:</p>
+<div class="arithmatex">\[
+p(\text{correct}_t) = \begin{cases}
+p_1 &amp; \text{if } t &lt; \tau \\
+p_2 &amp; \text{if } t \geq \tau
+\end{cases}
+\]</div>
+<p><strong>Bayesian Inference.</strong> We maintain a posterior distribution over changepoint locations τ ∈ {1, …, T} using a uniform prior. For each hypothesis τ, we model the probabilities with Beta priors: p₁ ~ Beta(2, 2), reflecting our belief that the initial probability lies between approximately 25% and 75%, and p₂ ~ Beta(1, 19), a strong prior on a low chance of recovery.</p>
+<p><strong>Active Sampling.</strong> We select the next sample location with replacement to maximize expected information gain about the changepoint location:</p>
+<div class="arithmatex">\[
+t^* = \arg\max_{t} \mathbb{E}_{y_t}[H(\tau) - H(\tau | y_t)]
+\]</div>
+<p>where H(τ) is the entropy of the current posterior over changepoint locations and y_t ∈ {0, 1} is the correctness of the hypothetical resampled rollout. This strategy efficiently focuses sampling around the uncertain changepoint region.</p>
+<p><strong>Probability Trajectories.</strong> With the choice of a strong prior on p₂, we find that the algorithm tends to find reasonable changepoints with just 100 rollouts.</p>
+<p><img alt="Probability trajectories for all 10 incorrect base solutions. Each subplot shows how chances of success evolve along the CoT. Red vertical lines indicate detected changepoints (80% CI)." src="../../../../../assets/active_bayesian_results_plot.png" /></p>
+<h2 id="failure-analysis">Failure Analysis<a class="headerlink" href="#failure-analysis" title="Permanent link">&para;</a></h2>
+<p>We now examine and discuss selected failures based on the change in answer distribution at the changepoint and a reading of the trace.</p>
+<div class="admonition failure">
+<p class="admonition-title">Nested Multiplication (#330) — <em>wrong base case in recurrence relation</em></p>
+<p>Wait, wait, no. 
+Let me think. 
+<strong>Wait, in the original expression, each time it's 3<em>(1 + ...). So, actually, each level is 3</em>(1 + previous level).</strong> So, maybe I should approach it as a recursive computation.</p>
+</div>
+<p>The trace was on the right track—only two computations away from the correct answer. But when the model used the ellipsis (<code>...</code>), many rollouts failed to converge to a boxed answer, recursing until the token limit. The base solution does converge, and fails due to an error in the base case of 4 instead of 0 or 12. Although visually the probability trajectory does seem to contain a clear changepoint, the identified sentence is in fact by inspection the first introduction of this mistake that persists into the incorrect solution.</p>
+<p>Now we examine the starkest failure in the Digit Counting problem:</p>
+<div class="admonition failure">
+<p class="admonition-title">Digit Counting (#2236) — <em>non sequitur</em></p>
+<p>The ones digits here are 1–8, so 4 <strong>doesn't</strong> appear in the units place in this partial set.</p>
+</div>
+<p>Here the model makes a statement that is obviously false to us, but is generated with approximately a 25% probability at this step. To better understand the structure of this failure, we collect all 100 rollouts resampled at this changepoint sentence and visualize them in a dendrogram. Following Bogdan et al. (2025), we join rollouts if the sentence embeddings have cosine similarity greater than the median similarity between all sentence pairs (0.8).</p>
+<p><img alt="A visualization of the 100 resamplings at sentence 24. Color indicates the probability of a correct solution (blue = 1.0, red = 0.0). We observe that the resampled rollouts fall into three clusters, the bottom of which is the path taken in the incorrect base solution. The clear separation of the incorrect cluster demonstrates that the similarity metric is a good definition for the notion of &quot;sameness&quot; of a sentence." src="../../../../../assets/dendro-incorr-2236-24.png" /></p>
+<p>Finally, we examine a case where there is no clear changepoint. Inspecting the the model's solution summary, we find that the model was quite knowingly vacillating between two possible interpretations of the problem:</p>
+<div class="admonition warning">
+<p class="admonition-title">Hex to Binary (#4682) — <em>trick question</em></p>
+<p>While converting each hexadecimal digit to 4 bits results in a 20-bit binary number, the minimal number of bits required to represent the number 419,430₁₀ without leading zeros is 19.</p>
+<p>However, since the problem asks for the number of bits when the hexadecimal number is written in binary, and <strong>considering that each hexadecimal digit is typically converted to 4 bits</strong>, the correct answer is 20 bits.</p>
+</div>
+<h2 id="limitations-and-future-directions">Limitations and Future Directions<a class="headerlink" href="#limitations-and-future-directions" title="Permanent link">&para;</a></h2>
+<ul>
 <li>
-<p>Explore reasoning failures in a <strong>reasoning model</strong> (R1):
-does it make the same mistakes only less often?
-Or does it fail in new ways?
-This will require harder math problems.</p>
+<p>Although we prefer to investigate reasoning errors in a counterfactual context, there is a body of existing work that studies errors in chain-of-thought prompting within and beyond mathematical reasoning (Lightman et al., 2023; Tyen et al., 2024), which also examines reasoning structure beyond the influence on accuracy (Xia et al., 2025).</p>
 </li>
 <li>
-<p><strong>Automate the discovery of the location of the reasoning
-failure in the chain of thought</strong>. One way to do this
-could be to look at the probability of success as a function
-of position in a particulary faulty output. I expect that,
-at least in the case of arithmatic errors, we could automatically
-discover the exact token at which the error occured,
-but this does require a lot of inference.
-I'd like to explore statictical and heuristic methods
-for efficiently deriving failure explainations.</p>
+<p>As we saw with the trick question, the failure of these models to deliver mundane utility often stems from issues interpreting the user's prompt rather than logical errors within the chain of thought. The relationship of user intent and model interpretation can be fully formalized (Wu et al., 2022) for mathematical problems. The broader problem of prompt interpretation is of high importance to alignment, especially as models become capable of achieving more work with a single operator instruction.</p>
 </li>
-</ol>
+<li>
+<p>The rollouts in <code>math-rollouts</code> are drawn from a relatively small 14B model distilled from a larger one (DeepSeek R1 671B). It is possible that reasoning failures in stronger models are qualitatively different, or that the structure of the reasoning behavior differs after distillation. The changepoint detector introduced here is intended to facilitate testing on larger models.</p>
+</li>
+<li>
+<p>The changepoint model assumes a single error. However, realistic chains of thought may contain multiple errors and backtracking leading to a more complex probability trajectory. It is possible to develop a changepoint detector for these more complex structures, but validation requires much more than the 10 examples available in the <code>math-rollouts</code> dataset.</p>
+</li>
+<li>
+<p>In particular, the case of no clear changepoint is important to avoid spurious error detections. The algorithm could be updated to track confidence in a null hypothesis.</p>
+</li>
+<li>
+<p>State-of-the-art reasoning models and agents use parallel execution and subagents (subroutines with chains of thought that are not fully attended to by the top-level agent such as in Anthropic, 2025). Investigating failure modes of these new architechtures is a challenge due to their complexity, however it would appear that the Bogdan et al. (2025) methods could be adapted. Active sampling may be of even greater importance as the compute per rollout increases.</p>
+</li>
+</ul>
+<h2 id="acknowledgements">Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permanent link">&para;</a></h2>
+<p>I am grateful for discussions of this work with Anuj Apte. This work is generously supported by a grant from the Cosmos Institute (<a href="https://cosmos-institute.org/">https://cosmos-institute.org/</a>) and the Foundation for Individual Rights and Expression (FIRE) (<a href="https://www.thefire.org/">https://www.thefire.org/</a>).</p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Adams, R. P., &amp; MacKay, D. J. (2007). Bayesian online changepoint detection. arXiv preprint arXiv:0710.3742.</li>
+<li>Anthropic (2025). Claude 3.5 Sonnet with Computer Use. Available at: https://www.anthropic.com/</li>
+<li>Bogdan, P., et al. (2025). Thought Experiments: Counterfactual Reasoning in Chain-of-Thought. arXiv preprint.</li>
+<li>DeepSeek (2025). DeepSeek R1: Reasoning at the Edge of AGI. arXiv preprint.</li>
+<li>Korbak, T., et al. (2025). Chain-of-thought reasoning as a monitoring opportunity. arXiv preprint.</li>
+<li>Lightman, H., et al. (2023). Let's verify step by step. arXiv preprint.</li>
+<li>Merck, C., &amp; Kleinberg, S. (2016). Causal explanation under indeterminacy: A sampling approach. In Proceedings of the AAAI Conference on Artificial Intelligence.</li>
+<li>Tyen, G., et al. (2024). LLMs cannot correct reasoning errors yet. arXiv preprint.</li>
+<li>Wu, Y., et al. (2022). Autoformalization with large language models. arXiv preprint.</li>
+<li>Xia, M., Li, X., Liu, F., Wu, B., &amp; Liu, P. (2025). Reasoning structure in chain-of-thought beyond accuracy. arXiv preprint.</li>
+</ul>
 
 
 
