@@ -7,7 +7,7 @@ categories:
   - ai-safety
 ---
 
-tl;dr: I shared some work on counterfactual analysis of CoTs at a Mech Interp workshop, supported by a Cosmos+FIRE grant. See the [technical details](/blog/2025/08/17/locating-reasoning-errors-with-active-sampling/).
+tl;dr: I shared some work on counterfactual analysis of CoTs at a Mech Interp workshop, supported by a [Cosmos](https://cosmos-institute.org/)+[FIRE](https://www.thefire.org/) [grant](https://cosmosgrants.org/truth). See the [technical details](/blog/2025/08/17/locating-reasoning-errors-with-active-sampling/).
 
 This year I had the pleasure of engaging in some mechanistic interpretability research.
 I was specifically curious about the causal structure of chain-of-thought reasoning
