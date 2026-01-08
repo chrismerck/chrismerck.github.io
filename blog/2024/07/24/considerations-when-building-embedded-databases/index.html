@@ -1,0 +1,1498 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Diving into the challenges of persisting device state to flash memory.">
+      
+      
+        <meta name="author" content="Chris Merck">
+      
+      
+        <link rel="canonical" href="https://chrismerck.github.io/blog/2024/07/24/considerations-when-building-embedded-databases/">
+      
+      
+      
+        <link rel="next" href="../../../../2025/05/14/demonstrating-superposition/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Considerations when Building Embedded Databases - Chris Merck</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Special+Elite:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Special Elite";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#considerations-when-building-embedded-databases" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../.." title="Chris Merck" class="md-header__button md-logo" aria-label="Chris Merck" data-md-component="logo">
+      
+  <img src="../../../../../assets/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Chris Merck
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Considerations when Building Embedded Databases
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="grey" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="grey" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/chrismerck/chrismerck.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="Chris Merck" class="md-nav__button md-logo" aria-label="Chris Merck" data-md-component="logo">
+      
+  <img src="../../../../../assets/favicon.png" alt="logo">
+
+    </a>
+    Chris Merck
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/chrismerck/chrismerck.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Archive
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Archive
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2024/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2024
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Categories
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Categories
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/ai-safety/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ai-safety
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/embedded/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    embedded
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/fractal-u/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    fractal-u
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/research/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    research
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/tmos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    tmos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2024-07-24 00:00:00+00:00" class="md-ellipsis">July 24, 2024</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../../category/embedded/">embedded</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              11 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+            
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-you-should-care-about-nvs-non-volatile-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why You Should Care About NVS (Non-Volatile Storage)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aside-portability-of-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aside: Portability of Records
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Aside: Portability of Records">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#integer-size-and-alignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integer Size and Alignment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#much-ado-about-endianness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Much Ado About Endianness
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#challenges-of-flash-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Challenges of Flash Memory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#considering-your-requirements-for-an-embedded-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Considering your Requirements for an Embedded Database
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Considering your Requirements for an Embedded Database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-much-data-do-you-have-to-store-and-how-much-flash-is-available" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How much data do you have to store? And how much flash is available?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-important-is-resilience-to-power-loss-during-write-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How important is resilience to power loss during write operations?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#are-you-storing-just-one-record-or-many-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Are you storing just one record, or many records?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do-the-records-form-a-natural-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Do the records form a natural hierarchy?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-often-are-records-being-re-written" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How often are records being re-written?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-big-are-your-records-do-you-tend-to-write-a-whole-record-at-once-or-do-you-often-append-to-a-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How big are your records? Do you tend to write a whole record at once? Or do you often append to a record?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-can-you-tolerate-garbage-collection-delays" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When can you tolerate garbage collection delays?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do-you-need-a-backup-and-restore-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Do you need a backup and restore function?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-the-database-read-write-or-write-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Is the database read-write or write-only?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-brief-look-at-a-few-existing-solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A Brief Look at a Few Existing Solutions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A Brief Look at a Few Existing Solutions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#espressifs-nvs-flash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Espressif's NVS Flash
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zephyrs-nvs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zephyr's NVS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spiffs-spi-flash-file-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SPIFFS (SPI Flash File System)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bonds-beau-embedded-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bond's Beau Embedded Database
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remote-monitoring-of-database-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remote Monitoring of Database Statistics
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+
+  
+  
+
+
+<h1 id="considerations-when-building-embedded-databases">Considerations when Building Embedded Databases<a class="headerlink" href="#considerations-when-building-embedded-databases" title="Permanent link">&para;</a></h1>
+<p><em>Originally published on <a href="https://interrupt.memfault.com/blog/choosing-or-building-an-embedded-db">Memfault's Interrupt blog</a>.</em></p>
+<p>Persisting to flash is a necessary evil for many embedded devices. Let's take a
+look at some of the pitfalls and how they may be avoided.</p>
+<!-- more -->
+
+<h2 id="why-you-should-care-about-nvs-non-volatile-storage">Why You Should Care About NVS (Non-Volatile Storage)<a class="headerlink" href="#why-you-should-care-about-nvs-non-volatile-storage" title="Permanent link">&para;</a></h2>
+<p>Nearly every embedded system needs to persist data across power cycle. A smart
+fishtank needs to remember the configured salinity and oxygen setpoints, an
+e-bike may store a geofence and riding log, and a smart home hub must store
+device, group, and schedule information.</p>
+<p>Let's assume for now that we're talking about a small embedded system, like an
+STM32 with only the built-in flash available for persistent storage. Is there an
+obvious solution? What happens if we just write our data to flash and read it
+back on reboot?</p>
+<p>For the fishtank example, the data we want to persist could be organized into a
+single struct which is read from a specific flash address on boot and written to
+that address when the user changes the settings:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">salinity</span><span class="p">;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">oxygen</span><span class="p">;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">}</span><span class="w"> </span><span class="n">fishtank_config_t</span><span class="p">;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">fishtank_config_t</span><span class="w"> </span><span class="n">config</span><span class="p">;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kt">void</span><span class="w"> </span><span class="nf">load</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="n">flash_read</span><span class="p">(</span><span class="n">CONFIG_ADDR</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">config</span><span class="p">));</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">}</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="kt">void</span><span class="w"> </span><span class="nf">save</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="n">flash_erase_page</span><span class="p">(</span><span class="n">CONFIG_ADDR</span><span class="p">);</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="n">flash_program</span><span class="p">(</span><span class="n">CONFIG_ADDR</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">config</span><span class="p">));</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="p">}</span>
+</code></pre></div>
+<p>This solution may "just work" for an MVP fishtank, but as the product evolves we
+are going to run into a few issues:</p>
+<ol>
+<li>The persisted data is not portable due to endianness and integer size
+    differences,</li>
+<li>The config will be corrupted if power is lost during the <code>save()</code> function,</li>
+<li>If a <code>temperature</code> field is added to the struct, it will be read as <code>-1</code>
+    upon firmware upgrade, which may be unexpected.</li>
+</ol>
+<p>So we see that even for the simplest products, persisting data to flash presents
+some maintainability challenges.</p>
+<h2 id="aside-portability-of-records">Aside: Portability of Records<a class="headerlink" href="#aside-portability-of-records" title="Permanent link">&para;</a></h2>
+<p>Thinking ahead, you may eventually wish to run your fishtank code on different
+hardware either because of an upgrade to the product, a new version of the
+product, or because you want to be able to load up records from the embedded
+system inside a mobile app or a server.</p>
+<p>That new processor may be 64-bit processor, or may even use a different
+endianness than the microcontroller. Taking a closer look at the
+<code>fishtank_config_t</code> struct, we see that the basic <code>int</code> type is used, which uses
+4 bytes on 32-bit chips, but might use 16- or 8- bits on other architectures,
+and the endianness (byte order) depends on the processor.</p>
+<h3 id="integer-size-and-alignment">Integer Size and Alignment<a class="headerlink" href="#integer-size-and-alignment" title="Permanent link">&para;</a></h3>
+<p>With the definition of <code>fishtank_config_t</code> above, <code>sizeof(fishtank_config_t)</code>
+will be different for different platforms. Compiling on a 64-bit MacBook where
+Apple kept <code>int</code> as 32-bit with 32-bit alignment, you'll get the same 8-byte
+structure as on a 32-bit microcontroller. However, if you compile on an AWS EC2
+instance (as you may want to do if there is a cloud component to your fishtank),
+then you get a 16-byte structure because <code>int</code> there is 8 bytes.</p>
+<p>For portability, use the fixed-width definitions in <code>stdint.h</code> and instruct the
+compiler to pack your structure to remove any padding which would otherwise be
+added to encourage alignment to word boundaries:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">#pragma pack(push, 1)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="kt">int32_t</span><span class="w"> </span><span class="n">salinity</span><span class="p">;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="kt">int32_t</span><span class="w"> </span><span class="n">oxygen</span><span class="p">;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">}</span><span class="w"> </span><span class="n">fishtank_config_t</span><span class="p">;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="cp">#pragma pack(pop)</span>
+</code></pre></div>
+<h3 id="much-ado-about-endianness">Much Ado About Endianness<a class="headerlink" href="#much-ado-about-endianness" title="Permanent link">&para;</a></h3>
+<p>There's one remaining portability issue. There have historically been
+"big-endian" processors which represent multi-byte integers with the
+most-significant byte first rather than least-significant byte first (so-called
+"little endian") which has become the dominant endianness today. This means that
+even with the fixed-sized, packed structure above, there may be processors where
+a record with <code>salinity == 2</code> is interpreted as <code>33554432</code> because of the endian
+mismatch.</p>
+<p>If this sounds confusing, that's because it is. Even when working in a systems
+language such as C, we get used to the convenient abstraction of "an integer"
+without worrying about how it is laid out in memory. So let's take a look at how
+the a 32-bit unsigned integer with the hexadecimal value <code>0xDEADBEEF</code> is stored
+in memory using either endianness convention:</p>
+<table>
+<thead>
+<tr>
+<th>endianness</th>
+<th>byte 0</th>
+<th>byte 1</th>
+<th>byte 2</th>
+<th>byte 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>little-endian</td>
+<td>0xEF</td>
+<td>0xBE</td>
+<td>0xAD</td>
+<td>0xDE</td>
+</tr>
+<tr>
+<td>big-endian</td>
+<td>0xDE</td>
+<td>0xAD</td>
+<td>0xBE</td>
+<td>0xEF</td>
+</tr>
+</tbody>
+</table>
+<p>You can see that on little-endian systems, the least significant byte (<code>0xEF</code>)
+comes in the first memory location, as opposed to big-endian which starts with
+the most significant byte (<code>0xDE</code>). Now it should be clear that if the same byte
+buffer is loaded into a big-endian and a little-endian system, they will be
+interpreted as very different integers.</p>
+<p>At Bond, we initially took pains to build <code>hton</code> (host-to-network) functions for
+every structure which would enforce big-endian integer representations, in
+keeping with the tradition of TCP/IP networking and numerous file formats.
+However, maintaining those <code>hton</code> functions is highly error-prone and it is easy
+to end up with records that have some of their multi-byte fields in "network
+byte order" while others remain in the native byte order. What a mess!</p>
+<p>What we learned is that, unless you need to support some very exotic big-endian
+architecture, you're better off ignoring endianness and just letting all your
+structs be little-endian. This greatly simplifies maintainability, reduces
+confusion for developers unfamiliar with byte-order, saves CPU time, and allows
+working with constant record data without RAM copies to reverse the byte order
+before write to flash.</p>
+<h2 id="challenges-of-flash-memory">Challenges of Flash Memory<a class="headerlink" href="#challenges-of-flash-memory" title="Permanent link">&para;</a></h2>
+<p>Let's consider a few of the ways that flash differs from RAM from the
+C-programmer's perspective:</p>
+<ol>
+<li>
+<p>First off, flash must be <strong>erased</strong> before it can be <strong>programmed</strong>. Erasing
+   changes all bits to <code>1</code> while programming changes some bits to <code>0</code>. And
+   although single bits may be programmed, only entire <strong>pages</strong> of flash may be
+   erased.</p>
+</li>
+<li>
+<p>These pages vary in size between flash chips and microcontrollers, from 512
+   bytes to 32k, with 4k being a typical size.</p>
+</li>
+<li>
+<p>Flash operations must be <strong>aligned</strong> to specific offsets, usually 32 bytes
+   but this varies. The page size, alignment, and possibly restricted read/write
+   lengths together are referred to as the flash <strong>geometry</strong>.</p>
+</li>
+<li>
+<p>Flash has a limited number of program-erase cycles, typically 10k to 100k.
+   So, to avoid premature failure, values that change many times per day must be
+   distributed across different flash pages, a scheme known as "wear leveling".</p>
+</li>
+<li>
+<p>Flash reading, programming, and especially erasing, is much slower than RAM
+   operations. So frequently-accessed data must at least be cached in RAM.</p>
+</li>
+</ol>
+<p>These challenges mean that for non-trivial applications such as the smart home
+hub where there are many small pieces of information to persist, there is a
+clear need for a well-organized scheme for managing the use of the flash to save
+and load this data. This is what we refer to as an <strong>embedded database</strong>.</p>
+<h2 id="considering-your-requirements-for-an-embedded-database">Considering your Requirements for an Embedded Database<a class="headerlink" href="#considering-your-requirements-for-an-embedded-database" title="Permanent link">&para;</a></h2>
+<p>Now that it's clear why you need an embedded database, let's consider the
+different constraints which may lead you in one direction or another when
+shopping or building a solution:</p>
+<h3 id="how-much-data-do-you-have-to-store-and-how-much-flash-is-available">How much data do you have to store? And how much flash is available?<a class="headerlink" href="#how-much-data-do-you-have-to-store-and-how-much-flash-is-available" title="Permanent link">&para;</a></h3>
+<p>You should start with a back-of-the-envelope calculation of the total amount of
+data that your device needs to store. This is harder than it sounds because
+you've got to also anticipate space for future features.</p>
+<p>My approach is usually to be fairly greedy and allocate a lot of flash to a new
+product line, both to the code space and database. This way we can add features
+freely without concern for running out of space if the product is successful
+enough to experience a decade of feature creep.</p>
+<h3 id="how-important-is-resilience-to-power-loss-during-write-operations">How important is resilience to power loss during write operations?<a class="headerlink" href="#how-important-is-resilience-to-power-loss-during-write-operations" title="Permanent link">&para;</a></h3>
+<p>Data loss and corruption is incredibly frustrating for customers and expensive
+in terms of customer support and reputation. So, your embedded database
+should not lose data if power is lost at an inopportune time (such as during a
+program or erase operation).</p>
+<h3 id="are-you-storing-just-one-record-or-many-records">Are you storing just one record, or many records?<a class="headerlink" href="#are-you-storing-just-one-record-or-many-records" title="Permanent link">&para;</a></h3>
+<p>Some simple applications can get away with a single record structure. However,
+if you need arbitrarily-sized enumerations as in a smart home hub that needs to
+track schedules for and of several devices, you'll need a database that can
+store multiple copies of multiple record types.</p>
+<h3 id="do-the-records-form-a-natural-hierarchy">Do the records form a natural hierarchy?<a class="headerlink" href="#do-the-records-form-a-natural-hierarchy" title="Permanent link">&para;</a></h3>
+<p>It can be helpful to take advantage of hierarchical relationships if only for
+visualization and detection of orphaned records.</p>
+<h3 id="how-often-are-records-being-re-written">How often are records being re-written?<a class="headerlink" href="#how-often-are-records-being-re-written" title="Permanent link">&para;</a></h3>
+<p>It's important to make a calculation of the number of times any flash page is
+expected to be erased in the lifetime of the product and ensure that it is under
+the specified endurance in the flash manufacturer's datasheet.</p>
+<p>These calculations, although simple, can defy intuition. The highest flash
+endurance of 1 million cycles seems like a big number, but if you don't have any
+wear leveling and write a record every 10 seconds, you will pass a million
+cycles in just 4 months. And the flash built into microcontrollers usually has
+much lower endurance, around 10k cycles.</p>
+<h3 id="how-big-are-your-records-do-you-tend-to-write-a-whole-record-at-once-or-do-you-often-append-to-a-record">How big are your records? Do you tend to write a whole record at once? Or do you often append to a record?<a class="headerlink" href="#how-big-are-your-records-do-you-tend-to-write-a-whole-record-at-once-or-do-you-often-append-to-a-record" title="Permanent link">&para;</a></h3>
+<p>Things get much more complicated when you've got records which need to be able
+to be appended to or partially written. If you need these complexities, it's
+best to select a filesystem or at least you will want a file-like API.</p>
+<p>Keeping things simple means having just a get(), set(), and possibly list() API
+where whole records must be read and written at once.</p>
+<h3 id="when-can-you-tolerate-garbage-collection-delays">When can you tolerate garbage collection delays?<a class="headerlink" href="#when-can-you-tolerate-garbage-collection-delays" title="Permanent link">&para;</a></h3>
+<p>At some point deleted records will need to be cleaned up to make space for more
+data. How often this happens depends on the application, but when something like
+a device name is included in the device record, any renaming of a device will
+result in a dead record.</p>
+<p>When those dead records eventually are compacted, a delay for flash page erasure
+is incurred. This could be designed to happen on demand (practical and easy), or
+to run in the background when the device is idle (sounds better, but hard to
+pull off).</p>
+<h3 id="do-you-need-a-backup-and-restore-function">Do you need a backup and restore function?<a class="headerlink" href="#do-you-need-a-backup-and-restore-function" title="Permanent link">&para;</a></h3>
+<p>Effectively backing up and restoring from backups can be a really powerful user
+story. However, doing this well will require some support at the embedded
+database level. Simply copying the entire database partition may be excessively
+large.</p>
+<p>Databases can also be designed to stream records out as part of a backup
+mechanism.</p>
+<h3 id="is-the-database-read-write-or-write-only">Is the database read-write or write-only?<a class="headerlink" href="#is-the-database-read-write-or-write-only" title="Permanent link">&para;</a></h3>
+<p>In many applications the data you are storing may be logs or sensor data that
+never needs to be read by the embedded system, but only recorded for later
+analysis by a larger application. Usually this kind of data forms a time-series.
+If you know the records to be of fixed size or small maximum size, you could
+simply write each record to flash at regular offsets. However, you still should
+consider what happens when reaching the end of the allotted flash space. If
+continued writes are needed after the partition is full, then a scheme for
+handling the erasure of full pages is required which again complicates life for
+the implementor.</p>
+<h2 id="a-brief-look-at-a-few-existing-solutions">A Brief Look at a Few Existing Solutions<a class="headerlink" href="#a-brief-look-at-a-few-existing-solutions" title="Permanent link">&para;</a></h2>
+<p>Now that we've discussed the main challenges of flash memory for data storage,
+let's take a very brief look at a few specific implementations and their design
+choices:</p>
+<h3 id="espressifs-nvs-flash">Espressif's NVS Flash<a class="headerlink" href="#espressifs-nvs-flash" title="Permanent link">&para;</a></h3>
+<p>If you are building a product using Espressif SoCs like ESP32, then you have an
+full-featured built-in choice called
+<a href="https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/storage/nvs_flash.html">nvs_flash</a>.
+Some salient features are:</p>
+<ul>
+<li>key-value store with string-based keys</li>
+<li>namespace system avoids conflicts between components</li>
+<li>can efficiently enumerate all records in a given namespace</li>
+<li>binary blobs are allowed to exceed page size</li>
+<li>highly efficient for small entries such as integers</li>
+<li>supports resuming of a compaction operation interrupted by power loss</li>
+<li>only officially available for Espressif chips</li>
+</ul>
+<h3 id="zephyrs-nvs">Zephyr's NVS<a class="headerlink" href="#zephyrs-nvs" title="Permanent link">&para;</a></h3>
+<p>The Zephyr operating system also offers a key-value
+<a href="https://docs.zephyrproject.org/latest/services/storage/nvs/nvs.html">database implementation</a>,
+which is characteristically lightweight. Two points to note are:</p>
+<ul>
+<li>keys are only 16-bit, so careful planning is required to avoid conflicts</li>
+<li>unlike other solutions, the data CRC is optional, so you can live dangerously
+  and save on flash space</li>
+</ul>
+<h3 id="spiffs-spi-flash-file-system">SPIFFS (SPI Flash File System)<a class="headerlink" href="#spiffs-spi-flash-file-system" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/pellepl/spiffs">SPIFFS</a> is way more ambitious than the
+key-value stores discussed above, seeking to provide a POSIX-like filesystem
+interface featuring <code>open</code>, <code>write</code>, <code>read</code>, and <code>seek</code> functions so that code
+written for SPIFFS could potentially execute unmodified on a major OS like
+Linux. However, trying to pack full filesystem-like capabilities into the RAM
+available in a small embedded system leads to steep tradeoffs in performance
+and safety. Reading the <a href="https://github.com/pellepl/spiffs/wiki/FAQ">SPIFFS FAQ</a>
+shines some light on these challenges.</p>
+<h3 id="bonds-beau-embedded-database">Bond's <em>Beau</em> Embedded Database<a class="headerlink" href="#bonds-beau-embedded-database" title="Permanent link">&para;</a></h3>
+<p>When we were building the Bond Bridge, we looked around for embedded database
+solutions but none of the free software solutions available at the time were up
+for the task. ESP32 nvs_flash was in early days and the venerable FAT12 format
+was too inefficient with small records. So after shipping an MVP with a very
+limited database that we affectionately dubbed "UglyDB", we rolled our own
+embedded database that we call <em>Beau</em>.</p>
+<p>We've used Beau on both smart ceiling fans with 128 kB storing schedules, group,
+and scenes and 4 MB for Bond Bridge (basically a smart home hub) which needs to
+store similar information about possibly hundreds of devices plus recorded RF
+and IR signals.</p>
+<p>Our database stores records like this:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>FFFF BEEF [key] [type] [parent] [data_len] [data_crc] [header_crc]
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>[data ... ]
+</code></pre></div>
+<p>The idea is that the first word <code>FFFF BEEF</code> is a sentinel that signals that a
+record follows. The header contains a 64-bit unique record key, 16-bit record
+type, the 64-bit key of the parent record (useful for building hierarchical
+relationships), the length of the record data, a checksum of the record data,
+and finally a checksum of the header.</p>
+<p>At boot, the microcontroller can efficiently scan through the database, loading
+the key and type metadata, memorizing the physical address (flash offset) of
+every record. This scan is efficient because only the headers need be read. The
+contents can be skipped over. Things only slow down in the case of corruption,
+in which case it is necessary to scan through the database looking for another
+valid header.</p>
+<p>The <code>FFFF</code> at the beginning of the sentinel is important. These <code>1</code> bits are
+"unprogrammed", so we are able to delete a record by simply programming some of
+them so the sentinel reads <code>DEAD BEEF</code>. The header is still intact so it's still
+possible to efficiently scan through the database.</p>
+<p>We always reserve one page (keeping it empty) so that when it is time to compact
+a page, all the live records from the old page can be copied to the reserved
+page. The old page can then be erased, freeing up the space occupied by dead
+(deleted) records.</p>
+<p>A killer feature of Beau is backup and restore. To back up, we simply stream the
+database records out using HTTP chunked transfer. To restore, we again use
+chunked transfer and this time write each record to the database. This technique
+has unlocked efficient transfer of smart home devices between hubs, and for an
+easy path for upgrades to newer models of hubs, and of course for recovery after
+hardware failure or catastrophic firmware issues.</p>
+<h2 id="remote-monitoring-of-database-statistics">Remote Monitoring of Database Statistics<a class="headerlink" href="#remote-monitoring-of-database-statistics" title="Permanent link">&para;</a></h2>
+<p>Lastly, building and deploying an embedded database requires some way of
+monitoring performance. <a href="https://memfault.com/customers/bond-home-case-study/">Memfault's
+metrics</a> can be used for
+this purpose.</p>
+<p>These are a few things you may want to keep an eye on:</p>
+<ol>
+<li>
+<p>Number of operations since boot. Track <code>gets</code>, <code>sets</code>, <code>deletes</code>, and
+   <code>compactions</code>.</p>
+</li>
+<li>
+<p>How much free space is available? And how much space is occupied by dead
+   records?</p>
+</li>
+<li>
+<p>What's the largest headroom available in a page? This is similar to
+   <code>largest_free_block</code> in heaps.</p>
+</li>
+<li>
+<p>Error due to running out of space in the database due to no page large enough
+   to hold the record.</p>
+</li>
+<li>
+<p>Any CRC errors. These happen more often than you may expect, and will surely
+   degrade customer experience in some way. So it's a good idea to be able to
+   correlate them to specific units and support tickets.</p>
+</li>
+</ol>
+<p>Here's what one heavily-used unit's statistics look like for Bond Bridge Pro. As
+you see, our allocation of 4 MB for the database has left us lots of room for
+expansion:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">&quot;live_records&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">235</span><span class="p">,</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">&quot;dead_records&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1516</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">&quot;page_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4096</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="nt">&quot;total_dead&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">648704</span><span class="p">,</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="nt">&quot;total_free&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4121024</span><span class="p">,</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="nt">&quot;max_free&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4096</span><span class="p">,</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="nt">&quot;total_head&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3472320</span><span class="p">,</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="nt">&quot;max_head&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4096</span><span class="p">,</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="nt">&quot;compactions&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span><span class="nt">&quot;empty_pages&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">190</span><span class="p">,</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">  </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4194304</span><span class="p">,</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">  </span><span class="nt">&quot;dirty&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">  </span><span class="nt">&quot;landmines&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-3</span><span class="p">,</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">  </span><span class="nt">&quot;sets&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">  </span><span class="nt">&quot;gets&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2708</span><span class="p">,</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">  </span><span class="nt">&quot;deletes&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="p">}</span>
+</code></pre></div>
+<p>Happy building! And remember, persistence is not futile. Just never
+underestimate the limitations of flash memory.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "toc.integrate", "search.highlight", "search.share"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
