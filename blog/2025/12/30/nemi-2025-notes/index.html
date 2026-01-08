@@ -6,37 +6,35 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Research Notebook">
+        <meta name="description" content="Notes from NEMI 2025 Workshop">
       
       
         <meta name="author" content="Chris Merck">
       
       
-        <link rel="canonical" href="https://chrismerck.github.io/blog/category/ai-safety/">
+        <link rel="canonical" href="https://chrismerck.github.io/blog/2025/12/30/nemi-2025-notes/">
       
       
-        <link rel="prev" href="../../">
+        <link rel="prev" href="../../../08/17/locating-reasoning-errors-with-active-sampling/">
       
-      
-        <link rel="next" href="../embedded/">
       
       
         
       
       
-      <link rel="icon" href="../../../assets/favicon.png">
+      <link rel="icon" href="../../../../../assets/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>ai-safety - Chris Merck</title>
+        <title>NEMI 2025 Notes - Chris Merck</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,9 +53,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/custom.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/custom.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -81,11 +79,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#ai-safety" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -98,9 +91,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Chris Merck" class="md-header__button md-logo" aria-label="Chris Merck" data-md-component="logo">
+    <a href="../../../../.." title="Chris Merck" class="md-header__button md-logo" aria-label="Chris Merck" data-md-component="logo">
       
-  <img src="../../../assets/favicon.png" alt="logo">
+  <img src="../../../../../assets/favicon.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -117,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ai-safety
+              NEMI 2025 Notes
             
           </span>
         </div>
@@ -229,7 +222,9 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -240,9 +235,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Chris Merck" class="md-nav__button md-logo" aria-label="Chris Merck" data-md-component="logo">
+    <a href="../../../../.." title="Chris Merck" class="md-nav__button md-logo" aria-label="Chris Merck" data-md-component="logo">
       
-  <img src="../../../assets/favicon.png" alt="logo">
+  <img src="../../../../../assets/favicon.png" alt="logo">
 
     </a>
     Chris Merck
@@ -269,7 +264,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../../../../.." class="md-nav__link">
         
   
   
@@ -325,7 +320,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../" class="md-nav__link ">
+            <a href="../../../../" class="md-nav__link ">
               
   
   
@@ -428,7 +423,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../archive/2025/" class="md-nav__link">
+      <a href="../../../../archive/2025/" class="md-nav__link">
         
   
   
@@ -458,7 +453,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../archive/2024/" class="md-nav__link">
+      <a href="../../../../archive/2024/" class="md-nav__link">
         
   
   
@@ -491,10 +486,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -514,11 +507,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
         
           
           <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
@@ -539,7 +534,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -554,23 +549,12 @@
                 
   
   
-    
-  
   
     
-      
-    
   
   
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../../category/ai-safety/" class="md-nav__link">
         
   
   
@@ -586,7 +570,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -601,7 +584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../embedded/" class="md-nav__link">
+      <a href="../../../../category/embedded/" class="md-nav__link">
         
   
   
@@ -631,7 +614,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../fractal-u/" class="md-nav__link">
+      <a href="../../../../category/fractal-u/" class="md-nav__link">
         
   
   
@@ -661,7 +644,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../research/" class="md-nav__link">
+      <a href="../../../../category/research/" class="md-nav__link">
         
   
   
@@ -691,7 +674,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tmos/" class="md-nav__link">
+      <a href="../../../../category/tmos/" class="md-nav__link">
         
   
   
@@ -736,41 +719,95 @@
             
           
           
-  <div class="md-content" data-md-component="content">
-    <div class="md-content__inner">
-      <header class="md-typeset">
-        <h1 id="ai-safety">ai-safety<a class="headerlink" href="#ai-safety" title="Permanent link">&para;</a></h1>
-      </header>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2025-12-30 00:00:00+00:00">December 30, 2025</time></li>
-        
-          <li class="md-meta__item">
-            in
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
             
-              <a href="../research/" class="md-meta__link">research</a>, 
-              <a href="./" class="md-meta__link">ai-safety</a></li>
-        
-        
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2025-12-30 00:00:00+00:00" class="md-ellipsis">December 30, 2025</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../../category/research/">research</a>, 
+                              <a href="../../../../category/ai-safety/">ai-safety</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              4 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
           
-          <li class="md-meta__item">
             
-              4 min read
-            
-          </li>
-        
-        
-      </ul>
-      
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+</nav>
+          
+        </div>
+      </div>
     </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="nemi-2025-notes"><a class="toclink" href="../../2025/12/30/nemi-2025-notes/">NEMI 2025 Notes</a></h2>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+
+  
+  
+
+
+  <h1>NEMI 2025 Notes</h1>
+
 <p>tl;dr: I shared some work on counterfactual analysis of CoTs at a Mech Interp workshop, supported by a Cosmos+FIRE grant. See the <a href="/blog/2025/08/17/locating-reasoning-errors-with-active-sampling/">technical details</a>.</p>
 <p>This year I had the pleasure of engaging in some mechanistic interpretability research.
 I was specifically curious about the causal structure of chain-of-thought reasoning
@@ -830,139 +867,25 @@ with convincing-sounding model outputs.</p>
 but this is not going to be easy, it just looks that way because the "thoughts" appear to be in English.
 (I am morbidly curious what the CoT would look like after applying strong optimization pressure to shorten
 the CoT while maintaining performance. Would RL/GRPO be sufficient to develop a shorthand language?)</p>
-    
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2025-08-17 00:00:00+00:00">August 17, 2025</time></li>
-        
-          <li class="md-meta__item">
-            in
-            
-              <a href="../research/" class="md-meta__link">research</a>, 
-              <a href="./" class="md-meta__link">ai-safety</a></li>
-        
-        
-          
-          <li class="md-meta__item">
-            
-              7 min read
-            
-          </li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="locating-reasoning-errors-with-active-sampling"><a class="toclink" href="../../2025/08/17/locating-reasoning-errors-with-active-sampling/">Locating Reasoning Errors with Active Sampling</a></h2>
-<p><em>Chris Merck (chrismerck@gmail.com) -- 2nd North East Mechanistic Interpretability Workshop, August 22, 2025, Northeastern University, Boston</em></p>
-<hr />
-<h3 id="abstract"><a class="toclink" href="../../2025/08/17/locating-reasoning-errors-with-active-sampling/#abstract">Abstract</a></h3>
-<p>Recent advances in chain-of-thought reasoning allow large language models (LLMs) to solve mathematical problems that are beyond the computational power of a single forward pass. This suggests the existence of learned mechanisms operating at the level of reasoning steps in the chain of thought (CoT), yet few techniques exist for identifying these mechanisms. Furthermore, chains of thought can be deceptively interpretable, resembling human internal monologues closely enough that we risk being misled about their causal structure, heightening the need for rigorous interpretability methods. In this work in progress, we develop an algorithm for locating reasoning errors in incorrect base solutions via targeted resampling. This exploration should improve our understanding of chain-of-thought reasoning, particularly how it goes wrong, allowing us to more safely and efficiently operate reasoning models.</p>
-<h3 id="introduction"><a class="toclink" href="../../2025/08/17/locating-reasoning-errors-with-active-sampling/#introduction">Introduction</a></h3>
-<p>One frame through which to interpret reasoning traces is to treat them as the work of a math student, with the researcher as tutor. Correct answers to unguessable problems may be rewarded without inspecting the work, while the incorrect solutions are more interesting: the tutor scans for the first mistake and circles in red pen, leaving a helpful comment. We aim ultimately to automate this process, with this poster presenting some of the elements of work in progress. We see this work as part of a broad effort to take advantage of the present opportunity for CoT monitoring and interpretability (Korbak et al., 2025) and an application of counterfactual techniques from physical systems (Merck &amp; Kleinberg, 2016).</p>
-<p><strong>Foundational Work.</strong> In their recent groundbreaking preprint, Bogdan et al. (2025) employ several techniques for finding causal structure among the sentences of a CoT reasoning trace, cross-validating counterfactual sampling against attention tracing and masking. They develop the <code>math-rollouts</code> dataset, containing 10 incorrect base solutions to problems from the MATH dataset as generated by DeepSeek R1-Distill Qwen-14B (DeepSeek, 2025), selected for intermediate difficulty (having between a 25% and 75% probability of being solved correctly). The dataset also contains 100 rollouts for each sentence in each reasoning trace, allowing us to explore the probability trajectory and counterfactual scenarios.</p>
-<h3 id="active-bayesian-changepoint-detection"><a class="toclink" href="../../2025/08/17/locating-reasoning-errors-with-active-sampling/#active-bayesian-changepoint-detection">Active Bayesian Changepoint Detection</a></h3>
-<p>Although <code>math-rollouts</code> provides a useful starting point, we would like to eventually scale up to using state-of-the-art reasoning models where exhaustively generating many rollouts for each sentence would be prohibitively expensive. So we apply an active sampling algorithm to efficiently find the sentence containing the most prominent error, termed a <em>changepoint</em> after Adams &amp; MacKay (2007), resulting in a ~100X reduction in the number of rollouts required, at least when the trace contains a clear error.</p>
-<p>We propose a Bernoulli process model with a single changepoint τ at which the probability of a correct solution drops from p₁ to p₂:</p>
-<div class="arithmatex">\[
-p(\text{correct}_t) = \begin{cases}
-p_1 &amp; \text{if } t &lt; \tau \\
-p_2 &amp; \text{if } t \geq \tau
-\end{cases}
-\]</div>
-<p><strong>Bayesian Inference.</strong> We maintain a posterior distribution over changepoint locations τ ∈ {1, …, T} using a uniform prior. For each hypothesis τ, we model the probabilities with Beta priors: p₁ ~ Beta(2, 2), reflecting our belief that the initial probability lies between approximately 25% and 75%, and p₂ ~ Beta(1, 19), a strong prior on a low chance of recovery.</p>
-<p><strong>Active Sampling.</strong> We select the next sample location with replacement to maximize expected information gain about the changepoint location:</p>
-<div class="arithmatex">\[
-t^* = \arg\max_{t} \mathbb{E}_{y_t}[H(\tau) - H(\tau | y_t)]
-\]</div>
-<p>where H(τ) is the entropy of the current posterior over changepoint locations and y_t ∈ {0, 1} is the correctness of the hypothetical resampled rollout. This strategy efficiently focuses sampling around the uncertain changepoint region.</p>
-<p><strong>Probability Trajectories.</strong> With the choice of a strong prior on p₂, we find that the algorithm tends to find reasonable changepoints with just 100 rollouts.</p>
-<p><img alt="Probability trajectories for all 10 incorrect base solutions. Each subplot shows how chances of success evolve along the CoT. Red vertical lines indicate detected changepoints (80% CI)." src="../../../assets/active_bayesian_results_plot.png" /></p>
-<h3 id="failure-analysis"><a class="toclink" href="../../2025/08/17/locating-reasoning-errors-with-active-sampling/#failure-analysis">Failure Analysis</a></h3>
-<p>We now examine and discuss selected failures based on the change in answer distribution at the changepoint and a reading of the trace.</p>
-<div class="admonition failure">
-<p class="admonition-title">Nested Multiplication (#330) — <em>wrong base case in recurrence relation</em></p>
-<p>Wait, wait, no. 
-Let me think. 
-<strong>Wait, in the original expression, each time it's 3<em>(1 + ...). So, actually, each level is 3</em>(1 + previous level).</strong> So, maybe I should approach it as a recursive computation.</p>
-</div>
-<p>The trace was on the right track—only two computations away from the correct answer. But when the model used the ellipsis (<code>...</code>), many rollouts failed to converge to a boxed answer, recursing until the token limit. The base solution does converge, and fails due to an error in the base case of 4 instead of 0 or 12. Although visually the probability trajectory does seem to contain a clear changepoint, the identified sentence is in fact by inspection the first introduction of this mistake that persists into the incorrect solution.</p>
-<p>Now we examine the starkest failure in the Digit Counting problem:</p>
-<div class="admonition failure">
-<p class="admonition-title">Digit Counting (#2236) — <em>non sequitur</em></p>
-<p>The ones digits here are 1–8, so 4 <strong>doesn't</strong> appear in the units place in this partial set.</p>
-</div>
-<p>Here the model makes a statement that is obviously false to us, but is generated with approximately a 25% probability at this step. To better understand the structure of this failure, we collect all 100 rollouts resampled at this changepoint sentence and visualize them in a dendrogram. Following Bogdan et al. (2025), we join rollouts if the sentence embeddings have cosine similarity greater than the median similarity between all sentence pairs (0.8).</p>
-<p><img alt="A visualization of the 100 resamplings at sentence 24. Color indicates the probability of a correct solution (blue = 1.0, red = 0.0). We observe that the resampled rollouts fall into three clusters, the bottom of which is the path taken in the incorrect base solution. The clear separation of the incorrect cluster demonstrates that the similarity metric is a good definition for the notion of &quot;sameness&quot; of a sentence." src="../../../assets/dendro-incorr-2236-24.png" /></p>
-<p>Finally, we examine a case where there is no clear changepoint. Inspecting the the model's solution summary, we find that the model was quite knowingly vacillating between two possible interpretations of the problem:</p>
-<div class="admonition warning">
-<p class="admonition-title">Hex to Binary (#4682) — <em>trick question</em></p>
-<p>While converting each hexadecimal digit to 4 bits results in a 20-bit binary number, the minimal number of bits required to represent the number 419,430₁₀ without leading zeros is 19.</p>
-<p>However, since the problem asks for the number of bits when the hexadecimal number is written in binary, and <strong>considering that each hexadecimal digit is typically converted to 4 bits</strong>, the correct answer is 20 bits.</p>
-</div>
-<h3 id="limitations-and-future-directions"><a class="toclink" href="../../2025/08/17/locating-reasoning-errors-with-active-sampling/#limitations-and-future-directions">Limitations and Future Directions</a></h3>
-<ul>
-<li>
-<p>Although we prefer to investigate reasoning errors in a counterfactual context, there is a body of existing work that studies errors in chain-of-thought prompting within and beyond mathematical reasoning (Lightman et al., 2023; Tyen et al., 2024), which also examines reasoning structure beyond the influence on accuracy (Xia et al., 2025).</p>
-</li>
-<li>
-<p>As we saw with the trick question, the failure of these models to deliver mundane utility often stems from issues interpreting the user's prompt rather than logical errors within the chain of thought. The relationship of user intent and model interpretation can be fully formalized (Wu et al., 2022) for mathematical problems. The broader problem of prompt interpretation is of high importance to alignment, especially as models become capable of achieving more work with a single operator instruction.</p>
-</li>
-<li>
-<p>The rollouts in <code>math-rollouts</code> are drawn from a relatively small 14B model distilled from a larger one (DeepSeek R1 671B). It is possible that reasoning failures in stronger models are qualitatively different, or that the structure of the reasoning behavior differs after distillation. The changepoint detector introduced here is intended to facilitate testing on larger models.</p>
-</li>
-<li>
-<p>The changepoint model assumes a single error. However, realistic chains of thought may contain multiple errors and backtracking leading to a more complex probability trajectory. It is possible to develop a changepoint detector for these more complex structures, but validation requires much more than the 10 examples available in the <code>math-rollouts</code> dataset.</p>
-</li>
-<li>
-<p>In particular, the case of no clear changepoint is important to avoid spurious error detections. The algorithm could be updated to track confidence in a null hypothesis.</p>
-</li>
-<li>
-<p>State-of-the-art reasoning models and agents use parallel execution and subagents (subroutines with chains of thought that are not fully attended to by the top-level agent such as in Anthropic, 2025). Investigating failure modes of these new architechtures is a challenge due to their complexity, however it would appear that the Bogdan et al. (2025) methods could be adapted. Active sampling may be of even greater importance as the compute per rollout increases.</p>
-</li>
-</ul>
-<h3 id="acknowledgements"><a class="toclink" href="../../2025/08/17/locating-reasoning-errors-with-active-sampling/#acknowledgements">Acknowledgements</a></h3>
-<p>I am grateful for discussions of this work with Anuj Apte. This work is generously supported by a grant from the Cosmos Institute (<a href="https://cosmos-institute.org/">https://cosmos-institute.org/</a>) and the Foundation for Individual Rights and Expression (FIRE) (<a href="https://www.thefire.org/">https://www.thefire.org/</a>).</p>
-<h3 id="references"><a class="toclink" href="../../2025/08/17/locating-reasoning-errors-with-active-sampling/#references">References</a></h3>
-<ul>
-<li>Adams, R. P., &amp; MacKay, D. J. (2007). Bayesian online changepoint detection. arXiv preprint arXiv:0710.3742.</li>
-<li>Anthropic (2025). Claude 3.5 Sonnet with Computer Use. Available at: https://www.anthropic.com/</li>
-<li>Bogdan, P., et al. (2025). Thought Experiments: Counterfactual Reasoning in Chain-of-Thought. arXiv preprint.</li>
-<li>DeepSeek (2025). DeepSeek R1: Reasoning at the Edge of AGI. arXiv preprint.</li>
-<li>Korbak, T., et al. (2025). Chain-of-thought reasoning as a monitoring opportunity. arXiv preprint.</li>
-<li>Lightman, H., et al. (2023). Let's verify step by step. arXiv preprint.</li>
-<li>Merck, C., &amp; Kleinberg, S. (2016). Causal explanation under indeterminacy: A sampling approach. In Proceedings of the AAAI Conference on Artificial Intelligence.</li>
-<li>Tyen, G., et al. (2024). LLMs cannot correct reasoning errors yet. arXiv preprint.</li>
-<li>Wu, Y., et al. (2022). Autoformalization with large language models. arXiv preprint.</li>
-<li>Xia, M., Li, X., Liu, F., Wu, B., &amp; Liu, P. (2025). Reasoning structure in chain-of-thought beyond accuracy. arXiv preprint.</li>
-</ul>
-    
-    
-  </div>
-</article>
-      
-      
-        
-          
 
 
 
-<nav class="md-pagination">
+
+
+
+
   
-</nav>
-        
+  
+
+
+
+
+  
+
+
+
       
-    </div>
+    </article>
   </div>
 
           
@@ -1004,10 +927,10 @@ Let me think.
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "toc.integrate", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "toc.integrate", "search.highlight", "search.share"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
