@@ -6,19 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Reasoning Failures in DeepSeek V3 Base">
+        <meta name="description" content="Solving a Jane Street puzzle where a neural network's layers are scrambled and you have to put them back together">
       
       
         <meta name="author" content="Chris Merck">
       
       
-        <link rel="canonical" href="https://chrismerck.github.io/blog/2025/06/22/reasoning-failures-in-deepseek-v3-base/">
+        <link rel="canonical" href="https://chrismerck.github.io/blog/2026/02/19/humpty-dumpty-successfully-annealed-with-aid-of-hungarian-algorithm-and-svd/">
       
       
-        <link rel="prev" href="../../../05/14/demonstrating-superposition/">
+        <link rel="prev" href="../../../../2025/12/30/nemi-2025-notes/">
       
-      
-        <link rel="next" href="../../../08/17/locating-reasoning-errors-with-active-sampling/">
       
       
         
@@ -29,7 +27,7 @@
     
     
       
-        <title>Reasoning Failures in DeepSeek V3 Base - Chris Merck</title>
+        <title>Humpty Dumpty Successfully Annealed with Aid of Hungarian Algorithm and SVD - Chris Merck</title>
       
     
     
@@ -82,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#reasoning-failures-in-deepseek-v3-base" class="md-skip">
+        <a href="#understanding-the-problem" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Reasoning Failures in DeepSeek V3 Base
+              Humpty Dumpty Successfully Annealed with Aid of Hungarian Algorithm and SVD
             
           </span>
         </div>
@@ -850,7 +848,7 @@
                     <li class="md-nav__item">
                       <div class="md-nav__link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
-                        <time datetime="2025-06-22 00:00:00+00:00" class="md-ellipsis">June 22, 2025</time>
+                        <time datetime="2026-02-19 00:00:00+00:00" class="md-ellipsis">February 19, 2026</time>
                       </div>
                     </li>
                     
@@ -861,7 +859,8 @@
                           <span class="md-ellipsis">
                             in
                             
-                              <a href="../../../../category/fractal-u/">fractal-u</a></span>
+                              <a href="../../../../category/puzzles/">puzzles</a>, 
+                              <a href="../../../../category/ml/">ml</a></span>
                         </div>
                       </li>
                     
@@ -891,8 +890,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -901,10 +898,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#intro" class="md-nav__link">
+  <a href="#understanding-the-problem" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Intro
+        Understanding the Problem
       
     </span>
   </a>
@@ -912,10 +909,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#method" class="md-nav__link">
+  <a href="#the-brute-force-attempt" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Method
+        The Brute Force Attempt
       
     </span>
   </a>
@@ -923,22 +920,66 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#failures" class="md-nav__link">
+  <a href="#the-key-insight-svd-subspace-alignment" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Failures
+        The Key Insight: SVD Subspace Alignment
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Failures">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-hungarian-algorithm-from-noisy-scores-to-perfect-pairings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Hungarian Algorithm: From Noisy Scores to Perfect Pairings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ordering-the-blocks-sa-in-10000-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordering the Blocks: SA in 10,000 Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-i-learned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What I Learned
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#things-that-didnt-work-but-im-curious-about" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Things That Didn't Work (But I'm Curious About)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Things That Didn&#39;t Work (But I&#39;m Curious About)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#handwaving" class="md-nav__link">
+  <a href="#birkhoff-polytope-and-genetic-algorithm-diversity" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Handwaving
+        Birkhoff Polytope and Genetic Algorithm Diversity
       
     </span>
   </a>
@@ -946,10 +987,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#arithmetic-errors-infinite-loops" class="md-nav__link">
+  <a href="#sinkhorn-optimization" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Arithmetic Errors &amp; Infinite Loops
+        Sinkhorn Optimization
       
     </span>
   </a>
@@ -957,10 +998,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#wishful-thinking" class="md-nav__link">
+  <a href="#fine-tuning-individual-layers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Wishful Thinking
+        Fine-Tuning Individual Layers
       
     </span>
   </a>
@@ -969,17 +1010,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next Steps
-      
-    </span>
-  </a>
   
 </li>
       
@@ -1001,135 +1031,67 @@
   
 
 
-<h1 id="reasoning-failures-in-deepseek-v3-base">Reasoning Failures in DeepSeek V3 Base<a class="headerlink" href="#reasoning-failures-in-deepseek-v3-base" title="Permanent link">&para;</a></h1>
-<p><em>Wherein we observe arithmatic errors, infinite loops, handwaving, and wishful thinking. -- Coursework for Frontier Language Models (Summer 2025, Fractal U).</em></p>
-<h2 id="intro">Intro<a class="headerlink" href="#intro" title="Permanent link">&para;</a></h2>
-<p class="annotate">In this post, I manually analyze specific reasoning failures
-of DeepSeek V3 Base (1). Why the base model? Because if we are
-to understand how reasoning emerges during RL, we should start
-by studying the nacent reasoning capabilities of the base models
-that are the starting point for the likes of R1 (2) and presumably o3,
-and how failures are avoided. The next post will explore 
-reasoning failures in the R1 model.</p>
-<p>We will investigate a simple verifiable math problem
-for which the base model solves ~75% of the time,
-and which R1 always solves. This way we can see some
-of the failures which GRPO RL is able to optimize away.</p>
-<ol>
-<li><a href="https://arxiv.org/abs/2412.19437v1">DeepSeek V3</a> is a 
-671B parameter Mixture-of-Experts model released in December 2024.</li>
-<li>Just a month after announcing the base model, 
-DeepSeek published a reasoning model
-<a href="https://arxiv.org/abs/2501.12948">DeepSeek R1</a> competative
-with then state-of-the-art OpenAI o1. R1 was
-trained by mostly RL against a rule-based reward function
-of math problems with known solutions and coding challenges 
-that can be checked by compilation and unit tests.</li>
-</ol>
-<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p class="annotate">For the purposes of this post I use a math problem of a kind
-likely used (1) to train R1, a 3x3 linear system of equations:</p>
-<ol>
-<li>We do not know exactly which <em>math problems with deterministic results</em>
-were used by the DeepSeek team.</li>
-</ol>
-<div class="arithmatex">\[
-\left\{
-\begin{aligned}
-4x - 3y + 6z &amp;= 6 \\
--3x + 4y + 5z &amp;= 5 \\
-3x + 9y - 7z &amp;= -7
-\end{aligned}
-\right.
-\]</div>
-<p>This problem is hard enough that we observe frequent and varied failures
-in V3 Base, but easy enough that perfect performance is achieved by R1.</p>
+  <h1>Humpty Dumpty Successfully Annealed with Aid of Hungarian Algorithm and SVD</h1>
+
+<p>I was listening to Dwarkesh's podcast and he referenced some interesting-sounding Jane Street problems. I figured I'd give one a shot.</p>
+<p>The problem: you have a neural network's weights, but the layers are scrambled. You need to put Humpty Dumpty back together.</p>
+<!-- more -->
+
+<div class="admonition note">
+<p class="admonition-title">Honor Statement</p>
+<p>I did not reference anything online. I did not look at anyone else's solution to this problem. I used Claude Opus 4.6 extensively, but I instructed it not to do any web search -- with one exception for a research dead end I'll get into later. Nothing I used was outside of what was already in Opus's training data. As a Stevens grad, I take the honor code seriously.</p>
+</div>
 <hr />
-<p>I use the exact <em>prompt template</em> given in the DeepSeek R1 paper:</p>
-<blockquote>
-<p>A conversation between User and Assistant. The user asks a question, and the Assistant solves it.
-The assistant first thinks about the reasoning process in the mind and then provides the user
-with the answer. The reasoning process and answer are enclosed within <code>&lt;think&gt;</code> <code>&lt;/think&gt;</code> and
-<code>&lt;answer&gt;</code> <code>&lt;/answer&gt;</code> tags, respectively, i.e., <code>&lt;think&gt;</code> reasoning process here <code>&lt;/think&gt;</code>
-<code>&lt;answer&gt;</code> answer here <code>&lt;/answer&gt;</code>. User: <code>{problem}</code>. Assistant:</p>
-</blockquote>
-<p>And then in this post I'm using just this <code>problem</code>:</p>
-<blockquote>
-<p>Solve the system of equations: 
-<span class="arithmatex">\(4x -3y +6z = 6\)</span>, 
-<span class="arithmatex">\(-3x +4y +5z = 5\)</span>, 
-<span class="arithmatex">\(3x +9y -7z = -7\)</span>.
-Give your solution as a JSON array of integers.</p>
-</blockquote>
-<h2 id="failures">Failures<a class="headerlink" href="#failures" title="Permanent link">&para;</a></h2>
-<p>I ran the above prompt a number of times and sampled several of the
-failure cases below with commentary.</p>
-<h3 id="handwaving">Handwaving<a class="headerlink" href="#handwaving" title="Permanent link">&para;</a></h3>
-<p>Sometimes V3 Base will describe <em>how</em> to solve the problem rather
-than actually solving it. I hypothesize that in the handwaving
-example below, the failure is mediated by the use of the auxiliary 
-verbs <em>can</em> and <em>will</em>. </p>
-<blockquote>
-<p>To solve the system of equations, we can use the method of substitution or elimination. Here, we will use the method of elimination. First, we will eliminate the variable x from the first and second equations. To do this, we will multiply the first equation by 3 and the second equation by 4, and then add the two equations together. This <span style="color:red">will give</span> us a new equation with only y and z. Next, we will eliminate the variable x from the first and third equations. To do this, we will multiply the first equation by 3 and the third equation by 4, and
-then subtract the two equations. This will give us another new equation with only y and z. Now, we have two equations with only y and z. We  can solve these two equations simultaneously to find the values of y and z. Once we have the values of y and z, we can substitute them into any of the original equations to find the value of x. Finally, we will have the values of x, y, and z, which we can represent as a JSON array [x, y, z].</p>
-</blockquote>
-<p>This would be a great preliminary plan, but the model did not actually work through
-the computation steps, and so it then gives the final answer:</p>
-<blockquote>
-<p><code>[1, 2, 3]</code></p>
-</blockquote>
-<p>This looks like an example rather than a guess.
-This is akin to behavior I've seen from OpenAI models where rather than returing a functional
-program safisying my request, they return an "example" of how I could do it. </p>
-<h3 id="arithmetic-errors-infinite-loops">Arithmetic Errors &amp; Infinite Loops<a class="headerlink" href="#arithmetic-errors-infinite-loops" title="Permanent link">&para;</a></h3>
-<p>It is well-known that base models tend to end up in
-repeating patterns. In the completion below,
-we see such a repeating sequence emerge, 
-but looking closely we can see that an arithmetic error
-occurred prior: in simplifying <span class="arithmatex">\(\frac{45}{4}\frac{38}{7}\)</span>,
-the model eliminated the factor of 2 from the nominator
-(yielding <span class="arithmatex">\(45 * 38 / 2 = 855\)</span>) but then did not eliminate
-the factor from the denominator (<span class="arithmatex">\(4 * 7 = 28\)</span> rather than <span class="arithmatex">\(4 * 7 / 2 = 14\)</span>).</p>
-<blockquote>
-<p><code>&lt;think&gt;</code> To solve the system of equations, we can use the method of elimination or substitution. However, since the coefficients of the variables are not the same in all equations, it might be easier to use the method of substitution. First, we can solve the first equation for x: <span class="arithmatex">\(4x = 3y - 6z + 6\)</span> <span class="arithmatex">\(x = \frac{3y - 6z + 6}{4}\)</span> Next, we can substitute this expression for x into the second and third equations: <span class="arithmatex">\(-3(\frac{3y - 6z + 6}{4}) + 4y + 5z = 5\)</span> <span class="arithmatex">\(3(\frac{3y - 6z + 6}{4}) + 9y - 7z = -7\)</span> Simplifying these equations, we get: <span class="arithmatex">\(-\frac{9}{4}y + \frac{9}{2}z - \frac{9}{2} + 4y + 5z = 5\)</span> <span class="arithmatex">\(\frac{9}{4}y - \frac{9}{2}z + \frac{9}{2} + 9y - 7z = -7\)</span> Combining like terms, we get: <span class="arithmatex">\(\frac{7}{4}y + \frac{19}{2}z = \frac{19}{2}\)</span> <span class="arithmatex">\(\frac{45}{4}y - \frac{23}{2}z = -\frac{23}{2}\)</span> Now, we can solve the first equation for y: <span class="arithmatex">\(\frac{7}{4}y = \frac{19}{2} - \frac{19}{2}z\)</span> <span class="arithmatex">\(y = \frac{38}{7} - \frac{38}{7}z\)</span> Substituting this expression for y into the second equation, we get: <span class="arithmatex">\(\frac{45}{4}(\frac{38}{7} - \frac{38}{7}z) - \frac{23}{2}z = -\frac{23}{2}\)</span> Simplifying this equation, we get: <span class="arithmatex">\(\frac{855}{\color{red}{28}} - \frac{855}{28}z - \frac{23}{2}z = -\frac{23}{2}\)</span> Combining like terms, we get: <span class="arithmatex">\(-\frac {855}{28}z - \frac{23}{2}z = -\frac{23}{2} - \frac{855}{28}\)</span> <span class="arithmatex">\(\color{red}{-\frac{855}{28}z - \frac{23}{2}z = -\frac{23}{2} - \frac{855}{28}}\)</span> <span class="arithmatex">\(-\frac{855}{28}z - \frac{23}{2}z = -\frac{23}{2} - \frac{855}{28}\)</span> <span class="arithmatex">\(-\frac{855}{28}z - \frac{23}{2}z = -\frac{23}{2} - \frac{855}{28}\)</span> <span class="arithmatex">\(-\frac{855}{28}z - \frac{23}{2 }z = -\frac{23}{2} - \frac{855}{28}\)</span> <span class="arithmatex">\(-\frac{855}{28}z - \frac{23}{2}z = -\frac{23}{2} - \frac{855}{28}\)</span> <span class="arithmatex">\(-\frac{855}{28}z - \frac{23}{2}z = -\frac{23}{2} - \frac{855}{28}\)</span> </p>
-</blockquote>
-<h3 id="wishful-thinking">Wishful Thinking<a class="headerlink" href="#wishful-thinking" title="Permanent link">&para;</a></h3>
-<p>Lastly, I see a case of what I'll call <em>wishful thinking</em>.
-V3 Base suceeds at eliminating <span class="arithmatex">\(x\)</span> in the first step,
-but then it tries to eliminate <span class="arithmatex">\(y\)</span> in the same way,
-neglecting that a multiplication of one equation by <span class="arithmatex">\(6\)</span> 
-is required in order to achieve elimination.</p>
-<p>Presumably the model at this point had a choice whether to
-actually do the correct computation, leading to an unintended result
-where <span class="arithmatex">\(y\)</span> was not in fact eliminated, or to copy the pattern
-from the first step even though the computation is wrong.
-It chooses the latter, which though of course reduces to 
-statitical pattern matching, has the appearance of
-wishful thinking.</p>
-<blockquote>
-<p><code>&lt;think&gt;</code> To solve the system of equations, we can use the method of elimination or substitution. However, since the equations are already in a form that allows for easy elimination, we will use that method. First, we will eliminate <span class="arithmatex">\(x\)</span> from the second and third equations by adding the first equation to the second and third equations. This gives us the system of equations: <span class="arithmatex">\(4x -3y +6z = 6\)</span>, <span class="arithmatex">\(y +11z = 11\)</span>, <span class="arithmatex">\(6y -z = -1\)</span>. Next, we will eliminate <span class="arithmatex">\(y\)</span> from the third equation by adding the second equation to the third equation. This gives us the system of equations: <span class="arithmatex">\(4x -3y +6z = 6\)</span>, <span class="arithmatex">\(y +11z = 11\)</span>, <span class="arithmatex">\(\color{red}{10z = 10}\)</span>. Finally, we can solve for <span class="arithmatex">\(z\)</span> by dividing both sides of the third equation by 10. This gives us <span class="arithmatex">\(z = 1\)</span>. Substituting this value of <span class="arithmatex">\(z\)</span> into the second equation, we can solve for <span class="arithmatex">\(y\)</span>. This gives us <span class="arithmatex">\(y = 0\)</span>. Substituting these values of <span class="arithmatex">\(y\)</span> and <span class="arithmatex">\(z\)</span> into the first equation, we can solve for <span class="arithmatex">\(x\)</span>. This gives us <span class="arithmatex">\(x = 1\)</span>. Therefore, the solution to the system of equations is <span class="arithmatex">\(x = 1\)</span>, <span class="arithmatex">\(y = 0\)</span>, <span class="arithmatex">\(z = 1\)</span>. <code>&lt;/think&gt;</code> <code>&lt;answer&gt;</code> <code>[1, 0, 1]</code></p>
-</blockquote>
-<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
-<p>I see two directions to take this exploration:</p>
+<p><strong>TL;DR:</strong></p>
+<ul>
+<li>The pairing problem (which input layer goes with which output layer) can be solved <em>exactly</em> using SVD subspace alignment + the Hungarian algorithm -- no forward passes needed, runs in seconds</li>
+<li>The ordering problem (what sequence do the 48 blocks go in) yields to simulated annealing in roughly 10,000 steps<sup id="fnref2:sa-steps"><a class="footnote-ref" href="#fn:sa-steps">1</a></sup>, seeded by sorting on weight norms</li>
+<li>SA is insanely effective for combinatorial optimization -- it beat every elaborate scheme I tried (genetic algorithms, Sinkhorn gradient descent, Birkhoff polytope tricks)</li>
+<li>The winning workflow: run a simple SA on one machine while exploring the problem analytically on another, feeding insights back in</li>
+</ul>
+<h2 id="understanding-the-problem">Understanding the Problem<a class="headerlink" href="#understanding-the-problem" title="Permanent link">&para;</a></h2>
+<p>We have a bunch of historical data with inputs and output predictions, and a pile of weight-matrix "pieces" in three different shapes. First thing: I make the assumption that those predictions are the predictions of <em>this</em> actual network. So we'll know we've reconstructed it correctly when the predictions of our reassembled network precisely match the historical data, up to floating point error.</p>
+<p>Second thing: we've got to figure out the geometry of this network. Thankfully, we were given a little piece of Python code showing us the architecture. It's a residual network with feed-forward blocks -- each block has a ReLU and a residual connection. Looks like just the feed-forward part of a transformer:</p>
+<div class="arithmatex">\[x \leftarrow x + W_\text{out} \cdot \text{ReLU}(W_\text{inp} \cdot x + b_\text{inp}) + b_\text{out}\]</div>
+<p>We can see three different piece shapes: inputs, outputs, and then one final linear layer that gives us the output prediction. We weren't given any information about how this network was trained, or if it was even trained at all. If this is just a random initialization, the problem is going to be very difficult, if not impossible. But if it's trained -- even only partially trained -- there should be a lot of structure in the weights. The key to solving this thing is going to be leveraging that structure.</p>
+<h2 id="the-brute-force-attempt">The Brute Force Attempt<a class="headerlink" href="#the-brute-force-attempt" title="Permanent link">&para;</a></h2>
+<p>When I first set this up, I just immediately started running simulated annealing with all the pieces. We don't know which input and output layers go together, and we don't know what order the blocks go in. Just started running SA on the whole thing. I had a hunch that if I threw enough compute at it, it would probably just solve it. But all I had in front of me was a pretty inexpensive computer. And like the Project Euler problems, I know that good puzzles, if you look at them right, require surprisingly little compute to solve.</p>
+<p>So while that big SA was running, I got thinking about how to break this down.</p>
+<h2 id="the-key-insight-svd-subspace-alignment">The Key Insight: SVD Subspace Alignment<a class="headerlink" href="#the-key-insight-svd-subspace-alignment" title="Permanent link">&para;</a></h2>
+<p>The key insight is that when a network is trained, the input and output layers of one block become coupled. We can see this correlation in the singular value decomposition of the weight matrices.</p>
+<p>Each block's input layer is an encoder into a 96-dimensional hidden space, and the output layer is a decoder back out. They were trained together, so they share a private "codebook." Pair the wrong encoder with the wrong decoder, and the decoder tries to read a codebook it was never taught.</p>
+<p>The SVD reveals the directions each matrix "uses" in the hidden space. For the input weight matrix, the left singular vectors are the <em>write directions</em> -- the directions the encoder activates. For the output weight matrix, the right singular vectors are the <em>read directions</em> -- the directions the decoder is sensitive to. For a correct pair, these should align. The score:</p>
+<div class="arithmatex">\[\text{score}(\text{inp}, \text{out}) = \| \text{diag}(\Sigma_\text{inp}) \cdot U_\text{inp}^T \cdot V_\text{out} \cdot \text{diag}(\Sigma_\text{out}) \|_F\]</div>
+<p>The singular-value weighting emphasizes directions where both pieces have large singular values -- the "important" subspace dimensions. Higher score means better alignment. I explored a couple of different statistics for matching up the layers, but this one gave the strongest signal.</p>
+<h2 id="the-hungarian-algorithm-from-noisy-scores-to-perfect-pairings">The Hungarian Algorithm: From Noisy Scores to Perfect Pairings<a class="headerlink" href="#the-hungarian-algorithm-from-noisy-scores-to-perfect-pairings" title="Permanent link">&para;</a></h2>
+<p>Now, these SVD agreement scores are quite noisy. If we took a greedy approach -- lining them up one at a time -- we'd obviously get suboptimal solutions. This is a perfect place to apply the Hungarian algorithm, which finds the globally optimal one-to-one assignment in polynomial time.</p>
+<p>And here's the thing that surprised me: the per-row signal is <em>really</em> noisy. Only 4 of 48 true pairs are the top match in their row. The median rank of the true partner is 12th out of 48. The worst is 22nd. A greedy approach would get maybe 4 out of 48.</p>
+<p>But the Hungarian algorithm exploits a global constraint: every input must match exactly one output, no sharing. Even though any individual score is ambiguous, there's only one global assignment where all 48 scores are simultaneously high. The Hungarian algorithm finds it. SVD alignment plus Hungarian matching perfectly recovers all 48 pairings.</p>
+<p>This takes a couple of seconds to run. And to be clear -- we're not even running the neural net. This is purely from the weight matrices.</p>
+<h2 id="ordering-the-blocks-sa-in-10000-steps">Ordering the Blocks: SA in 10,000 Steps<a class="headerlink" href="#ordering-the-blocks-sa-in-10000-steps" title="Permanent link">&para;</a></h2>
+<p>Now that we know which input blocks go with which output blocks, we can run simulated annealing on just the ordering problem. I ran it for a million steps and left it overnight. But I realized that if I played with the temperature parameters, it actually only needed about 10,000 steps<sup id="fnref:sa-steps"><a class="footnote-ref" href="#fn:sa-steps">1</a></sup>. That's an insanely small number, given that we still have a search space of <span class="arithmatex">\(48!\)</span>.</p>
+<p>I did one further thing to improve the initial seed so I could start with a lower temperature: I used a heuristic of sorting blocks by their weight norms in ascending order. Higher-norm weights tend to come from later layers, because as the residual stream norm grows through the network, you tend to get larger weight values as well. This gave SA a reasonable starting point to refine from.</p>
+<h2 id="what-i-learned">What I Learned<a class="headerlink" href="#what-i-learned" title="Permanent link">&para;</a></h2>
+<p><strong>Simulated annealing is insanely effective.</strong> I used to be a big fan of genetic algorithms -- they're a really cool analogy. But for a lot of problems, they just seem to be so much less effective. I did try a genetic algorithm here without much success. This was quite a lesson: SA was making constant, steady progress while I was over on my other machine experimenting with elaborate genetic algorithm schemes.</p>
+<p><strong>The workflow that worked.</strong> Tactically, here's how I approached this: I got a simple SA running on one machine, making steady progress. On my main machine, I'm experimenting with different possibilities -- exploring the network, looking at residuals, looking at the norms of the residual stream, just seeing what's going on. I could also inject certain swaps back into the SA run based on my findings from the SVD analysis. That feedback loop between analytical insight and stochastic search was the real workflow.</p>
+<h2 id="things-that-didnt-work-but-im-curious-about">Things That Didn't Work (But I'm Curious About)<a class="headerlink" href="#things-that-didnt-work-but-im-curious-about" title="Permanent link">&para;</a></h2>
+<h3 id="birkhoff-polytope-and-genetic-algorithm-diversity">Birkhoff Polytope and Genetic Algorithm Diversity<a class="headerlink" href="#birkhoff-polytope-and-genetic-algorithm-diversity" title="Permanent link">&para;</a></h3>
+<p>I tried a genetic algorithm with permutations embedded as matrices in the Birkhoff polytope -- the idea being to use Euclidean distance in that continuous space to repulse population members away from the centroid and boost biodiversity. It sort of worked to break up the cluster, but it was just one of those tangents I was exploring while my naive SA was running on the other machine, making steady progress. Lesson learned.</p>
+<h3 id="sinkhorn-optimization">Sinkhorn Optimization<a class="headerlink" href="#sinkhorn-optimization" title="Permanent link">&para;</a></h3>
+<p>I also tried casting the discrete permutation space into a continuous doubly-stochastic<sup id="fnref:doubly-stochastic"><a class="footnote-ref" href="#fn:doubly-stochastic">2</a></sup> matrix space and doing gradient descent on the assignments (not the neural network) using the Sinkhorn operator. It got trapped in the same local minima as SA -- the Metropolis random walk is just remarkably better at escaping basins than smooth gradient descent. I'm curious if anybody's managed to make this work.</p>
+<h3 id="fine-tuning-individual-layers">Fine-Tuning Individual Layers<a class="headerlink" href="#fine-tuning-individual-layers" title="Permanent link">&para;</a></h3>
+<p>I have a hunch that you could retrain the network while adding a cost function that penalizes the distance of each layer from one of the provided piece files. This would let the network kind of organically coalesce into the correct positions. I haven't tried it, but I'm curious if somebody's been successful with that approach.</p>
+<div class="footnote">
+<hr />
 <ol>
-<li>
-<p>Explore reasoning failures in a <strong>reasoning model</strong> (R1):
-does it make the same mistakes only less often?
-Or does it fail in new ways?
-This will require harder math problems.</p>
+<li id="fn:sa-steps">
+<p>Actually 13,000 steps in my run, but I'd like to think that with the right temperature schedule it could be done in 10,000.&#160;<a class="footnote-backref" href="#fnref:sa-steps" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:sa-steps" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
-<li>
-<p><strong>Automate the discovery of the location of the reasoning
-failure in the chain of thought</strong>. One way to do this
-could be to look at the probability of success as a function
-of position in a particulary faulty output. I expect that,
-at least in the case of arithmatic errors, we could automatically
-discover the exact token at which the error occured,
-but this does require a lot of inference.
-I'd like to explore statictical and heuristic methods
-for efficiently deriving failure explainations.</p>
+<li id="fn:doubly-stochastic">
+<p>"Doubly stochastic" is a somewhat confusing term -- there's nothing stochastic about it, really. It just means the matrix has rows and columns that each sum to one.&#160;<a class="footnote-backref" href="#fnref:doubly-stochastic" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 </ol>
+</div>
 
 
 
