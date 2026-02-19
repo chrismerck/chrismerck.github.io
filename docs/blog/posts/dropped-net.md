@@ -7,14 +7,17 @@ categories:
   - ml
 ---
 
-I was listening to Dwarkesh's podcast and he referenced some interesting-sounding Jane Street problems. I figured I'd give one a shot.
+I was listening to [Dwarkesh's podcast](https://www.janestreet.com/join-jane-street/machine-learning/?dwarkesh) and he referenced some interesting-sounding Jane Street problems. I figured I'd give one a shot.
 
-The problem: you have a neural network's weights, but the layers are scrambled. You need to put Humpty Dumpty back together.
+The problem: you have a neural network's weights, but the layers are scrambled. You need to [put Humpty Dumpty back together](https://huggingface.co/spaces/jane-street/droppedaneuralnet).
 
 <!-- more -->
 
 !!! note "Honor Statement"
-    I did not reference anything online. I did not look at anyone else's solution to this problem. I used Claude Opus 4.6 extensively, but I instructed it not to do any web search -- with one exception for a research dead end I'll get into later. Nothing I used was outside of what was already in Opus's training data. As a Stevens grad, I take the honor code seriously.
+    No external solutions were consulted. I used [Claude Code](https://claude.ai/claude-code) with Opus 4.6 extensively, but with web search disabled -- nothing outside of Opus's training data. As a [Stevens](https://www.stevens.edu/) grad, I take the honor code seriously.
+
+!!! info "Methodology"
+    After experimentation, the solution can be reproduced on the cheapest M4 Mac Mini with 3.5 minutes of GPU time.
 
 ---
 
