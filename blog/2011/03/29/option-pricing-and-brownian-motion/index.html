@@ -6,33 +6,35 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Research Notebook">
+        <meta name="description" content="Exploring connections between option pricing theory and the physics of diffusion and Brownian motion">
       
       
         <meta name="author" content="Chris Merck">
       
       
-        <link rel="canonical" href="https://chrismerck.github.io/research/charformers/">
+        <link rel="canonical" href="https://chrismerck.github.io/blog/2011/03/29/option-pricing-and-brownian-motion/">
       
       
+      
+        <link rel="next" href="../../../06/30/statistical-nlp-book/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/favicon.png">
+      <link rel="icon" href="../../../../../assets/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
     
     
       
-        <title>Charformers - Chris Merck</title>
+        <title>Option Pricing and Brownian Motion - Chris Merck</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -51,9 +53,9 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/custom.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/custom.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#character-based-transformers" class="md-skip">
+        <a href="#definitions-of-options-jargon" class="md-skip">
           Skip to content
         </a>
       
@@ -94,9 +96,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Chris Merck" class="md-header__button md-logo" aria-label="Chris Merck" data-md-component="logo">
+    <a href="../../../../.." title="Chris Merck" class="md-header__button md-logo" aria-label="Chris Merck" data-md-component="logo">
       
-  <img src="../../assets/favicon.png" alt="logo">
+  <img src="../../../../../assets/favicon.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -113,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Charformers
+              Option Pricing and Brownian Motion
             
           </span>
         </div>
@@ -225,7 +227,9 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -236,9 +240,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Chris Merck" class="md-nav__button md-logo" aria-label="Chris Merck" data-md-component="logo">
+    <a href="../../../../.." title="Chris Merck" class="md-nav__button md-logo" aria-label="Chris Merck" data-md-component="logo">
       
-  <img src="../../assets/favicon.png" alt="logo">
+  <img src="../../../../../assets/favicon.png" alt="logo">
 
     </a>
     Chris Merck
@@ -265,7 +269,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../../../.." class="md-nav__link">
         
   
   
@@ -289,6 +293,8 @@
       
   
   
+    
+  
   
   
     
@@ -311,17 +317,15 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../blog/" class="md-nav__link ">
+            <a href="../../../../" class="md-nav__link ">
               
   
   
@@ -345,7 +349,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -428,7 +432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/archive/2026/" class="md-nav__link">
+      <a href="../../../../archive/2026/" class="md-nav__link">
         
   
   
@@ -458,7 +462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/archive/2025/" class="md-nav__link">
+      <a href="../../../../archive/2025/" class="md-nav__link">
         
   
   
@@ -488,7 +492,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/archive/2024/" class="md-nav__link">
+      <a href="../../../../archive/2024/" class="md-nav__link">
         
   
   
@@ -518,7 +522,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/archive/2011/" class="md-nav__link">
+      <a href="../../../../archive/2011/" class="md-nav__link">
         
   
   
@@ -627,7 +631,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/category/ai-safety/" class="md-nav__link">
+      <a href="../../../../category/ai-safety/" class="md-nav__link">
         
   
   
@@ -657,7 +661,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/category/embedded/" class="md-nav__link">
+      <a href="../../../../category/embedded/" class="md-nav__link">
         
   
   
@@ -687,7 +691,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/category/fractal-u/" class="md-nav__link">
+      <a href="../../../../category/fractal-u/" class="md-nav__link">
         
   
   
@@ -717,7 +721,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/category/ml/" class="md-nav__link">
+      <a href="../../../../category/ml/" class="md-nav__link">
         
   
   
@@ -747,7 +751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/category/nlp/" class="md-nav__link">
+      <a href="../../../../category/nlp/" class="md-nav__link">
         
   
   
@@ -777,7 +781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/category/physics/" class="md-nav__link">
+      <a href="../../../../category/physics/" class="md-nav__link">
         
   
   
@@ -807,7 +811,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/category/puzzles/" class="md-nav__link">
+      <a href="../../../../category/puzzles/" class="md-nav__link">
         
   
   
@@ -837,7 +841,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/category/research/" class="md-nav__link">
+      <a href="../../../../category/research/" class="md-nav__link">
         
   
   
@@ -867,7 +871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/category/tmos/" class="md-nav__link">
+      <a href="../../../../category/tmos/" class="md-nav__link">
         
   
   
@@ -912,74 +916,198 @@
             
           
           
-            <div class="md-content" data-md-component="content">
-              
-              <article class="md-content__inner md-typeset">
-                
-                  
-
-
-  
-  
-
-
-<h1 id="character-based-transformers">Character-based Transformers<a class="headerlink" href="#character-based-transformers" title="Permanent link">&para;</a></h1>
-<p>Way back when I had fun with little n-gram models,
-that I fondly recall could write pseudo-Tolkien
-when training it on a text copy of <em>The Hobbit</em>.
-It was fun to watch how as n increased from 3 to 5
-the words became more and more coherently spelled.
-You now understand my sadness at the tokenization
-step used in modern LLMs: it strips them of the 
-very first learning step of discovering the morphemes,
-smallest units of meaning.</p>
-<p>So I'd like to experiment with some character-based
-transformers. I have no expectation that I'd be able
-to get coherent English text out of them without massive
-GPU resources, but perhaps we can intepret some patterns
-of morphological learning?</p>
-<h2 id="sanitizing-the-data">Sanitizing the Data<a class="headerlink" href="#sanitizing-the-data" title="Permanent link">&para;</a></h2>
-<p>We are concerned with English text, and we want to keep 
-the language as small as possible, so let's just work
-with lowercase letters plus space and a few punctuation characters:</p>
-<p><code>abcdefghijklmnopqrstuvwxyz .,?'\n</code></p>
-<p>Note that we've merged the apostrophe, single, and double quotes,
-we keep distinct period (but convert exclaimation to period),
-a distinct question mark,
-and all other punctuation will be replaced with spaces.
-Newline has its own symbol, which represents a paragraph break
-or could be used as a stop token.</p>
-<p>For my purposes I'll feed in a text copy of <em>The Lord of the Rings</em>,
-because I know this book so well that it should help me interpret
-the small model gibberish I'm sure to get when sampling generatively.</p>
-<h2 id="n-grams-revisited">N-Grams Revisited<a class="headerlink" href="#n-grams-revisited" title="Permanent link">&para;</a></h2>
-<p class="annotate">I like to start with the simplest possible model,
-which within the neural network paradigm would be
-a single-layer network. (1)</p>
-<ol>
-<li>If we want to be pedantic, it would be a zero-layer
-network with just a bias term predicting just based on character
-frequency.</li>
-</ol>
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-                
-              </article>
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
             </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2011-03-29 00:00:00+00:00" class="md-ellipsis">March 29, 2011</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../../category/physics/">physics</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              6 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
           
+            
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#definitions-of-options-jargon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definitions of Options Jargon
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pricing-an-option" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pricing an Option
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conditions-on-an-estimation-formula-for-future-stock-prices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditions on an Estimation Formula for Future Stock Prices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relation-to-the-physics-of-diffusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relation to the Physics of Diffusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+
+  
+  
+
+
+  <h1>Option Pricing and Brownian Motion</h1>
+
+<p>In the penultimate lecture of his Financial Markets course, entitled "Option Markets", Schiller discusses several important facets of financial options. I found his discussion of option pricing to be most intriguing, kindling thoughts relating to the physics of diffusion. Here I dump a few ideas I had on the subject, and hopefully I'll be able to flesh them out later on, either after doing some more research or with the help of someone knowledgeable in the subject (anyone?). My comments on diffusion are very rough, because I never studied that in school for some reason. Anyhow, here goes.</p>
+<!-- more -->
+
+<h2 id="definitions-of-options-jargon">Definitions of Options Jargon<a class="headerlink" href="#definitions-of-options-jargon" title="Permanent link">&para;</a></h2>
+<p>An <strong>option</strong> is a contract that gives a specified party (known as the <strong>option holder</strong>) the right to buy or sell some specific asset from or to a specified second party (known as the <strong>option writer</strong>) at a predetermined price (known as the <strong>exercise price</strong>) on or before a predetermined date (known as the <strong>exercise date</strong>). Options are transferable, that is, either party may transfer their rights and obligations to another person in exchange for payment in either direction. However, we tend to think of an option from the point of view of the option holder, for whom involvement in the contract has positive value. So, when we refer to the trading of an option, we mean the purchase or sale of the holder's rights.</p>
+<p>An option giving the holder the right to sell is called a <strong>put option</strong>. Conversely, a <strong>call option</strong> gives the holder the right to buy. Schiller explains that to understand the option pricing concept one only need consider one such type of option. Therefore, for the rest of the post when I write "option" I mean the more commonly discussed of the two: the call option.</p>
+<p>Furthermore, some options permit the holder to exercise his right to buy or sell at the exercise price on any date up to and including the exercise date. These are known as <strong>American options</strong>. Other options only give the holder such a right on the exercise date, but not before. Such options are known as <strong>European options</strong>. I will discuss European options from now on, because they are simpler.</p>
+<p>Lastly, an options contract must specify the asset at stake. To make the discussion more concrete, I will be specifically referring to <strong>stock options</strong>, that is, options to buy stock in a corporation. However, the chose of asset is not important to the logic of the discussion.</p>
+<h2 id="pricing-an-option">Pricing an Option<a class="headerlink" href="#pricing-an-option" title="Permanent link">&para;</a></h2>
+<p>Assume that we have a person who wishes to write options for some stock which is currently is selling for <span class="arithmatex">\(s\)</span> dollars, which we may write <span class="arithmatex">\(s(0)\)</span> to differentiate if from future prices of the stock. Further assume that the writer wishes to write the option with an exercise price of <span class="arithmatex">\(e\)</span> dollars for an exercise date <span class="arithmatex">\(t\)</span> units of time in the future. The writer of the option wants to estimate the price at which he should sell the option. This price should be close to the value of the option, and so we concern ourselves with determining the value of the option and will simply denote it <span class="arithmatex">\(p\)</span>.</p>
+<p>If the writer was somehow prescient so as to already know what the price of the stock would be on the exercise date, call it <span class="arithmatex">\(s(t)\)</span> dollars, then the value of the option would clearly be the present value of the intrinsic value of the option on the day of expiry, if it be positive. Taking the simplifying assumption of a zero interest rate (which, in real-terms, is not such a bad assumption these days), we can write algebraically that</p>
+<div class="arithmatex">\[p = \max(0, s(t) - e).\]</div>
+<p>However, nobody knows what the future stock price will be. At best, we can use a combination of historical data, knowledge about the particular stock, and other financial knowledge to form an educated guess about how likely the future price will fall into certain ranges. This is quantified as a probability density function (PDF), call it <span class="arithmatex">\(S\)</span>. That is, the writer's best estimate of the probability that the stock price at expiry will lie between <span class="arithmatex">\(s'\)</span> and <span class="arithmatex">\(s''\)</span> is found by integrating <span class="arithmatex">\(S\)</span> on that interval. So, given such a PDF <span class="arithmatex">\(S\)</span>, the expected value of the option is found by integrating the product of the value of the option for each possible final stock price with the probability density for such a price:</p>
+<div class="arithmatex">\[p = \int_0^\infty ds' \, \max(0, s' - e) \, S(s')\]</div>
+<p>which we can simplify to</p>
+<div class="arithmatex">\[p = \int_e^\infty ds' \, (s' - e) \, S(s').\]</div>
+<h2 id="conditions-on-an-estimation-formula-for-future-stock-prices">Conditions on an Estimation Formula for Future Stock Prices<a class="headerlink" href="#conditions-on-an-estimation-formula-for-future-stock-prices" title="Permanent link">&para;</a></h2>
+<p>Now that I've given the context, I can focus on the really interesting part: the properties of the future stock price PDF. Some smart analyst might announce that he has come up with a formula which gives <span class="arithmatex">\(S\)</span> for a particular stock given the present stock price and the expiry date. I noticed that there is a self-referential property that any such formula must have: the PDF obtained from a single application of the formula over a time interval <span class="arithmatex">\(t\)</span> must be equal to any composite PDF obtained by applying the formula over two time intervals that sum to <span class="arithmatex">\(t\)</span>, e.g. <span class="arithmatex">\(t'\)</span> and <span class="arithmatex">\((t-t')\)</span>. To write this algebraically, I'll use the cleaner notation <span class="arithmatex">\(S(s,t,s',t')\)</span> to denote the probability density given from the analyst's formula for a stock to change from price <span class="arithmatex">\(s\)</span> to price <span class="arithmatex">\(s'\)</span> between time <span class="arithmatex">\(t\)</span> and time <span class="arithmatex">\(t'\)</span>. So this self-referential property, which may very well be termed a <em>transitive property</em>, can be written:</p>
+<div class="arithmatex">\[\forall \, t', \quad S(s,t,s'',t'') = \int_0^\infty ds' \, S(s,t,s',t') \, S(s',t',s'',t'')\]</div>
+<p>Another useful property that <span class="arithmatex">\(S\)</span> should have is <em>time invariance</em>. That is, the results should depend only on the duration between initial and final time, not on the absolute time. Algebraically,</p>
+<div class="arithmatex">\[\forall \, \delta, \quad S(s,t,s',t') = S(s, t+\delta, s', t'+\delta)\]</div>
+<p>Lastly, it would be convenient to posit another invariance property for the stock price variables. Indeed this is implied by Schiller when he speaks of using a cumulative normal distribution to model the change in stock price. However, such a property would allow the stock price to become negative. To avoid this, we could either create an ad-hoc limit keeping <span class="arithmatex">\(s\)</span> positive, or we could posit that changes to stock price occur with respect to the logarithm of the price, not with respect to the price itself. That is, we could introduce a change of variables to work instead with the logarithm of stock price <span class="arithmatex">\(x\)</span> (where <span class="arithmatex">\(x = \ln(s)\)</span>). Now it is plausible that the stock price estimator formula is invariant with respect to <span class="arithmatex">\(x\)</span>. This has the wonderfully simplifying result that we only need to talk about the change in logarithm of stock price and the change in time. So when we want to denote the PDF for the logarithm of the stock price to change by <span class="arithmatex">\(x\)</span> units over a time interval of length <span class="arithmatex">\(t\)</span>, we write simply:</p>
+<div class="arithmatex">\[S(x, t).\]</div>
+<p>We can now use the invariance properties to simplify the transitive property equation to</p>
+<div class="arithmatex">\[\forall \, t', \quad S(s, t) = \int_0^\infty ds' \, S(s', t') \, S(s - s', t - t').\]</div>
+<p>There are other conditions on <span class="arithmatex">\(S\)</span> that we could formalize, such as continuity, that <span class="arithmatex">\(S(t=t')\)</span> must be a Dirac delta function, that the resulting function has a well-defined integral of unity, and so on. However, the most important are the above transitive property and time and space invariance properties.</p>
+<h2 id="relation-to-the-physics-of-diffusion">Relation to the Physics of Diffusion<a class="headerlink" href="#relation-to-the-physics-of-diffusion" title="Permanent link">&para;</a></h2>
+<p>The properties that we have argued for and defined above for a formula to estimate the distribution of future stock prices are exactly the same properties that we would reasonably demand of a formula describing the movement of a particular particle, known to be at a particular point in space initially, over time as it moves around stochastically through a gas in one-dimension. Alternatively, it may describe the expected distribution of many marked particles which were initially concentrated at a single point. Lastly, this formula could be considered a Green's function for diffusion.</p>
+<p>This relationship to physics makes me curious about the mathematics of diffusion. Perhaps there is a relationship then between the diffusion equation and option pricing? Or perhaps Einstein's Nobel Prize-winning paper on brownian motion would provide some insights. Then, from a strictly mathematical standpoint, I'm curious whether the cumulative normal function (which I believe is the PDF for brownian motion) is the only solution satisfying the properties discussed above. If not, I'd like to understand the solution space better... what else is out there? How else could prices or particles move around?</p>
+<hr />
+<p><em>Originally published on <a href="https://quasiphysics.wordpress.com/2011/03/29/option-pricing-and-brownian-motion/">Quasiphysics</a>.</em></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
           
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
@@ -1019,10 +1147,10 @@ frequency.</li>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "toc.integrate", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "toc.integrate", "search.highlight", "search.share"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       

@@ -6,33 +6,37 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Research Notebook">
+        <meta name="description" content="Discovering computational linguistics through Manning and Schuetze's Foundations of Statistical Natural Language Processing">
       
       
         <meta name="author" content="Chris Merck">
       
       
-        <link rel="canonical" href="https://chrismerck.github.io/research/charformers/">
+        <link rel="canonical" href="https://chrismerck.github.io/blog/2011/06/30/statistical-nlp-book/">
       
       
+        <link rel="prev" href="../../../03/29/option-pricing-and-brownian-motion/">
+      
+      
+        <link rel="next" href="../../../../2024/07/24/considerations-when-building-embedded-databases/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/favicon.png">
+      <link rel="icon" href="../../../../../assets/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
     
     
       
-        <title>Charformers - Chris Merck</title>
+        <title>Statistical NLP Book - Chris Merck</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -51,9 +55,9 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/custom.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/custom.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -77,11 +81,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#character-based-transformers" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -94,9 +93,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Chris Merck" class="md-header__button md-logo" aria-label="Chris Merck" data-md-component="logo">
+    <a href="../../../../.." title="Chris Merck" class="md-header__button md-logo" aria-label="Chris Merck" data-md-component="logo">
       
-  <img src="../../assets/favicon.png" alt="logo">
+  <img src="../../../../../assets/favicon.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -113,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Charformers
+              Statistical NLP Book
             
           </span>
         </div>
@@ -225,7 +224,9 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -236,9 +237,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Chris Merck" class="md-nav__button md-logo" aria-label="Chris Merck" data-md-component="logo">
+    <a href="../../../../.." title="Chris Merck" class="md-nav__button md-logo" aria-label="Chris Merck" data-md-component="logo">
       
-  <img src="../../assets/favicon.png" alt="logo">
+  <img src="../../../../../assets/favicon.png" alt="logo">
 
     </a>
     Chris Merck
@@ -265,7 +266,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../../../.." class="md-nav__link">
         
   
   
@@ -289,6 +290,8 @@
       
   
   
+    
+  
   
   
     
@@ -311,17 +314,15 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../blog/" class="md-nav__link ">
+            <a href="../../../../" class="md-nav__link ">
               
   
   
@@ -345,7 +346,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -428,7 +429,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/archive/2026/" class="md-nav__link">
+      <a href="../../../../archive/2026/" class="md-nav__link">
         
   
   
@@ -458,7 +459,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/archive/2025/" class="md-nav__link">
+      <a href="../../../../archive/2025/" class="md-nav__link">
         
   
   
@@ -488,7 +489,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/archive/2024/" class="md-nav__link">
+      <a href="../../../../archive/2024/" class="md-nav__link">
         
   
   
@@ -518,7 +519,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/archive/2011/" class="md-nav__link">
+      <a href="../../../../archive/2011/" class="md-nav__link">
         
   
   
@@ -627,7 +628,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/category/ai-safety/" class="md-nav__link">
+      <a href="../../../../category/ai-safety/" class="md-nav__link">
         
   
   
@@ -657,7 +658,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/category/embedded/" class="md-nav__link">
+      <a href="../../../../category/embedded/" class="md-nav__link">
         
   
   
@@ -687,7 +688,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/category/fractal-u/" class="md-nav__link">
+      <a href="../../../../category/fractal-u/" class="md-nav__link">
         
   
   
@@ -717,7 +718,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/category/ml/" class="md-nav__link">
+      <a href="../../../../category/ml/" class="md-nav__link">
         
   
   
@@ -747,7 +748,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/category/nlp/" class="md-nav__link">
+      <a href="../../../../category/nlp/" class="md-nav__link">
         
   
   
@@ -777,7 +778,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/category/physics/" class="md-nav__link">
+      <a href="../../../../category/physics/" class="md-nav__link">
         
   
   
@@ -807,7 +808,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/category/puzzles/" class="md-nav__link">
+      <a href="../../../../category/puzzles/" class="md-nav__link">
         
   
   
@@ -837,7 +838,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/category/research/" class="md-nav__link">
+      <a href="../../../../category/research/" class="md-nav__link">
         
   
   
@@ -867,7 +868,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/category/tmos/" class="md-nav__link">
+      <a href="../../../../category/tmos/" class="md-nav__link">
         
   
   
@@ -912,74 +913,130 @@
             
           
           
-            <div class="md-content" data-md-component="content">
-              
-              <article class="md-content__inner md-typeset">
-                
-                  
-
-
-  
-  
-
-
-<h1 id="character-based-transformers">Character-based Transformers<a class="headerlink" href="#character-based-transformers" title="Permanent link">&para;</a></h1>
-<p>Way back when I had fun with little n-gram models,
-that I fondly recall could write pseudo-Tolkien
-when training it on a text copy of <em>The Hobbit</em>.
-It was fun to watch how as n increased from 3 to 5
-the words became more and more coherently spelled.
-You now understand my sadness at the tokenization
-step used in modern LLMs: it strips them of the 
-very first learning step of discovering the morphemes,
-smallest units of meaning.</p>
-<p>So I'd like to experiment with some character-based
-transformers. I have no expectation that I'd be able
-to get coherent English text out of them without massive
-GPU resources, but perhaps we can intepret some patterns
-of morphological learning?</p>
-<h2 id="sanitizing-the-data">Sanitizing the Data<a class="headerlink" href="#sanitizing-the-data" title="Permanent link">&para;</a></h2>
-<p>We are concerned with English text, and we want to keep 
-the language as small as possible, so let's just work
-with lowercase letters plus space and a few punctuation characters:</p>
-<p><code>abcdefghijklmnopqrstuvwxyz .,?'\n</code></p>
-<p>Note that we've merged the apostrophe, single, and double quotes,
-we keep distinct period (but convert exclaimation to period),
-a distinct question mark,
-and all other punctuation will be replaced with spaces.
-Newline has its own symbol, which represents a paragraph break
-or could be used as a stop token.</p>
-<p>For my purposes I'll feed in a text copy of <em>The Lord of the Rings</em>,
-because I know this book so well that it should help me interpret
-the small model gibberish I'm sure to get when sampling generatively.</p>
-<h2 id="n-grams-revisited">N-Grams Revisited<a class="headerlink" href="#n-grams-revisited" title="Permanent link">&para;</a></h2>
-<p class="annotate">I like to start with the simplest possible model,
-which within the neural network paradigm would be
-a single-layer network. (1)</p>
-<ol>
-<li>If we want to be pedantic, it would be a zero-layer
-network with just a bias term predicting just based on character
-frequency.</li>
-</ol>
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-                
-              </article>
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
             </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2011-06-30 00:00:00+00:00" class="md-ellipsis">June 30, 2011</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../../category/nlp/">nlp</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              2 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
           
+            
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+</nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+
+  
+  
+
+
+  <h1>Statistical NLP Book</h1>
+
+<p>First an explication: a few weeks ago I had a revelation that computational linguistics is the field for me. So, I found the best book I could on the subject, which seems to be Manning and Schuetze's <em>Foundations of Statistical Natural Language Processing</em> (FSNLP). Just reading the introduction on Google Books was enough to convince me to drop some hard cash. The writing is brilliant. I'm only through Chapter One, but it's already worth it.</p>
+<!-- more -->
+
+<p><img alt="Manning and Schuetze - Foundations of Statistical Natural Language Processing" src="../../../../../assets/fsnlp-cover.jpg" /></p>
+<p>I did all the exercises to the first chapter. My solutions:</p>
+<ul>
+<li><a href="../../../../../assets/fsnlp-ch1-solutions.pdf">Chapter 1 -- Introduction (PDF)</a></li>
+<li><a href="../../../../../assets/fsnlp-ch2-solutions.pdf">Chapter 2 -- Mathematical Foundations (PDF)</a></li>
+</ul>
+<p>Because this blog needs more pictures, here's a plot of word frequency versus rank (in terms of frequency) for randomly generated text using a three-character alphabet:</p>
+<p><img alt="Zipf's Law - log-log frequency-vs-rank plot for random text with a three-character alphabet" src="../../../../../assets/zipf_3char.png" /></p>
+<p>This log-log frequency-vs-rank plot shows an approximately straight line. This is a confirmation of Zipf's law, i.e., that frequency and rank are inversely related.</p>
+<p>Hopefully I'll have the stamina to do the same for Chapters Two+...</p>
+<hr />
+<p><em>Originally published on <a href="https://quasiphysics.wordpress.com/2011/06/30/statistical-nlp-book/">Quasiphysics</a>.</em></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
           
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
@@ -1019,10 +1076,10 @@ frequency.</li>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "toc.integrate", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "toc.integrate", "search.highlight", "search.share"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
