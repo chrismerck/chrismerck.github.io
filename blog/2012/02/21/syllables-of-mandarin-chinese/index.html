@@ -1,0 +1,3755 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A frequency-sorted list of the 3000 most common Chinese characters by Mandarin syllable, revealing Zipf's law with a fat tail">
+      
+      
+        <meta name="author" content="Chris Merck">
+      
+      
+        <link rel="canonical" href="https://chrismerck.github.io/blog/2012/02/21/syllables-of-mandarin-chinese/">
+      
+      
+        <link rel="prev" href="../../19/adding-accents-to-romanized-japanese/">
+      
+      
+        <link rel="next" href="../../../07/02/a-meta-etymological-dict/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+    
+    
+      
+        <title>Syllables of Mandarin Chinese - Chris Merck</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Special+Elite:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Special Elite";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../.." title="Chris Merck" class="md-header__button md-logo" aria-label="Chris Merck" data-md-component="logo">
+      
+  <img src="../../../../../assets/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Chris Merck
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Syllables of Mandarin Chinese
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="grey" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="grey" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/chrismerck/chrismerck.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="Chris Merck" class="md-nav__button md-logo" aria-label="Chris Merck" data-md-component="logo">
+      
+  <img src="../../../../../assets/favicon.png" alt="logo">
+
+    </a>
+    Chris Merck
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/chrismerck/chrismerck.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Archive
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Archive
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2024/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2024
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2013/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2013
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2012/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2012
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2011/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2011
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2010/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2010
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2009/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2009
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Categories
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Categories
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/ai-safety/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ai-safety
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/embedded/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    embedded
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/fractal-u/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    fractal-u
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/linguistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    linguistics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    math
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/ml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ml
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/nlp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    nlp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/physics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    physics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/programming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    programming
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/puzzles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    puzzles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/research/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    research
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/tmos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    tmos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2012-02-21 00:00:00+00:00" class="md-ellipsis">February 21, 2012</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../../category/linguistics/">linguistics</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              18 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+            
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+</nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+
+  
+  
+
+
+  <h1>Syllables of Mandarin Chinese</h1>
+
+<p>Here is a list of the 3000 most commonly used characters in written Chinese, sorted by <a href="https://en.wikipedia.org/wiki/Standard_Chinese">Mandarin</a> reading, with tones ignored.</p>
+<!-- more -->
+
+<p>If one looks at only up to the 1000 most common characters, /shi/ is the most prevalent syllable. However, by 3000, /ji/ has clearly taken the lead.</p>
+<p>The shape of the distribution is what I would call "<a href="https://en.wikipedia.org/wiki/Zipf%27s_law">Zipf's law</a> with a fat tail."</p>
+<p>Down in the "tail", we find that there are many familiar characters with rather unpopular readings; e.g. "meng", "neng", "gei", and "nv".</p>
+<p>Despite all of this syllable-level <a href="https://en.wikipedia.org/wiki/Polysemy">polysemy</a>, the spoken language proceeds without issue. This is primarily because of tones and the fact that many words in Chinese are two syllable, so the other syllable helps greatly to disambiguate. Also, the spoken language has a high context, which further aids in the disambiguation. However, things could get interesting if we were to work with a <a href="https://en.wikipedia.org/wiki/Pinyin">pinyin</a>-based written language, especially if tones were not indicated!</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Syllable</th>
+<th>Count</th>
+<th>Characters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>ji</td>
+<td>51</td>
+<td>机 己 给 及 几 计 基 即 记 济 极 击 集 级 技 际 吃 奇 纪 继 急 激 既 积 吉 迹 疾 季 辑 鸡 剂 绩 籍 寄 挤 寂 祭 忌 肌 玑 饥 脊 稽 冀 藉 圾 姬 嫉 妓 棘 讥</td>
+</tr>
+<tr>
+<td>2</td>
+<td>yi</td>
+<td>42</td>
+<td>一 以 意 已 义 议 易 医 依 益 疑 异 衣 伊 艺 移 亦 遗 亿 译 役 仪 宜 翼 忆 椅 抑 疫 乙 毅 矣 谊 姨 夷 逸 溢 蚁 怡 倚 裔 懿 颐</td>
+</tr>
+<tr>
+<td>3</td>
+<td>shi</td>
+<td>42</td>
+<td>是 时 事 实 十 使 什 世 市 式 师 识 士 失 始 石 示 视 史 势 施 试 适 食 室 释 诗 氏 尸 驶 饰 湿 侍 拾 誓 逝 狮 匙 蚀 矢 轼 嗜</td>
+</tr>
+<tr>
+<td>4</td>
+<td>yu</td>
+<td>41</td>
+<td>于 与 语 育 预 余 域 鱼 遇 予 雨 玉 欲 谷 宇 愈 御 狱 誉 渔 羽 愚 郁 豫 愉 裕 於 吁 寓 喻 浴 舆 娱 谕 逾 屿 瑜 禹 虞 迂 毓</td>
+</tr>
+<tr>
+<td>5</td>
+<td>fu</td>
+<td>38</td>
+<td>服 夫 府 复 父 福 负 富 副 佛 付 附 妇 符 弗 伏 幅 浮 腐 腹 扶 抚 赋 肤 覆 赴 傅 辅 俘 咐 甫 俯 辐 缚 拂 芙 斧 敷</td>
+</tr>
+<tr>
+<td>6</td>
+<td>zhi</td>
+<td>36</td>
+<td>之 只 知 制 直 指 至 治 识 质 支 致 志 织 止 值 职 置 执 智 纸 植 殖 枝 旨 秩 址 芝 脂 滞 肢 汁 掷 侄 稚 帜</td>
+</tr>
+<tr>
+<td>7</td>
+<td>qi</td>
+<td>33</td>
+<td>起 其 只 气 期 器 企 七 奇 齐 妻 弃 汽 启 骑 旗 欺 岂 契 歧 棋 溪 漆 戚 凄 稽 乞 祈 泣 栖 迄 崎 鳍</td>
+</tr>
+<tr>
+<td>8</td>
+<td>jian</td>
+<td>33</td>
+<td>间 见 建 件 简 检 坚 监 舰 减 剑 渐 健 尖 肩 键 箭 兼 践 艰 鉴 浅 歼 奸 剪 荐 贱 捡 碱 俭 煎 溅 拣</td>
+</tr>
+<tr>
+<td>9</td>
+<td>xi</td>
+<td>31</td>
+<td>西 系 息 希 细 喜 习 席 吸 戏 析 袭 洗 悉 惜 稀 牺 夕 锡 禧 溪 晰 膝 昔 媳 隙 嘻 栖 熙 兮 熄</td>
+</tr>
+<tr>
+<td>10</td>
+<td>yan</td>
+<td>28</td>
+<td>眼 言 研 验 严 演 烟 延 沿 炎 岩 掩 颜 厌 燕 癌 盐 咽 艳 宴 焰 殷 衍 阎 焉 雁 彦 淹</td>
+</tr>
+<tr>
+<td>11</td>
+<td>wei</td>
+<td>27</td>
+<td>为 位 未 委 维 围 威 微 卫 危 味 谓 唯 伟 违 尾 伪 慰 魏 韦 惟 胃 喂 畏 尉 纬 萎</td>
+</tr>
+<tr>
+<td>12</td>
+<td>shu</td>
+<td>26</td>
+<td>数 书 术 属 述 树 输 束 熟 殊 署 叔 舒 鼠 疏 恕 竖 蜀 枢 淑 梳 蔬 暑 倏 赎 墅</td>
+</tr>
+<tr>
+<td>13</td>
+<td>zhu</td>
+<td>26</td>
+<td>着 主 住 术 注 助 属 著 逐 诸 朱 筑 珠 驻 竹 祝 柱 猪 嘱 轴 株 铸 烛 煮 蛛 贮</td>
+</tr>
+<tr>
+<td>14</td>
+<td>wu</td>
+<td>24</td>
+<td>无 物 务 五 武 恶 误 屋 午 吴 舞 乌 污 伍 吾 悟 雾 巫 勿 呜 侮 晤 兀 毋</td>
+</tr>
+<tr>
+<td>15</td>
+<td>li</td>
+<td>23</td>
+<td>里 理 力 利 立 离 李 历 例 丽 礼 厉 励 黎 粒 隶 莉 璃 哩 厘 吏 栗 狸</td>
+</tr>
+<tr>
+<td>16</td>
+<td>jie</td>
+<td>23</td>
+<td>解 结 接 界 价 节 阶 姐 介 借 街 杰 皆 届 洁 截 戒 揭 捷 劫 竭 藉 诫</td>
+</tr>
+<tr>
+<td>17</td>
+<td>xian</td>
+<td>23</td>
+<td>现 见 先 线 显 限 险 县 鲜 献 仙 陷 宪 闲 嫌 贤 纤 腺 弦 衔 掀 咸 羡</td>
+</tr>
+<tr>
+<td>18</td>
+<td>jiao</td>
+<td>23</td>
+<td>教 交 觉 叫 较 校 角 脚 焦 缴 娇 胶 骄 郊 轿 剿 狡 绞 搅 嚼 浇 矫 礁</td>
+</tr>
+<tr>
+<td>19</td>
+<td>jing</td>
+<td>23</td>
+<td>经 精 京 境 惊 警 竟 静 景 睛 竞 敬 镜 径 劲 净 井 晶 颈 靖 荆 鲸 茎</td>
+</tr>
+<tr>
+<td>20</td>
+<td>xiang</td>
+<td>21</td>
+<td>想 向 相 像 象 响 项 降 香 乡 享 详 箱 祥 翔 湘 巷 厢 橡 镶 襄</td>
+</tr>
+<tr>
+<td>21</td>
+<td>bi</td>
+<td>21</td>
+<td>比 必 笔 避 毕 币 彼 闭 鼻 壁 逼 臂 蔽 辟 碧 弊 鄙 毙 泌 陛 庇</td>
+</tr>
+<tr>
+<td>22</td>
+<td>xie</td>
+<td>20</td>
+<td>些 解 写 血 协 谢 胁 邪 鞋 械 斜 歇 携 泄 谐 卸 屑 懈 泻 挟</td>
+</tr>
+<tr>
+<td>23</td>
+<td>qian</td>
+<td>19</td>
+<td>前 千 钱 潜 签 迁 牵 浅 遣 欠 乾 纤 歉 谦 谴 倩 铅 嵌 虔</td>
+</tr>
+<tr>
+<td>24</td>
+<td>ju</td>
+<td>19</td>
+<td>据 车 具 局 举 居 句 剧 巨 距 聚 拒 惧 俱 柜 拘 矩 菊 沮</td>
+</tr>
+<tr>
+<td>25</td>
+<td>jin</td>
+<td>18</td>
+<td>进 金 今 近 尽 仅 紧 禁 津 劲 晋 斤 谨 锦 筋 巾 浸 襟</td>
+</tr>
+<tr>
+<td>26</td>
+<td>di</td>
+<td>18</td>
+<td>的 地 第 提 敌 底 低 帝 弟 抵 蒂 迪 递 滴 狄 堤 笛 缔</td>
+</tr>
+<tr>
+<td>27</td>
+<td>yuan</td>
+<td>18</td>
+<td>原 员 院 元 远 愿 源 园 圆 援 缘 怨 袁 渊 猿 冤 苑 垣</td>
+</tr>
+<tr>
+<td>28</td>
+<td>you</td>
+<td>18</td>
+<td>有 又 由 友 游 优 右 油 尤 犹 忧 幼 幽 邮 诱 悠 佑 釉</td>
+</tr>
+<tr>
+<td>29</td>
+<td>ge</td>
+<td>17</td>
+<td>个 合 各 格 革 哥 歌 盖 隔 割 阁 戈 葛 搁 胳 鸽 咯</td>
+</tr>
+<tr>
+<td>30</td>
+<td>mo</td>
+<td>17</td>
+<td>没 模 莫 默 摩 末 魔 摸 墨 磨 漠 膜 抹 陌 沫 寞 麽</td>
+</tr>
+<tr>
+<td>31</td>
+<td>ying</td>
+<td>17</td>
+<td>应 英 影 营 迎 硬 映 赢 鹰 盈 婴 颖 莹 蝇 樱 莺 瑛</td>
+</tr>
+<tr>
+<td>32</td>
+<td>bo</td>
+<td>17</td>
+<td>波 伯 博 播 薄 勃 柏 玻 拨 剥 卜 驳 泊 脖 舶 搏 膊</td>
+</tr>
+<tr>
+<td>33</td>
+<td>gu</td>
+<td>16</td>
+<td>古 故 股 顾 固 姑 骨 谷 鼓 估 孤 滑 雇 贾 咕 辜</td>
+</tr>
+<tr>
+<td>34</td>
+<td>si</td>
+<td>16</td>
+<td>斯 四 司 思 死 似 食 私 丝 寺 饲 撕 肆 嗣 嘶 伺</td>
+</tr>
+<tr>
+<td>35</td>
+<td>jia</td>
+<td>16</td>
+<td>家 加 价 假 架 甲 驾 佳 夹 嘉 贾 嫁 迦 颊 稼 挟</td>
+</tr>
+<tr>
+<td>36</td>
+<td>ya</td>
+<td>16</td>
+<td>亚 压 呀 牙 雅 押 鸭 讶 崖 哑 鸦 涯 丫 芽 衙 娅</td>
+</tr>
+<tr>
+<td>37</td>
+<td>yao</td>
+<td>16</td>
+<td>要 么 约 药 摇 腰 咬 遥 耀 邀 妖 姚 窑 钥 谣 瑶</td>
+</tr>
+<tr>
+<td>38</td>
+<td>shen</td>
+<td>16</td>
+<td>什 身 神 深 参 甚 审 申 伸 沈 慎 肾 渗 绅 呻 婶</td>
+</tr>
+<tr>
+<td>39</td>
+<td>tan</td>
+<td>15</td>
+<td>谈 弹 探 坦 叹 坛 贪 滩 谭 摊 炭 毯 碳 潭 瘫</td>
+</tr>
+<tr>
+<td>40</td>
+<td>xu</td>
+<td>15</td>
+<td>许 需 须 续 序 虚 徐 绪 叙 蓄 畜 吁 旭 墟 嘘</td>
+</tr>
+<tr>
+<td>41</td>
+<td>yin</td>
+<td>15</td>
+<td>因 引 音 印 银 阴 隐 饮 姻 吟 淫 殷 荫 茵 尹</td>
+</tr>
+<tr>
+<td>42</td>
+<td>hui</td>
+<td>15</td>
+<td>会 回 挥 毁 汇 灰 恢 慧 惠 辉 绘 悔 徽 贿 讳</td>
+</tr>
+<tr>
+<td>43</td>
+<td>fan</td>
+<td>14</td>
+<td>反 范 犯 饭 凡 翻 烦 繁 泛 返 番 帆 贩 藩</td>
+</tr>
+<tr>
+<td>44</td>
+<td>zhao</td>
+<td>14</td>
+<td>着 照 找 朝 招 赵 召 罩 昭 兆 嘲 爪 沼 诏</td>
+</tr>
+<tr>
+<td>45</td>
+<td>mei</td>
+<td>14</td>
+<td>没 美 每 梅 妹 眉 媒 煤 枚 媚 玫 昧 霉 魅</td>
+</tr>
+<tr>
+<td>46</td>
+<td>lu</td>
+<td>14</td>
+<td>路 陆 露 鲁 录 卢 炉 鹿 禄 虏 芦 碌 庐 颅</td>
+</tr>
+<tr>
+<td>47</td>
+<td>mu</td>
+<td>14</td>
+<td>目 母 木 姆 幕 牧 穆 墓 慕 亩 募 暮 姥 牡</td>
+</tr>
+<tr>
+<td>48</td>
+<td>bao</td>
+<td>14</td>
+<td>报 保 包 宝 暴 抱 爆 胞 薄 堡 剥 饱 鲍 豹</td>
+</tr>
+<tr>
+<td>49</td>
+<td>du</td>
+<td>14</td>
+<td>都 度 独 读 督 毒 杜 渡 肚 赌 堵 睹 妒 嘘</td>
+</tr>
+<tr>
+<td>50</td>
+<td>xiao</td>
+<td>14</td>
+<td>小 笑 消 效 校 销 晓 削 萧 肖 孝 啸 哮 嚣</td>
+</tr>
+<tr>
+<td>51</td>
+<td>xing</td>
+<td>14</td>
+<td>行 性 形 兴 星 型 省 幸 醒 刑 姓 猩 腥 杏</td>
+</tr>
+<tr>
+<td>52</td>
+<td>hu</td>
+<td>14</td>
+<td>乎 护 户 胡 互 呼 忽 湖 虎 糊 狐 壶 沪 蝴</td>
+</tr>
+<tr>
+<td>53</td>
+<td>zhang</td>
+<td>13</td>
+<td>长 张 章 掌 障 丈 帐 仗 涨 胀 账 杖 彰</td>
+</tr>
+<tr>
+<td>54</td>
+<td>chang</td>
+<td>13</td>
+<td>长 常 场 厂 唱 偿 昌 尝 肠 畅 倡 敞 裳</td>
+</tr>
+<tr>
+<td>55</td>
+<td>chi</td>
+<td>13</td>
+<td>持 吃 迟 尺 赤 池 齿 斥 翅 驰 耻 痴 匙</td>
+</tr>
+<tr>
+<td>56</td>
+<td>lan</td>
+<td>13</td>
+<td>兰 蓝 烂 览 拦 栏 懒 滥 篮 岚 澜 揽 缆</td>
+</tr>
+<tr>
+<td>57</td>
+<td>jiang</td>
+<td>13</td>
+<td>将 讲 江 降 蒋 奖 疆 匠 虹 僵 姜 浆 桨</td>
+</tr>
+<tr>
+<td>58</td>
+<td>dao</td>
+<td>13</td>
+<td>到 道 导 倒 岛 刀 盗 祷 稻 蹈 捣 叨 悼</td>
+</tr>
+<tr>
+<td>59</td>
+<td>ke</td>
+<td>13</td>
+<td>可 克 科 客 刻 课 颗 柯 壳 渴 棵 咳 磕</td>
+</tr>
+<tr>
+<td>60</td>
+<td>feng</td>
+<td>13</td>
+<td>风 封 丰 奉 峰 凤 疯 锋 冯 缝 蜂 逢 讽</td>
+</tr>
+<tr>
+<td>61</td>
+<td>ci</td>
+<td>13</td>
+<td>此 次 差 词 刺 辞 慈 磁 茨 赐 瓷 雌 伺</td>
+</tr>
+<tr>
+<td>62</td>
+<td>gong</td>
+<td>13</td>
+<td>公 工 共 功 供 攻 宫 贡 恭 弓 巩 拱 躬</td>
+</tr>
+<tr>
+<td>63</td>
+<td>pi</td>
+<td>13</td>
+<td>批 否 皮 疲 匹 披 辟 脾 屁 譬 劈 僻 啤</td>
+</tr>
+<tr>
+<td>64</td>
+<td>shan</td>
+<td>13</td>
+<td>山 单 善 闪 扇 衫 陕 禅 擅 珊 杉 删 栅</td>
+</tr>
+<tr>
+<td>65</td>
+<td>han</td>
+<td>13</td>
+<td>汉 含 喊 韩 寒 汗 翰 函 罕 憾 涵 旱 撼</td>
+</tr>
+<tr>
+<td>66</td>
+<td>wan</td>
+<td>13</td>
+<td>完 万 晚 湾 玩 弯 碗 顽 挽 丸 宛 腕 婉</td>
+</tr>
+<tr>
+<td>67</td>
+<td>ling</td>
+<td>13</td>
+<td>领 令 另 灵 零 龄 凌 玲 陵 铃 岭 菱 伶</td>
+</tr>
+<tr>
+<td>68</td>
+<td>he</td>
+<td>13</td>
+<td>和 合 何 河 核 喝 赫 荷 贺 呵 盒 鹤 褐</td>
+</tr>
+<tr>
+<td>69</td>
+<td>zheng</td>
+<td>13</td>
+<td>正 政 争 证 整 征 郑 症 挣 睁 怔 蒸 拯</td>
+</tr>
+<tr>
+<td>70</td>
+<td>e</td>
+<td>13</td>
+<td>阿 恶 额 俄 饿 哦 鹅 厄 遏 愕 娥 扼 鄂</td>
+</tr>
+<tr>
+<td>71</td>
+<td>qiao</td>
+<td>12</td>
+<td>巧 桥 悄 乔 瞧 敲 壳 雀 侨 俏 峭 翘</td>
+</tr>
+<tr>
+<td>72</td>
+<td>lian</td>
+<td>12</td>
+<td>联 连 脸 练 恋 怜 炼 廉 莲 链 帘 敛</td>
+</tr>
+<tr>
+<td>73</td>
+<td>zi</td>
+<td>12</td>
+<td>子 自 资 字 仔 紫 兹 姿 滋 姊 咨 吱</td>
+</tr>
+<tr>
+<td>74</td>
+<td>cheng</td>
+<td>12</td>
+<td>成 程 城 称 承 盛 诚 乘 呈 惩 撑 澄</td>
+</tr>
+<tr>
+<td>75</td>
+<td>fen</td>
+<td>12</td>
+<td>分 份 纷 奋 粉 愤 芬 氛 吩 坟 焚 粪</td>
+</tr>
+<tr>
+<td>76</td>
+<td>fei</td>
+<td>12</td>
+<td>非 飞 费 废 菲 肥 肺 匪 啡 妃 沸 斐</td>
+</tr>
+<tr>
+<td>77</td>
+<td>dan</td>
+<td>12</td>
+<td>但 单 石 弹 担 丹 淡 旦 胆 蛋 诞 耽</td>
+</tr>
+<tr>
+<td>78</td>
+<td>zhen</td>
+<td>12</td>
+<td>真 阵 镇 震 针 振 珍 诊 侦 圳 贞 枕</td>
+</tr>
+<tr>
+<td>79</td>
+<td>xun</td>
+<td>12</td>
+<td>寻 训 迅 讯 巡 询 逊 循 旬 勋 驯 熏</td>
+</tr>
+<tr>
+<td>80</td>
+<td>zao</td>
+<td>12</td>
+<td>造 早 遭 糟 躁 燥 藻 灶 澡 凿 噪 枣</td>
+</tr>
+<tr>
+<td>81</td>
+<td>xia</td>
+<td>12</td>
+<td>下 夏 侠 吓 辖 峡 狭 霞 厦 瞎 暇 虾</td>
+</tr>
+<tr>
+<td>82</td>
+<td>liu</td>
+<td>12</td>
+<td>流 六 留 陆 刘 柳 溜 瘤 榴 硫 浏 琉</td>
+</tr>
+<tr>
+<td>83</td>
+<td>ban</td>
+<td>12</td>
+<td>办 半 般 版 班 板 伴 搬 扮 斑 颁 瓣</td>
+</tr>
+<tr>
+<td>84</td>
+<td>tang</td>
+<td>12</td>
+<td>唐 堂 躺 汤 糖 倘 塘 趟 棠 膛 烫 淌</td>
+</tr>
+<tr>
+<td>85</td>
+<td>qing</td>
+<td>12</td>
+<td>情 清 亲 请 轻 青 倾 庆 晴 卿 氢 顷</td>
+</tr>
+<tr>
+<td>86</td>
+<td>tu</td>
+<td>11</td>
+<td>图 突 土 徒 途 吐 涂 屠 兔 秃 凸</td>
+</tr>
+<tr>
+<td>87</td>
+<td>gui</td>
+<td>11</td>
+<td>规 贵 归 鬼 轨 桂 柜 跪 龟 瑰 诡</td>
+</tr>
+<tr>
+<td>88</td>
+<td>ba</td>
+<td>11</td>
+<td>把 八 吧 巴 爸 罢 拔 霸 叭 坝 跋</td>
+</tr>
+<tr>
+<td>89</td>
+<td>zhan</td>
+<td>11</td>
+<td>战 展 站 占 颤 粘 沾 斩 詹 盏 瞻</td>
+</tr>
+<tr>
+<td>90</td>
+<td>tao</td>
+<td>11</td>
+<td>讨 逃 套 陶 桃 涛 萄 掏 淘 滔 叨</td>
+</tr>
+<tr>
+<td>91</td>
+<td>su</td>
+<td>11</td>
+<td>苏 诉 速 素 俗 肃 宿 塑 稣 溯 粟</td>
+</tr>
+<tr>
+<td>92</td>
+<td>lv</td>
+<td>11</td>
+<td>律 率 虑 旅 绿 吕 履 屡 驴 侣 缕</td>
+</tr>
+<tr>
+<td>93</td>
+<td>ye</td>
+<td>11</td>
+<td>也 业 夜 野 叶 爷 页 耶 液 咽 冶</td>
+</tr>
+<tr>
+<td>94</td>
+<td>dai</td>
+<td>11</td>
+<td>大 代 带 待 戴 袋 呆 贷 逮 黛 歹</td>
+</tr>
+<tr>
+<td>95</td>
+<td>guan</td>
+<td>11</td>
+<td>关 管 观 官 馆 惯 贯 冠 灌 罐 棺</td>
+</tr>
+<tr>
+<td>96</td>
+<td>huo</td>
+<td>11</td>
+<td>和 或 活 火 获 货 伙 霍 惑 祸 豁</td>
+</tr>
+<tr>
+<td>97</td>
+<td>bei</td>
+<td>11</td>
+<td>被 北 备 背 贝 悲 倍 杯 辈 卑 碑</td>
+</tr>
+<tr>
+<td>98</td>
+<td>yang</td>
+<td>11</td>
+<td>样 阳 养 央 洋 杨 扬 羊 仰 氧 痒</td>
+</tr>
+<tr>
+<td>99</td>
+<td>qu</td>
+<td>11</td>
+<td>去 区 取 趣 曲 趋 驱 屈 躯 渠 娶</td>
+</tr>
+<tr>
+<td>100</td>
+<td>sha</td>
+<td>11</td>
+<td>杀 沙 傻 啥 莎 刹 厦 煞 纱 砂 杉</td>
+</tr>
+<tr>
+<td>101</td>
+<td>she</td>
+<td>11</td>
+<td>社 设 射 折 涉 舍 摄 蛇 舌 奢 慑</td>
+</tr>
+<tr>
+<td>102</td>
+<td>pu</td>
+<td>11</td>
+<td>普 扑 堡 铺 仆 朴 葡 浦 菩 谱 蒲</td>
+</tr>
+<tr>
+<td>103</td>
+<td>huan</td>
+<td>11</td>
+<td>还 环 欢 换 缓 患 幻 唤 桓 焕 宦</td>
+</tr>
+<tr>
+<td>104</td>
+<td>chao</td>
+<td>11</td>
+<td>朝 超 潮 吵 抄 巢 嘲 炒 剿 钞 绰</td>
+</tr>
+<tr>
+<td>105</td>
+<td>zhong</td>
+<td>11</td>
+<td>中 种 重 众 终 钟 忠 仲 肿 衷 冢</td>
+</tr>
+<tr>
+<td>106</td>
+<td>ma</td>
+<td>10</td>
+<td>么 马 吗 妈 麻 玛 码 骂 嘛 蚂</td>
+</tr>
+<tr>
+<td>107</td>
+<td>chen</td>
+<td>10</td>
+<td>称 陈 沉 臣 晨 沈 尘 趁 辰 衬</td>
+</tr>
+<tr>
+<td>108</td>
+<td>dian</td>
+<td>10</td>
+<td>点 电 店 典 殿 颠 甸 垫 奠 癫</td>
+</tr>
+<tr>
+<td>109</td>
+<td>chu</td>
+<td>10</td>
+<td>出 处 除 初 楚 础 触 储 畜 厨</td>
+</tr>
+<tr>
+<td>110</td>
+<td>mi</td>
+<td>10</td>
+<td>米 密 秘 迷 弥 蜜 谜 泌 觅 眯</td>
+</tr>
+<tr>
+<td>111</td>
+<td>cai</td>
+<td>10</td>
+<td>才 采 财 材 彩 裁 菜 猜 蔡 踩</td>
+</tr>
+<tr>
+<td>112</td>
+<td>wang</td>
+<td>10</td>
+<td>王 望 往 网 亡 忘 汪 妄 旺 枉</td>
+</tr>
+<tr>
+<td>113</td>
+<td>bing</td>
+<td>10</td>
+<td>并 兵 病 冰 屏 柄 饼 丙 秉 禀</td>
+</tr>
+<tr>
+<td>114</td>
+<td>yue</td>
+<td>10</td>
+<td>月 约 越 乐 阅 跃 曰 岳 悦 钥</td>
+</tr>
+<tr>
+<td>115</td>
+<td>xiu</td>
+<td>10</td>
+<td>修 休 秀 袖 宿 羞 臭 绣 朽 嗅</td>
+</tr>
+<tr>
+<td>116</td>
+<td>shou</td>
+<td>10</td>
+<td>手 受 收 首 守 授 售 兽 寿 瘦</td>
+</tr>
+<tr>
+<td>117</td>
+<td>fang</td>
+<td>10</td>
+<td>方 放 房 防 访 仿 芳 妨 纺 坊</td>
+</tr>
+<tr>
+<td>118</td>
+<td>luo</td>
+<td>10</td>
+<td>罗 落 洛 络 逻 裸 螺 咯 萝 骆</td>
+</tr>
+<tr>
+<td>119</td>
+<td>huang</td>
+<td>10</td>
+<td>黄 皇 荒 慌 晃 谎 煌 惶 凰 恍</td>
+</tr>
+<tr>
+<td>120</td>
+<td>peng</td>
+<td>10</td>
+<td>朋 碰 彭 鹏 捧 蓬 膨 棚 篷 砰</td>
+</tr>
+<tr>
+<td>121</td>
+<td>gan</td>
+<td>10</td>
+<td>感 干 敢 赶 甘 肝 乾 杆 尴 竿</td>
+</tr>
+<tr>
+<td>122</td>
+<td>bian</td>
+<td>10</td>
+<td>变 便 边 编 遍 辩 扁 辨 鞭 贬</td>
+</tr>
+<tr>
+<td>123</td>
+<td>sheng</td>
+<td>10</td>
+<td>生 声 省 胜 升 圣 盛 剩 牲 绳</td>
+</tr>
+<tr>
+<td>124</td>
+<td>bu</td>
+<td>10</td>
+<td>不 部 步 布 补 捕 怖 卜 哺 簿</td>
+</tr>
+<tr>
+<td>125</td>
+<td>chou</td>
+<td>10</td>
+<td>抽 仇 筹 丑 酬 臭 愁 绸 畴 瞅</td>
+</tr>
+<tr>
+<td>126</td>
+<td>liang</td>
+<td>10</td>
+<td>两 量 良 亮 粮 辆 梁 俩 凉 谅</td>
+</tr>
+<tr>
+<td>127</td>
+<td>jue</td>
+<td>10</td>
+<td>决 觉 绝 角 脚 爵 掘 嚼 厥 诀</td>
+</tr>
+<tr>
+<td>128</td>
+<td>ai</td>
+<td>10</td>
+<td>爱 埃 艾 碍 哀 癌 挨 矮 唉 哎</td>
+</tr>
+<tr>
+<td>129</td>
+<td>zhou</td>
+<td>10</td>
+<td>周 洲 州 宙 皱 骤 舟 咒 轴 昼</td>
+</tr>
+<tr>
+<td>130</td>
+<td>ti</td>
+<td>9</td>
+<td>体 提 题 替 梯 踢 蹄 惕 啼</td>
+</tr>
+<tr>
+<td>131</td>
+<td>sui</td>
+<td>9</td>
+<td>随 虽 岁 碎 尿 遂 绥 髓 隋</td>
+</tr>
+<tr>
+<td>132</td>
+<td>zhai</td>
+<td>9</td>
+<td>择 侧 债 祭 宅 摘 窄 寨 斋</td>
+</tr>
+<tr>
+<td>133</td>
+<td>mao</td>
+<td>9</td>
+<td>毛 贸 冒 矛 貌 猫 帽 茂 茅</td>
+</tr>
+<tr>
+<td>134</td>
+<td>xuan</td>
+<td>9</td>
+<td>选 宣 旋 玄 悬 璇 轩 喧 眩</td>
+</tr>
+<tr>
+<td>135</td>
+<td>jiu</td>
+<td>9</td>
+<td>就 究 九 久 酒 救 旧 纠 舅</td>
+</tr>
+<tr>
+<td>136</td>
+<td>bang</td>
+<td>9</td>
+<td>帮 邦 膀 棒 绑 镑 榜 傍 磅</td>
+</tr>
+<tr>
+<td>137</td>
+<td>dong</td>
+<td>9</td>
+<td>动 东 洞 懂 冬 董 冻 栋 咚</td>
+</tr>
+<tr>
+<td>138</td>
+<td>hua</td>
+<td>9</td>
+<td>话 化 花 华 划 画 滑 哗 豁</td>
+</tr>
+<tr>
+<td>139</td>
+<td>dou</td>
+<td>9</td>
+<td>都 斗 读 抖 豆 陡 兜 逗 窦</td>
+</tr>
+<tr>
+<td>140</td>
+<td>la</td>
+<td>9</td>
+<td>拉 落 蓝 啦 腊 辣 蜡 垃 喇</td>
+</tr>
+<tr>
+<td>141</td>
+<td>tong</td>
+<td>9</td>
+<td>同 通 统 痛 童 铜 筒 桶 桐</td>
+</tr>
+<tr>
+<td>142</td>
+<td>ting</td>
+<td>9</td>
+<td>听 停 庭 厅 艇 挺 廷 亭 霆</td>
+</tr>
+<tr>
+<td>143</td>
+<td>po</td>
+<td>9</td>
+<td>破 迫 婆 坡 颇 朴 泼 魄 珀</td>
+</tr>
+<tr>
+<td>144</td>
+<td>zhuo</td>
+<td>9</td>
+<td>着 桌 捉 卓 拙 灼 琢 酌 浊</td>
+</tr>
+<tr>
+<td>145</td>
+<td>pan</td>
+<td>9</td>
+<td>判 盘 番 叛 潘 盼 攀 畔 拚</td>
+</tr>
+<tr>
+<td>146</td>
+<td>wen</td>
+<td>9</td>
+<td>问 文 闻 温 稳 纹 吻 蚊 雯</td>
+</tr>
+<tr>
+<td>147</td>
+<td>qin</td>
+<td>9</td>
+<td>亲 侵 秦 勤 琴 钦 禽 寝 擒</td>
+</tr>
+<tr>
+<td>148</td>
+<td>ni</td>
+<td>9</td>
+<td>你 呢 尼 泥 拟 逆 妮 匿 腻</td>
+</tr>
+<tr>
+<td>149</td>
+<td>gang</td>
+<td>8</td>
+<td>刚 港 钢 岗 纲 冈 缸 扛</td>
+</tr>
+<tr>
+<td>150</td>
+<td>cha</td>
+<td>8</td>
+<td>查 察 差 茶 插 叉 刹 诧</td>
+</tr>
+<tr>
+<td>151</td>
+<td>zhuang</td>
+<td>8</td>
+<td>装 状 庄 壮 撞 桩 幢 妆</td>
+</tr>
+<tr>
+<td>152</td>
+<td>ping</td>
+<td>8</td>
+<td>平 评 凭 瓶 屏 萍 苹 坪</td>
+</tr>
+<tr>
+<td>153</td>
+<td>hou</td>
+<td>8</td>
+<td>后 候 厚 侯 喉 後 吼 猴</td>
+</tr>
+<tr>
+<td>154</td>
+<td>gou</td>
+<td>8</td>
+<td>构 够 购 狗 沟 勾 钩 苟</td>
+</tr>
+<tr>
+<td>155</td>
+<td>yun</td>
+<td>8</td>
+<td>运 云 允 孕 晕 韵 蕴 匀</td>
+</tr>
+<tr>
+<td>156</td>
+<td>ding</td>
+<td>8</td>
+<td>定 顶 丁 订 盯 钉 鼎 叮</td>
+</tr>
+<tr>
+<td>157</td>
+<td>yong</td>
+<td>8</td>
+<td>用 永 拥 勇 涌 庸 佣 泳</td>
+</tr>
+<tr>
+<td>158</td>
+<td>zai</td>
+<td>8</td>
+<td>在 再 载 灾 仔 宰 栽 哉</td>
+</tr>
+<tr>
+<td>159</td>
+<td>xin</td>
+<td>8</td>
+<td>心 新 信 辛 欣 薪 芯 馨</td>
+</tr>
+<tr>
+<td>160</td>
+<td>man</td>
+<td>8</td>
+<td>满 慢 曼 漫 埋 蛮 瞒 蔓</td>
+</tr>
+<tr>
+<td>161</td>
+<td>quan</td>
+<td>8</td>
+<td>全 权 圈 券 劝 泉 拳 犬</td>
+</tr>
+<tr>
+<td>162</td>
+<td>lin</td>
+<td>8</td>
+<td>林 临 邻 淋 琳 麟 鳞 磷</td>
+</tr>
+<tr>
+<td>163</td>
+<td>hong</td>
+<td>8</td>
+<td>红 轰 洪 宏 鸿 虹 哄 弘</td>
+</tr>
+<tr>
+<td>164</td>
+<td>shao</td>
+<td>8</td>
+<td>少 烧 召 绍 稍 哨 梢 邵</td>
+</tr>
+<tr>
+<td>165</td>
+<td>zuo</td>
+<td>8</td>
+<td>作 做 坐 左 座 昨 佐 凿</td>
+</tr>
+<tr>
+<td>166</td>
+<td>long</td>
+<td>8</td>
+<td>龙 弄 隆 笼 垄 拢 胧 聋</td>
+</tr>
+<tr>
+<td>167</td>
+<td>zha</td>
+<td>8</td>
+<td>查 炸 扎 眨 诈 咋 乍 栅</td>
+</tr>
+<tr>
+<td>168</td>
+<td>zhe</td>
+<td>8</td>
+<td>这 着 者 著 哲 折 浙 遮</td>
+</tr>
+<tr>
+<td>169</td>
+<td>qiu</td>
+<td>8</td>
+<td>求 球 秋 仇 丘 邱 囚 裘</td>
+</tr>
+<tr>
+<td>170</td>
+<td>liao</td>
+<td>7</td>
+<td>了 料 疗 聊 辽 僚 廖</td>
+</tr>
+<tr>
+<td>171</td>
+<td>zong</td>
+<td>7</td>
+<td>从 总 宗 纵 综 踪 棕</td>
+</tr>
+<tr>
+<td>172</td>
+<td>ta</td>
+<td>7</td>
+<td>他 她 它 塔 踏 拓 塌</td>
+</tr>
+<tr>
+<td>173</td>
+<td>guo</td>
+<td>7</td>
+<td>国 过 果 郭 锅 裹 涡</td>
+</tr>
+<tr>
+<td>174</td>
+<td>zu</td>
+<td>7</td>
+<td>组 足 族 祖 阻 租 卒</td>
+</tr>
+<tr>
+<td>175</td>
+<td>suo</td>
+<td>7</td>
+<td>所 索 缩 锁 莎 梭 琐</td>
+</tr>
+<tr>
+<td>176</td>
+<td>can</td>
+<td>7</td>
+<td>参 残 餐 惨 灿 蚕 惭</td>
+</tr>
+<tr>
+<td>177</td>
+<td>tai</td>
+<td>7</td>
+<td>太 台 态 泰 抬 胎 汰</td>
+</tr>
+<tr>
+<td>178</td>
+<td>song</td>
+<td>7</td>
+<td>送 松 宋 讼 耸 颂 诵</td>
+</tr>
+<tr>
+<td>179</td>
+<td>mian</td>
+<td>7</td>
+<td>面 免 棉 眠 勉 绵 缅</td>
+</tr>
+<tr>
+<td>180</td>
+<td>ku</td>
+<td>7</td>
+<td>苦 库 哭 酷 裤 枯 窟</td>
+</tr>
+<tr>
+<td>181</td>
+<td>deng</td>
+<td>7</td>
+<td>等 登 灯 邓 瞪 凳 澄</td>
+</tr>
+<tr>
+<td>182</td>
+<td>meng</td>
+<td>7</td>
+<td>梦 蒙 猛 盟 孟 朦 萌</td>
+</tr>
+<tr>
+<td>183</td>
+<td>kui</td>
+<td>7</td>
+<td>亏 溃 愧 魁 奎 窥 馈</td>
+</tr>
+<tr>
+<td>184</td>
+<td>wo</td>
+<td>7</td>
+<td>我 握 沃 卧 窝 涡 喔</td>
+</tr>
+<tr>
+<td>185</td>
+<td>tuo</td>
+<td>7</td>
+<td>托 脱 拖 妥 陀 拓 驼</td>
+</tr>
+<tr>
+<td>186</td>
+<td>xiong</td>
+<td>7</td>
+<td>雄 兄 胸 凶 熊 匈 汹</td>
+</tr>
+<tr>
+<td>187</td>
+<td>juan</td>
+<td>7</td>
+<td>卷 圈 捐 倦 绢 娟 眷</td>
+</tr>
+<tr>
+<td>188</td>
+<td>miao</td>
+<td>7</td>
+<td>描 妙 庙 苗 秒 瞄 渺</td>
+</tr>
+<tr>
+<td>189</td>
+<td>hai</td>
+<td>7</td>
+<td>还 海 孩 害 咳 骇 骸</td>
+</tr>
+<tr>
+<td>190</td>
+<td>cui</td>
+<td>7</td>
+<td>衰 粹 脆 催 摧 翠 崔</td>
+</tr>
+<tr>
+<td>191</td>
+<td>shang</td>
+<td>7</td>
+<td>上 商 伤 尚 赏 晌 裳</td>
+</tr>
+<tr>
+<td>192</td>
+<td>pin</td>
+<td>7</td>
+<td>品 贫 频 拼 聘 苹 拚</td>
+</tr>
+<tr>
+<td>193</td>
+<td>an</td>
+<td>7</td>
+<td>安 案 按 暗 岸 俺 黯</td>
+</tr>
+<tr>
+<td>194</td>
+<td>die</td>
+<td>6</td>
+<td>跌 爹 叠 蝶 谍 碟</td>
+</tr>
+<tr>
+<td>195</td>
+<td>lei</td>
+<td>6</td>
+<td>类 雷 勒 泪 累 垒</td>
+</tr>
+<tr>
+<td>196</td>
+<td>lao</td>
+<td>6</td>
+<td>老 劳 络 牢 捞 姥</td>
+</tr>
+<tr>
+<td>197</td>
+<td>fa</td>
+<td>6</td>
+<td>发 法 罚 乏 伐 阀</td>
+</tr>
+<tr>
+<td>198</td>
+<td>mai</td>
+<td>6</td>
+<td>买 卖 麦 脉 埋 迈</td>
+</tr>
+<tr>
+<td>199</td>
+<td>ru</td>
+<td>6</td>
+<td>如 入 乳 辱 儒 汝</td>
+</tr>
+<tr>
+<td>200</td>
+<td>ren</td>
+<td>6</td>
+<td>人 任 认 忍 仁 刃</td>
+</tr>
+<tr>
+<td>201</td>
+<td>xue</td>
+<td>6</td>
+<td>学 血 雪 削 穴 薛</td>
+</tr>
+<tr>
+<td>202</td>
+<td>rong</td>
+<td>6</td>
+<td>容 荣 融 溶 绒 蓉</td>
+</tr>
+<tr>
+<td>203</td>
+<td>chong</td>
+<td>6</td>
+<td>重 充 冲 虫 崇 宠</td>
+</tr>
+<tr>
+<td>204</td>
+<td>ming</td>
+<td>6</td>
+<td>明 名 命 鸣 铭 冥</td>
+</tr>
+<tr>
+<td>205</td>
+<td>lie</td>
+<td>6</td>
+<td>列 烈 裂 猎 劣 咧</td>
+</tr>
+<tr>
+<td>206</td>
+<td>kan</td>
+<td>6</td>
+<td>看 刊 堪 砍 坎 勘</td>
+</tr>
+<tr>
+<td>207</td>
+<td>bai</td>
+<td>6</td>
+<td>白 百 败 摆 拜 柏</td>
+</tr>
+<tr>
+<td>208</td>
+<td>chan</td>
+<td>6</td>
+<td>产 单 颤 缠 禅 阐</td>
+</tr>
+<tr>
+<td>209</td>
+<td>gao</td>
+<td>6</td>
+<td>高 告 搞 稿 糕 膏</td>
+</tr>
+<tr>
+<td>210</td>
+<td>gai</td>
+<td>6</td>
+<td>该 改 概 盖 丐 钙</td>
+</tr>
+<tr>
+<td>211</td>
+<td>pian</td>
+<td>6</td>
+<td>便 片 篇 偏 骗 扁</td>
+</tr>
+<tr>
+<td>212</td>
+<td>zhuan</td>
+<td>6</td>
+<td>传 转 专 赚 撰 砖</td>
+</tr>
+<tr>
+<td>213</td>
+<td>na</td>
+<td>6</td>
+<td>那 拿 哪 纳 娜 呐</td>
+</tr>
+<tr>
+<td>214</td>
+<td>hao</td>
+<td>6</td>
+<td>好 号 毫 豪 耗 浩</td>
+</tr>
+<tr>
+<td>215</td>
+<td>pei</td>
+<td>6</td>
+<td>配 培 佩 陪 赔 胚</td>
+</tr>
+<tr>
+<td>216</td>
+<td>chuan</td>
+<td>6</td>
+<td>传 船 穿 川 串 喘</td>
+</tr>
+<tr>
+<td>217</td>
+<td>ze</td>
+<td>5</td>
+<td>则 责 泽 择 咋</td>
+</tr>
+<tr>
+<td>218</td>
+<td>za</td>
+<td>5</td>
+<td>杂 咱 扎 砸 咋</td>
+</tr>
+<tr>
+<td>219</td>
+<td>diao</td>
+<td>5</td>
+<td>调 掉 雕 吊 钓</td>
+</tr>
+<tr>
+<td>220</td>
+<td>kuang</td>
+<td>5</td>
+<td>况 狂 矿 框 旷</td>
+</tr>
+<tr>
+<td>221</td>
+<td>pang</td>
+<td>5</td>
+<td>旁 庞 胖 膀 磅</td>
+</tr>
+<tr>
+<td>222</td>
+<td>kang</td>
+<td>5</td>
+<td>抗 康 慷 炕 扛</td>
+</tr>
+<tr>
+<td>223</td>
+<td>er</td>
+<td>5</td>
+<td>而 二 儿 尔 耳</td>
+</tr>
+<tr>
+<td>224</td>
+<td>tian</td>
+<td>5</td>
+<td>天 田 添 填 甜</td>
+</tr>
+<tr>
+<td>225</td>
+<td>shui</td>
+<td>5</td>
+<td>说 水 谁 税 睡</td>
+</tr>
+<tr>
+<td>226</td>
+<td>hun</td>
+<td>5</td>
+<td>婚 混 魂 昏 浑</td>
+</tr>
+<tr>
+<td>227</td>
+<td>shuai</td>
+<td>5</td>
+<td>率 衰 帅 摔 甩</td>
+</tr>
+<tr>
+<td>228</td>
+<td>dang</td>
+<td>5</td>
+<td>当 党 荡 档 挡</td>
+</tr>
+<tr>
+<td>229</td>
+<td>chuang</td>
+<td>5</td>
+<td>创 床 窗 闯 幢</td>
+</tr>
+<tr>
+<td>230</td>
+<td>de</td>
+<td>5</td>
+<td>的 地 得 德 底</td>
+</tr>
+<tr>
+<td>231</td>
+<td>da</td>
+<td>5</td>
+<td>大 打 达 答 搭</td>
+</tr>
+<tr>
+<td>232</td>
+<td>lun</td>
+<td>5</td>
+<td>论 伦 轮 仑 沦</td>
+</tr>
+<tr>
+<td>233</td>
+<td>wa</td>
+<td>5</td>
+<td>瓦 娃 挖 哇 蛙</td>
+</tr>
+<tr>
+<td>234</td>
+<td>mang</td>
+<td>5</td>
+<td>忙 茫 盲 芒 莽</td>
+</tr>
+<tr>
+<td>235</td>
+<td>ce</td>
+<td>5</td>
+<td>策 测 侧 册 厕</td>
+</tr>
+<tr>
+<td>236</td>
+<td>dun</td>
+<td>5</td>
+<td>顿 盾 吨 敦 蹲</td>
+</tr>
+<tr>
+<td>237</td>
+<td>qie</td>
+<td>5</td>
+<td>且 切 窃 怯 伽</td>
+</tr>
+<tr>
+<td>238</td>
+<td>pa</td>
+<td>5</td>
+<td>怕 爬 帕 啪 趴</td>
+</tr>
+<tr>
+<td>239</td>
+<td>chun</td>
+<td>5</td>
+<td>春 纯 唇 蠢 醇</td>
+</tr>
+<tr>
+<td>240</td>
+<td>heng</td>
+<td>5</td>
+<td>横 衡 恒 哼 亨</td>
+</tr>
+<tr>
+<td>241</td>
+<td>duan</td>
+<td>5</td>
+<td>断 段 短 端 锻</td>
+</tr>
+<tr>
+<td>242</td>
+<td>cong</td>
+<td>5</td>
+<td>从 匆 聪 丛 葱</td>
+</tr>
+<tr>
+<td>243</td>
+<td>pao</td>
+<td>5</td>
+<td>跑 炮 抛 泡 袍</td>
+</tr>
+<tr>
+<td>244</td>
+<td>qiang</td>
+<td>5</td>
+<td>强 枪 墙 抢 腔</td>
+</tr>
+<tr>
+<td>245</td>
+<td>duo</td>
+<td>5</td>
+<td>多 夺 朵 躲 堕</td>
+</tr>
+<tr>
+<td>246</td>
+<td>lou</td>
+<td>5</td>
+<td>露 楼 漏 陋 搂</td>
+</tr>
+<tr>
+<td>247</td>
+<td>ao</td>
+<td>5</td>
+<td>奥 澳 傲 熬 凹</td>
+</tr>
+<tr>
+<td>248</td>
+<td>lang</td>
+<td>5</td>
+<td>浪 朗 郎 狼 廊</td>
+</tr>
+<tr>
+<td>249</td>
+<td>gua</td>
+<td>4</td>
+<td>挂 瓜 寡 刮</td>
+</tr>
+<tr>
+<td>250</td>
+<td>kuo</td>
+<td>4</td>
+<td>括 扩 阔 廓</td>
+</tr>
+<tr>
+<td>251</td>
+<td>kun</td>
+<td>4</td>
+<td>困 昆 捆 坤</td>
+</tr>
+<tr>
+<td>252</td>
+<td>tiao</td>
+<td>4</td>
+<td>条 调 跳 挑</td>
+</tr>
+<tr>
+<td>253</td>
+<td>geng</td>
+<td>4</td>
+<td>更 耕 耿 梗</td>
+</tr>
+<tr>
+<td>254</td>
+<td>che</td>
+<td>4</td>
+<td>车 彻 撤 扯</td>
+</tr>
+<tr>
+<td>255</td>
+<td>cao</td>
+<td>4</td>
+<td>草 操 曹 槽</td>
+</tr>
+<tr>
+<td>256</td>
+<td>se</td>
+<td>4</td>
+<td>色 塞 瑟 涩</td>
+</tr>
+<tr>
+<td>257</td>
+<td>kong</td>
+<td>4</td>
+<td>空 控 恐 孔</td>
+</tr>
+<tr>
+<td>258</td>
+<td>que</td>
+<td>4</td>
+<td>却 确 缺 雀</td>
+</tr>
+<tr>
+<td>259</td>
+<td>shuo</td>
+<td>4</td>
+<td>说 数 硕 烁</td>
+</tr>
+<tr>
+<td>260</td>
+<td>jun</td>
+<td>4</td>
+<td>军 均 君 钧</td>
+</tr>
+<tr>
+<td>261</td>
+<td>tou</td>
+<td>4</td>
+<td>头 投 透 偷</td>
+</tr>
+<tr>
+<td>262</td>
+<td>kou</td>
+<td>4</td>
+<td>口 扣 寇 叩</td>
+</tr>
+<tr>
+<td>263</td>
+<td>sao</td>
+<td>4</td>
+<td>扫 艘 嫂 骚</td>
+</tr>
+<tr>
+<td>264</td>
+<td>tui</td>
+<td>4</td>
+<td>推 退 腿 颓</td>
+</tr>
+<tr>
+<td>265</td>
+<td>cu</td>
+<td>4</td>
+<td>促 粗 卒 簇</td>
+</tr>
+<tr>
+<td>266</td>
+<td>chui</td>
+<td>4</td>
+<td>吹 垂 椎 锤</td>
+</tr>
+<tr>
+<td>267</td>
+<td>zeng</td>
+<td>4</td>
+<td>增 曾 赠 憎</td>
+</tr>
+<tr>
+<td>268</td>
+<td>cang</td>
+<td>4</td>
+<td>藏 苍 舱 仓</td>
+</tr>
+<tr>
+<td>269</td>
+<td>biao</td>
+<td>4</td>
+<td>表 标 彪 镖</td>
+</tr>
+<tr>
+<td>270</td>
+<td>pai</td>
+<td>4</td>
+<td>派 排 拍 牌</td>
+</tr>
+<tr>
+<td>271</td>
+<td>nie</td>
+<td>4</td>
+<td>涅 捏 聂 孽</td>
+</tr>
+<tr>
+<td>272</td>
+<td>niu</td>
+<td>4</td>
+<td>牛 纽 扭 钮</td>
+</tr>
+<tr>
+<td>273</td>
+<td>cun</td>
+<td>4</td>
+<td>存 村 寸 忖</td>
+</tr>
+<tr>
+<td>274</td>
+<td>bin</td>
+<td>4</td>
+<td>宾 斌 滨 彬</td>
+</tr>
+<tr>
+<td>275</td>
+<td>dui</td>
+<td>4</td>
+<td>对 队 堆 兑</td>
+</tr>
+<tr>
+<td>276</td>
+<td>ou</td>
+<td>4</td>
+<td>区 欧 偶 呕</td>
+</tr>
+<tr>
+<td>277</td>
+<td>zui</td>
+<td>4</td>
+<td>最 罪 嘴 醉</td>
+</tr>
+<tr>
+<td>278</td>
+<td>hen</td>
+<td>4</td>
+<td>很 恨 狠 痕</td>
+</tr>
+<tr>
+<td>279</td>
+<td>nai</td>
+<td>4</td>
+<td>乃 奶 耐 奈</td>
+</tr>
+<tr>
+<td>280</td>
+<td>nan</td>
+<td>4</td>
+<td>难 南 男 喃</td>
+</tr>
+<tr>
+<td>281</td>
+<td>nao</td>
+<td>4</td>
+<td>脑 闹 恼 挠</td>
+</tr>
+<tr>
+<td>282</td>
+<td>ga</td>
+<td>3</td>
+<td>伽 尬 嘎</td>
+</tr>
+<tr>
+<td>283</td>
+<td>rou</td>
+<td>3</td>
+<td>肉 柔 揉</td>
+</tr>
+<tr>
+<td>284</td>
+<td>sang</td>
+<td>3</td>
+<td>丧 桑 嗓</td>
+</tr>
+<tr>
+<td>285</td>
+<td>nei</td>
+<td>3</td>
+<td>那 内 哪</td>
+</tr>
+<tr>
+<td>286</td>
+<td>kua</td>
+<td>3</td>
+<td>跨 夸 垮</td>
+</tr>
+<tr>
+<td>287</td>
+<td>men</td>
+<td>3</td>
+<td>们 门 闷</td>
+</tr>
+<tr>
+<td>288</td>
+<td>nong</td>
+<td>3</td>
+<td>农 弄 浓</td>
+</tr>
+<tr>
+<td>289</td>
+<td>beng</td>
+<td>3</td>
+<td>崩 蹦 绷</td>
+</tr>
+<tr>
+<td>290</td>
+<td>a</td>
+<td>3</td>
+<td>阿 啊 呵</td>
+</tr>
+<tr>
+<td>291</td>
+<td>sa</td>
+<td>3</td>
+<td>萨 撒 洒</td>
+</tr>
+<tr>
+<td>292</td>
+<td>zan</td>
+<td>3</td>
+<td>赞 咱 暂</td>
+</tr>
+<tr>
+<td>293</td>
+<td>le</td>
+<td>3</td>
+<td>了 乐 勒</td>
+</tr>
+<tr>
+<td>294</td>
+<td>lai</td>
+<td>3</td>
+<td>来 莱 赖</td>
+</tr>
+<tr>
+<td>295</td>
+<td>rang</td>
+<td>3</td>
+<td>让 嚷 壤</td>
+</tr>
+<tr>
+<td>296</td>
+<td>guai</td>
+<td>3</td>
+<td>怪 拐 乖</td>
+</tr>
+<tr>
+<td>297</td>
+<td>jun</td>
+<td>3</td>
+<td>俊 郡 峻</td>
+</tr>
+<tr>
+<td>298</td>
+<td>kuai</td>
+<td>3</td>
+<td>会 快 块</td>
+</tr>
+<tr>
+<td>299</td>
+<td>nian</td>
+<td>3</td>
+<td>年 念 粘</td>
+</tr>
+<tr>
+<td>300</td>
+<td>ben</td>
+<td>3</td>
+<td>本 奔 笨</td>
+</tr>
+<tr>
+<td>301</td>
+<td>san</td>
+<td>3</td>
+<td>三 散 伞</td>
+</tr>
+<tr>
+<td>302</td>
+<td>ran</td>
+<td>3</td>
+<td>然 染 燃</td>
+</tr>
+<tr>
+<td>303</td>
+<td>rao</td>
+<td>3</td>
+<td>扰 绕 饶</td>
+</tr>
+<tr>
+<td>304</td>
+<td>min</td>
+<td>3</td>
+<td>民 敏 悯</td>
+</tr>
+<tr>
+<td>305</td>
+<td>kai</td>
+<td>3</td>
+<td>开 凯 慨</td>
+</tr>
+<tr>
+<td>306</td>
+<td>kao</td>
+<td>3</td>
+<td>考 靠 烤</td>
+</tr>
+<tr>
+<td>307</td>
+<td>ka</td>
+<td>3</td>
+<td>卡 咖 喀</td>
+</tr>
+<tr>
+<td>308</td>
+<td>nuo</td>
+<td>3</td>
+<td>诺 娜 挪</td>
+</tr>
+<tr>
+<td>309</td>
+<td>teng</td>
+<td>3</td>
+<td>腾 疼 藤</td>
+</tr>
+<tr>
+<td>310</td>
+<td>piao</td>
+<td>3</td>
+<td>票 飘 漂</td>
+</tr>
+<tr>
+<td>311</td>
+<td>zhui</td>
+<td>3</td>
+<td>追 坠 椎</td>
+</tr>
+<tr>
+<td>312</td>
+<td>shuang</td>
+<td>3</td>
+<td>双 爽 霜</td>
+</tr>
+<tr>
+<td>313</td>
+<td>hang</td>
+<td>3</td>
+<td>行 航 杭</td>
+</tr>
+<tr>
+<td>314</td>
+<td>guang</td>
+<td>3</td>
+<td>光 广 逛</td>
+</tr>
+<tr>
+<td>315</td>
+<td>cuo</td>
+<td>3</td>
+<td>错 措 挫</td>
+</tr>
+<tr>
+<td>316</td>
+<td>mou</td>
+<td>3</td>
+<td>某 谋 牟</td>
+</tr>
+<tr>
+<td>317</td>
+<td>o</td>
+<td>3</td>
+<td>哦 噢 喔</td>
+</tr>
+<tr>
+<td>318</td>
+<td>sou</td>
+<td>3</td>
+<td>艘 搜 嗽</td>
+</tr>
+<tr>
+<td>319</td>
+<td>huai</td>
+<td>3</td>
+<td>怀 坏 淮</td>
+</tr>
+<tr>
+<td>320</td>
+<td>chai</td>
+<td>3</td>
+<td>差 柴 拆</td>
+</tr>
+<tr>
+<td>321</td>
+<td>zang</td>
+<td>3</td>
+<td>藏 脏 葬</td>
+</tr>
+<tr>
+<td>322</td>
+<td>tie</td>
+<td>3</td>
+<td>铁 贴 帖</td>
+</tr>
+<tr>
+<td>323</td>
+<td>nu</td>
+<td>3</td>
+<td>努 怒 奴</td>
+</tr>
+<tr>
+<td>324</td>
+<td>leng</td>
+<td>3</td>
+<td>冷 愣 棱</td>
+</tr>
+<tr>
+<td>325</td>
+<td>me</td>
+<td>2</td>
+<td>么 麽</td>
+</tr>
+<tr>
+<td>326</td>
+<td>gun</td>
+<td>2</td>
+<td>滚 棍</td>
+</tr>
+<tr>
+<td>327</td>
+<td>sun</td>
+<td>2</td>
+<td>损 孙</td>
+</tr>
+<tr>
+<td>328</td>
+<td>zuan</td>
+<td>2</td>
+<td>钻 赚</td>
+</tr>
+<tr>
+<td>329</td>
+<td>shua</td>
+<td>2</td>
+<td>刷 耍</td>
+</tr>
+<tr>
+<td>330</td>
+<td>qun</td>
+<td>2</td>
+<td>群 裙</td>
+</tr>
+<tr>
+<td>331</td>
+<td>ning</td>
+<td>2</td>
+<td>宁 凝</td>
+</tr>
+<tr>
+<td>332</td>
+<td>pie</td>
+<td>2</td>
+<td>瞥 撇</td>
+</tr>
+<tr>
+<td>333</td>
+<td>jiong</td>
+<td>2</td>
+<td>炯 窘</td>
+</tr>
+<tr>
+<td>334</td>
+<td>weng</td>
+<td>2</td>
+<td>翁 嗡</td>
+</tr>
+<tr>
+<td>335</td>
+<td>en</td>
+<td>2</td>
+<td>恩 嗯</td>
+</tr>
+<tr>
+<td>336</td>
+<td>re</td>
+<td>2</td>
+<td>热 惹</td>
+</tr>
+<tr>
+<td>337</td>
+<td>shun</td>
+<td>2</td>
+<td>顺 瞬</td>
+</tr>
+<tr>
+<td>338</td>
+<td>kuan</td>
+<td>2</td>
+<td>款 宽</td>
+</tr>
+<tr>
+<td>339</td>
+<td>niao</td>
+<td>2</td>
+<td>鸟 尿</td>
+</tr>
+<tr>
+<td>340</td>
+<td>niang</td>
+<td>2</td>
+<td>娘 酿</td>
+</tr>
+<tr>
+<td>341</td>
+<td>sai</td>
+<td>2</td>
+<td>赛 塞</td>
+</tr>
+<tr>
+<td>342</td>
+<td>reng</td>
+<td>2</td>
+<td>仍 扔</td>
+</tr>
+<tr>
+<td>343</td>
+<td>mie</td>
+<td>2</td>
+<td>灭 蔑</td>
+</tr>
+<tr>
+<td>344</td>
+<td>zou</td>
+<td>2</td>
+<td>走 奏</td>
+</tr>
+<tr>
+<td>345</td>
+<td>gen</td>
+<td>2</td>
+<td>根 跟</td>
+</tr>
+<tr>
+<td>346</td>
+<td>lue</td>
+<td>2</td>
+<td>略 掠</td>
+</tr>
+<tr>
+<td>347</td>
+<td>ken</td>
+<td>2</td>
+<td>肯 恳</td>
+</tr>
+<tr>
+<td>348</td>
+<td>tun</td>
+<td>2</td>
+<td>吞 屯</td>
+</tr>
+<tr>
+<td>349</td>
+<td>suan</td>
+<td>2</td>
+<td>算 酸</td>
+</tr>
+<tr>
+<td>350</td>
+<td>zhua</td>
+<td>2</td>
+<td>抓 爪</td>
+</tr>
+<tr>
+<td>351</td>
+<td>zhun</td>
+<td>2</td>
+<td>准 屯</td>
+</tr>
+<tr>
+<td>352</td>
+<td>shai</td>
+<td>2</td>
+<td>色 晒</td>
+</tr>
+<tr>
+<td>353</td>
+<td>ne</td>
+<td>2</td>
+<td>呢 呐</td>
+</tr>
+<tr>
+<td>354</td>
+<td>pen</td>
+<td>2</td>
+<td>喷 盆</td>
+</tr>
+<tr>
+<td>355</td>
+<td>rui</td>
+<td>2</td>
+<td>瑞 锐</td>
+</tr>
+<tr>
+<td>356</td>
+<td>ruo</td>
+<td>2</td>
+<td>若 弱</td>
+</tr>
+<tr>
+<td>357</td>
+<td>luan</td>
+<td>2</td>
+<td>乱 卵</td>
+</tr>
+<tr>
+<td>358</td>
+<td>qiong</td>
+<td>2</td>
+<td>穷 琼</td>
+</tr>
+<tr>
+<td>359</td>
+<td>wai</td>
+<td>2</td>
+<td>外 歪</td>
+</tr>
+<tr>
+<td>360</td>
+<td>hei</td>
+<td>2</td>
+<td>黑 嘿</td>
+</tr>
+<tr>
+<td>361</td>
+<td>ceng</td>
+<td>2</td>
+<td>曾 层</td>
+</tr>
+<tr>
+<td>362</td>
+<td>qia</td>
+<td>2</td>
+<td>卡 恰</td>
+</tr>
+<tr>
+<td>363</td>
+<td>chuo</td>
+<td>2</td>
+<td>绰 戳</td>
+</tr>
+<tr>
+<td>364</td>
+<td>zun</td>
+<td>2</td>
+<td>尊 遵</td>
+</tr>
+<tr>
+<td>365</td>
+<td>seng</td>
+<td>1</td>
+<td>僧</td>
+</tr>
+<tr>
+<td>366</td>
+<td>te</td>
+<td>1</td>
+<td>特</td>
+</tr>
+<tr>
+<td>367</td>
+<td>diu</td>
+<td>1</td>
+<td>丢</td>
+</tr>
+<tr>
+<td>368</td>
+<td>neng</td>
+<td>1</td>
+<td>能</td>
+</tr>
+<tr>
+<td>369</td>
+<td>tuan</td>
+<td>1</td>
+<td>团</td>
+</tr>
+<tr>
+<td>370</td>
+<td>dei</td>
+<td>1</td>
+<td>得</td>
+</tr>
+<tr>
+<td>371</td>
+<td>cuan</td>
+<td>1</td>
+<td>窜</td>
+</tr>
+<tr>
+<td>372</td>
+<td>fo</td>
+<td>1</td>
+<td>佛</td>
+</tr>
+<tr>
+<td>373</td>
+<td>zei</td>
+<td>1</td>
+<td>贼</td>
+</tr>
+<tr>
+<td>374</td>
+<td>zen</td>
+<td>1</td>
+<td>怎</td>
+</tr>
+<tr>
+<td>375</td>
+<td>lo</td>
+<td>1</td>
+<td>咯</td>
+</tr>
+<tr>
+<td>376</td>
+<td>yo</td>
+<td>1</td>
+<td>哟</td>
+</tr>
+<tr>
+<td>377</td>
+<td>keng</td>
+<td>1</td>
+<td>坑</td>
+</tr>
+<tr>
+<td>378</td>
+<td>ri</td>
+<td>1</td>
+<td>日</td>
+</tr>
+<tr>
+<td>379</td>
+<td>ge</td>
+<td>1</td>
+<td>歌</td>
+</tr>
+<tr>
+<td>380</td>
+<td>shuan</td>
+<td>1</td>
+<td>栓</td>
+</tr>
+<tr>
+<td>381</td>
+<td>ang</td>
+<td>1</td>
+<td>昂</td>
+</tr>
+<tr>
+<td>382</td>
+<td>lia</td>
+<td>1</td>
+<td>俩</td>
+</tr>
+<tr>
+<td>383</td>
+<td>miu</td>
+<td>1</td>
+<td>谬</td>
+</tr>
+<tr>
+<td>384</td>
+<td>nen</td>
+<td>1</td>
+<td>嫩</td>
+</tr>
+<tr>
+<td>385</td>
+<td>nang</td>
+<td>1</td>
+<td>囊</td>
+</tr>
+<tr>
+<td>386</td>
+<td>gei</td>
+<td>1</td>
+<td>给</td>
+</tr>
+<tr>
+<td>387</td>
+<td>sen</td>
+<td>1</td>
+<td>森</td>
+</tr>
+<tr>
+<td>388</td>
+<td>nue</td>
+<td>1</td>
+<td>虐</td>
+</tr>
+<tr>
+<td>389</td>
+<td>nv</td>
+<td>1</td>
+<td>女</td>
+</tr>
+<tr>
+<td>390</td>
+<td>cou</td>
+<td>1</td>
+<td>凑</td>
+</tr>
+<tr>
+<td>391</td>
+<td>ca</td>
+<td>1</td>
+<td>擦</td>
+</tr>
+<tr>
+<td>392</td>
+<td>pou</td>
+<td>1</td>
+<td>剖</td>
+</tr>
+<tr>
+<td>393</td>
+<td>yai</td>
+<td>1</td>
+<td>崖</td>
+</tr>
+<tr>
+<td>394</td>
+<td>zhei</td>
+<td>1</td>
+<td>这</td>
+</tr>
+<tr>
+<td>395</td>
+<td>nin</td>
+<td>1</td>
+<td>您</td>
+</tr>
+<tr>
+<td>396</td>
+<td>ruan</td>
+<td>1</td>
+<td>软</td>
+</tr>
+<tr>
+<td>397</td>
+<td>bie</td>
+<td>1</td>
+<td>别</td>
+</tr>
+<tr>
+<td>398</td>
+<td>shei</td>
+<td>1</td>
+<td>谁</td>
+</tr>
+<tr>
+<td>399</td>
+<td>fou</td>
+<td>1</td>
+<td>否</td>
+</tr>
+<tr>
+<td>400</td>
+<td>nuan</td>
+<td>1</td>
+<td>暖</td>
+</tr>
+<tr>
+<td>401</td>
+<td>run</td>
+<td>1</td>
+<td>润</td>
+</tr>
+<tr>
+<td>402</td>
+<td>jun</td>
+<td>1</td>
+<td>菌</td>
+</tr>
+<tr>
+<td>403</td>
+<td>ha</td>
+<td>1</td>
+<td>哈</td>
+</tr>
+<tr>
+<td>404</td>
+<td>ng</td>
+<td>1</td>
+<td>嗯</td>
+</tr>
+<tr>
+<td>405</td>
+<td>nv</td>
+<td>1</td>
+<td>女</td>
+</tr>
+<tr>
+<td>406</td>
+<td>hng</td>
+<td>1</td>
+<td>哼</td>
+</tr>
+</tbody>
+</table>
+<p>This list was compiled using the modern combined character frequency list from <a href="http://lingua.mtsu.edu/chinese-computing/statistics/index.html">Jun Da</a>.</p>
+<hr />
+<p><em>Originally published on <a href="https://quasiphysics.wordpress.com/2012/02/21/syllables-of-mandarin-chinese/">Quasiphysics</a>.</em></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "toc.integrate", "search.highlight", "search.share"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
