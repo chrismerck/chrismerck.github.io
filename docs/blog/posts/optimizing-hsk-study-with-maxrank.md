@@ -11,7 +11,9 @@ tags:
   - optimization
 ---
 
-I've put together a PDF containing the revised [HSK](https://en.wikipedia.org/wiki/Hanyu_Shuiping_Kaoshi) vocab for levels 1--6, sorted in such a way to maximize word learning rate. The list comes from Lingomi, with sorting applied using the MaxRank method.
+## Short Version
+
+I've put together a PDF containing the revised [HSK](https://en.wikipedia.org/wiki/Hanyu_Shuiping_Kaoshi) vocab for levels 1--6, sorted in such a way to maximize word learning rate. The list was sourced from [Lingomi](http://lingomi.com/blog/hsk-lists-2010/), with sorting applied using the MaxRank method. I have found this particular presentation of the list to be especially useful; so I put it here in hopes that others can also benefit.
 
 <!-- more -->
 
@@ -36,5 +38,7 @@ Words are then sorted by ascending difficulty within each HSK level.
 ## Why MaxRank Ordering?
 
 MaxRank allows the learner to maximize his words-to-characters-known ratio. By positioning words containing less common characters later in the study sequence, a learner first masters the most frequently occurring characters and the many words built from them, allowing better comprehension building before tackling rarer characters.
+
+---
 
 *Originally published on [Quasiphysics](https://quasiphysics.wordpress.com/2011/11/28/optimizing-hsk-study-with-maxrank/).*

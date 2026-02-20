@@ -36,4 +36,6 @@ The history of English fascinates me. Here follows my very brief but hopefully r
 
 **1776 AD:** [American revolution](https://en.wikipedia.org/wiki/American_Revolution). [American English](https://en.wikipedia.org/wiki/American_English) starts to officially diverge from British English.
 
+---
+
 *Originally published on [Quasiphysics](https://quasiphysics.wordpress.com/2011/11/11/a-very-brief-history-of-english/).*

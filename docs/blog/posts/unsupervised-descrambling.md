@@ -10,6 +10,8 @@ tags:
   - math
 ---
 
+## Motivation
+
 One of the primary goals of contemporary neuroscience is the reverse-engineering of the brain's functional architecture. Our understanding has evolved from descriptive to functional, particularly through borrowing ideas from computer science and [information theory](https://en.wikipedia.org/wiki/Information_theory). V. Balasubramanian and P. Sterling's [paper](http://jp.physoc.org/content/587/12/2753.short) explains several aspects of retinal design using information- and selection-theoretic arguments in conjunction with computer simulation.
 
 <!-- more -->

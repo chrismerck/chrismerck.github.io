@@ -9,6 +9,8 @@ tags:
   - zhongwen
 ---
 
+## Inception
+
 While learning sentences in Chinese that introduce new grammatical concepts, I find it useful to draw lines between words to show their grammatical interrelationship (not to mention drawing brackets around the words, already a non-trivial task given the lack of spaces in Zhongwen). In the course of drawing these lines, I found myself breaking the words out of their ordinary position in the sentence so as to make the drawing of the [syntax tree](https://en.wikipedia.org/wiki/Parse_tree) of interconnected words more natural.
 
 <!-- more -->

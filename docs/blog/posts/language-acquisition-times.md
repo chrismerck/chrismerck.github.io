@@ -9,6 +9,8 @@ tags:
   - math
 ---
 
+## Motivation: A Trip to Stockholm
+
 Last year I had the opportunity to travel to Sweden for a week. Finding out a few weeks ahead of time, I started studying Swedish. By the time I flew there, I had studied less than 9 hours total. However, I found that I was able to understand a great deal, and even communicate with people in basic situations. I will give a few examples, with translations in German and English for comparison.
 
 <!-- more -->

@@ -10,7 +10,9 @@ tags:
   - jane-austen
 ---
 
-I'm curious about unsupervised [word sense disambiguation](https://en.wikipedia.org/wiki/Word-sense_disambiguation), and unsupervised machine learning in general. For that, Manning and Schuetze tell us we need [clustering](https://en.wikipedia.org/wiki/Cluster_analysis).
+## Motivation
+
+I'm curious about unsupervised [word sense disambiguation](https://en.wikipedia.org/wiki/Word-sense_disambiguation), and unsupervised machine learning in general. For that, Manning and Schuetze tell us we need [clustering](https://en.wikipedia.org/wiki/Cluster_analysis). I jumped ahead to Chapter 14 to experiment with clustering algorithms.
 
 <!-- more -->
 
@@ -50,14 +52,24 @@ I precomputed a similarity matrix covering the 300 most common words for efficie
 
 ## Embedding in 2-Space
 
-I also investigated 2D embedding techniques for visualization. One approach uses a dampened differential system that treats word pairs as particles with attractive and repulsive forces, optimizing for inverse-similarity distances. The idea is to find positions where the Euclidean distance between words reflects their inverse similarity.
+I also investigated 2D embedding techniques for visualization. Treating embedding quality as potential energy:
+
+$$Q = -V$$
+
+we can derive forces from the potential:
+
+$$\frac{\partial V}{\partial x} = F$$
+
+This gives a second-order dampened differential system that treats word pairs as particles with attractive and repulsive forces, optimizing initially random embeddings for inverse-similarity distances.
 
 ![Embedding of common words using force-directed placement](../../assets/austen-word-cloud.png)
 
 *Embedding of common words obtained using a soft attractive force plus a force which strongly repels words which approach closer than $1/\text{sim}$ pixels from each other.*
 
-The approach faces significant challenges: higher-dimensional data resists meaningful compression into two dimensions, limiting practical utility despite improved cluster visualization potential.
+The major problem with this approach is that our data is not easily squashed down into two dimensions. While visualizations must ultimately be two-dimensional, alternative space-filling techniques for displaying hierarchical clusters could prove superior to traditional dendrograms.
 
 Source code available upon request.
+
+---
 
 *Originally published on [Quasiphysics](https://quasiphysics.wordpress.com/2011/08/17/clustering-jane-austen/).*

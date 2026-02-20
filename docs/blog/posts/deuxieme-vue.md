@@ -1,5 +1,5 @@
 ---
-title: Theory of Deuxieme Vue
+title: Theory of Deuxième Vue
 date: 2012-02-16
 description: A practical theory of "second sight" --- waiting for a second exposure before committing information to memory or action
 categories:

@@ -25,6 +25,8 @@ So what would I answer? Probably something like this:
 
 "You mean simple vowels, that is, those which may be sung out and identified at any point during the singing? Well then there are nine --- or ten if you count the 'errr' sound. But if you allow complex vowels, those combinations of simple vowels sometimes called '[diphthongs](https://en.wikipedia.org/wiki/Diphthong)', then there are between 14 and 19 --- again depending on how you handle 'errr' sounds."
 
-I put together a [General American Vowel Cheat-Sheet (PDF)](../../assets/american-vowels.pdf) that enumerates each vowel, provides example English words, includes tips for French speakers to produce English sounds properly, and contains notes on vowel length and [tensing](https://en.wikipedia.org/wiki/Tenseness). There is also potential for [formant](https://en.wikipedia.org/wiki/Formant) analysis using tools like [Praat](https://en.wikipedia.org/wiki/Praat) --- the question of whether phonological accuracy could be adapted for educational purposes to help both native and non-native speakers remains interesting.
+I put together a [General American Vowel Cheat-Sheet (PDF)](../../assets/american-vowels.pdf) that enumerates each vowel, provides example English words, includes tips for French speakers to produce English sounds properly, and contains notes on vowel length and [tensing](https://en.wikipedia.org/wiki/Tenseness) --- underappreciated aspects of accent, useful to any student of spoken American English.
+
+---
 
 *Originally published on [Quasiphysics](https://quasiphysics.wordpress.com/2012/01/18/american-english-vowels/).*

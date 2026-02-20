@@ -15,13 +15,11 @@ I've been playing around with the iPhone 4 since I took the plunge about two wee
 
 If money is sweat (and love is tears), and I plan on working my tail off (i.e., sweating a lot), I had better understand money. My weapon of choice is Robert Shiller's [Financial Markets](https://oyc.yale.edu/economics/econ-252-08) course from [Open Yale Courses](https://en.wikipedia.org/wiki/Open_Yale_Courses). My plan is to watch the video lectures (on the iPhone!), attempt to work the problem sets (implementing them as Python programs where ever possible), and to keep studying game theory with a view towards financial applications.
 
-## Lecture 1
+## Progress thus far
 
-The first lecture is mostly an apology for making money. Not much of interest.
+**Lecture 1:** The first lecture is mostly an apology for making money. Not much of interest.
 
-## Lecture 2
-
-Here it gets interesting. I learn that [probability theory](https://en.wikipedia.org/wiki/Probability_theory) was not known in academia until the 1600s, and that the word "probable" originally meant "trustworthy." I had never heard that.
+**Lecture 2:** Here it gets interesting. I learn that [probability theory](https://en.wikipedia.org/wiki/Probability_theory) was not known in academia until the 1600s, and that the word "probable" originally meant "trustworthy." I had never heard that.
 
 I also had an idea I want to record for later investigation: Is there a geometric analog to the [arithmetic variance](https://en.wikipedia.org/wiki/Variance)? The question comes up in considering returns on an investment. Investment returns are naturally multiplicative, so one would expect the [geometric mean](https://en.wikipedia.org/wiki/Geometric_mean) to be the relevant measure of central tendency. Let $\rho_i = \ln r_i$ be log-returns. Then the arithmetic mean of the log-returns,
 
@@ -41,9 +39,9 @@ $$\sigma^2_\rho = \sum_{i=1}^n \left(\ln r_i - \ln \bar{r}\right)^2 = \sum_{i=1}
 
 However, it is not apparent to me how to proceed further. Is this last form sufficient to be called a "geometric variance"?
 
-## Lecture 3
+**Lecture 3:** The third lecture covered the basics of insurance and communism. Not too much here in terms of mathematics.
 
-The third lecture covered the basics of insurance and communism. Not too much here in terms of mathematics.
+**Lecture 4:** I'm half-way through the fourth lecture, which is another gold mine, and I will comment further after I do the corresponding problem set (#2).
 
 ---
 

@@ -80,4 +80,6 @@ Chinese also offers several historically significant ordered sequences of charac
 
 These are often used as ordinals in everyday writing and carry real historical and cultural significance in Chinese.
 
+---
+
 *Originally published on [Quasiphysics](https://quasiphysics.wordpress.com/2011/11/16/sinograms-in-mathematics/).*

@@ -9,11 +9,15 @@ tags:
   - comp
 ---
 
-Suppose there is a stochastic natural process $F$ which maps values from some input space $X$ to an output space $Y$. Suppose that we have observed the result of the application of this process to some finite number of known inputs. We denote the $i$th observed input-output pair, or *training example*, by $(x_i, y_i)$. We denote the set of training data by $T$. The task of a [regression](https://en.wikipedia.org/wiki/Regression_analysis) algorithm is to find (or, *learn*) an approximation to the natural process $F$. This approximation is a non-stochastic function $f$ mapping $X$ to $Y$.
+[K-nearest neighbor](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm) (KNN) regression is a popular machine learning algorithm. However, without visualization, one might not be aware of some quirks that are often present in the regression. Below I give a visualization of KNN regression which show this quirkiness.
 
 <!-- more -->
 
-In [KNN regression](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm), for some integer $k$, for a test input $x$, we let $f(x)$ be the mean of the outputs of the $k$-nearest training examples, where the distance between the test point and training example is a [Euclidean distance](https://en.wikipedia.org/wiki/Euclidean_distance) between the test point and the input portion of the training example. Symbolically, KNN regression takes
+## What is KNN Regression?
+
+Suppose there is a stochastic natural process $F$ which maps values from some input space $X$ to an output space $Y$. Suppose that we have observed the result of the application of this process to some finite number of known inputs. We denote the $i$th observed input-output pair, or *training example*, by $(x_i, y_i)$. We denote the set of training data by $T$. The task of a [regression](https://en.wikipedia.org/wiki/Regression_analysis) algorithm is to find (or, *learn*) an approximation to the natural process $F$. This approximation is a non-stochastic function $f$ mapping $X$ to $Y$.
+
+In KNN regression, for some integer $k$, for a test input $x$, we let $f(x)$ be the mean of the outputs of the $k$-nearest training examples, where the distance between the test point and training example is a [Euclidean distance](https://en.wikipedia.org/wiki/Euclidean_distance) between the test point and the input portion of the training example. Symbolically, KNN regression takes
 
 $$f(x) = \frac{1}{k} \sum_{i \in N_k[T](x)} y_i$$
 

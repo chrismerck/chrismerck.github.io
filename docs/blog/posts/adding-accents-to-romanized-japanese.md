@@ -129,6 +129,6 @@ print(accent('aSITA, IKIMAsu yo.'))
 print(accent('TYOtto SUMIMASEn.'))
 ```
 
-The program decomposes romanized text into individual [mora](https://en.wikipedia.org/wiki/Mora_(linguistics)), detects which mora are high-pitched via capitalization, and applies the appropriate [diacritical marks](https://en.wikipedia.org/wiki/Diacritic): acute (á) for rising pitch, grave (à) for falling pitch, and circumflex (â) for a single high-pitched mora surrounded by low pitch. Punctuation boundaries reset the pitch tracking, respecting [accent phrase](https://en.wikipedia.org/wiki/Japanese_pitch_accent) boundaries in Japanese prosody.
+---
 
 *Originally published on [Quasiphysics](https://quasiphysics.wordpress.com/2012/02/19/adding-accents-to-romanized-japanese/).*

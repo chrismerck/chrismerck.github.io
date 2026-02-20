@@ -50,4 +50,6 @@ It would be nice to automatically generate a list of themed vocabulary, using so
 
 Ideas?
 
+---
+
 *Originally published on [Quasiphysics](https://quasiphysics.wordpress.com/2011/11/22/thematic-chinese-vocabulary/).*

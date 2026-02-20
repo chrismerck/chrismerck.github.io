@@ -10,63 +10,70 @@ tags:
   - chomsky
 ---
 
-I have been reading some introductory texts on [syntax](https://en.wikipedia.org/wiki/Syntax): Baker's *[The Atoms of Language](https://en.wikipedia.org/wiki/The_Atoms_of_Language)*, Chomsky's *[Syntactic Structures](https://en.wikipedia.org/wiki/Syntactic_Structures)*, and the syntax chapter from *Contemporary Linguistics* (3rd edition). My excitement about the field is matched only by my accumulating questions, which I document here for future reference.
+This week I have been reading up on [syntax](https://en.wikipedia.org/wiki/Syntax). I started with Baker's *[The Atoms of Language](https://en.wikipedia.org/wiki/The_Atoms_of_Language)*, continued with Chomsky's *[Syntactic Structures](https://en.wikipedia.org/wiki/Syntactic_Structures)*, and have just finished the syntax chapter of the textbook *Contemporary Linguistics* (3rd edition). I have learned a great deal thus far, but the more I read the more questions I have. I write these notes into the margins of my books, but I now feel the need to post the more salient questions for later reference, lest they get buried when I continue my linguistic inquiry.
 
 <!-- more -->
 
-I am excited about the possibility of understanding [grammar](https://en.wikipedia.org/wiki/Grammar) from historical perspectives and potentially reformulating grammar based on how language functions neurologically, though the latter goal may be decades away.
+In brief, my appetite for syntax has been whetted by Syntactic Structures, but now I hunger to know how to analyze all the language I come across. A more advanced syntax text should answer most of my specific questions. Then, more generally, I am becoming only more excited about the possibility of understanding grammar from a historical perspective and about reformulating grammar based on an understanding of how language actually works in the brain, although the time for the latter may yet be decades away.
 
 ## Specific Questions
 
-**(1) Lexicality and Syntactic Categories.** What is the relationship between lexicality and whether syntactic categories remain open or closed? Nouns, verbs, adjectives, and adverbs are [open categories](https://en.wikipedia.org/wiki/Open_class_word) while prepositions appear closed, yet prepositions can take modifiers -- a lexical trait.
+(1) What is the relationship between lexicality and openness of syntactic categories? Are all lexical categories open? Certainly N, V, A, and Adv are open, but P seems to be closed. I would like then to relegate P to the set of non-lexical categories (which includes Det, Deg, Qual, Aux and Con), but then again, Ps can take Mods, which is a distinct characteristic of a lexical category. (PP->Mod+P+Comp examples: 'all on his own', 'go right home', 'go straight to bed', etc.) [CL p164]
 
-**(2) Single True Category.** Do words possess one fundamental category? Consider "comb" functioning as both noun and verb. Four methods of determination suggest themselves: historical etymology, statistical frequency, structural position in generative derivations, and semantic analysis.
+(2) Do words have a single true category? If so, how can we determine the true category of words which can wear different categorical hats? Take for example 'the comb' and 'to comb'. I can think of several ways of determining the category:
 
-**(3) Complement Redundancy.** There are structural parallels between noun and verb complements (e.g., "argument with Stella" vs. "argue with Stella"). Does the [Minimalist Program](https://en.wikipedia.org/wiki/Minimalist_program) address this efficiency issue? Note "afraid" as a special case.
+- historically: Which is etymologically the original category? (relevant w/r/t registers (see (A) below))
+- statistically: Which is the more frequent usage? (dubious)
+- structurally: Which is the original category in the generative derivation? (See (3))
+- semantically: Of what class is the ultimate referant? I.e. does combing imply a comb and therefore the true category is N?
 
-**(4) Head Definition.** The definition of "[head](https://en.wikipedia.org/wiki/Head_(linguistics))" seems inconsistent across texts -- sometimes as the semantic core, sometimes as a structural element. Did Baker simplify the terminology for popular audiences?
+[CL p165]
 
-**(5) Adjective Derivation.** What are the contemporary derivation methods for noun phrases like "a good book"? Do attributive adjective [transformation rules](https://en.wikipedia.org/wiki/Transformational_grammar) still apply?
+(3) There is redundancy between complement options for verbs and nouns. For example, 'an argument with Stella about politics' and 'to argue with Stella about politics', or 'to fear that Mary left.', 'to be afraid that Mary left'\*, 'the fear that Mary left' Efficiency of representation would suggest that these structures have a common origin. Does the [minimalist program](https://en.wikipedia.org/wiki/Minimalist_program) have something to say about this? [CL p179] (\*) It seems that 'afraid' is special in that it cannot modify an NP: \*'an afraid person.' but 'a person who is afraid'. Historical explanation?
 
-**(6) Pro-Verb Analysis.** In Chomsky's analysis of "The students will wear ties if the teachers will do so," how exactly does the [Pro-V](https://en.wikipedia.org/wiki/Pro-form) analysis work? Why is "do" required before "so"?
+(4) What exactly is a [head](https://en.wikipedia.org/wiki/Head_(linguistics))? It seems that 'head' is defined variously. My original naive notion was that the head of a phrase was the core meaning-bearing element. Baker's Atoms then had me believe (rightly) that the head was a structural notion, and in particular that [Det 'the'] is the head of [DetP 'the book']; this I was uneasy with, so I drew in '+' next to the branches which I believed pointed towards the core element (which I previously called the 'head'). But then in Contemporary Linguistics I'm told that [N 'book'] is the head of [NP 'the book'], 'the' taking the Spec position of the XP. Was Baker's terminology watered down for a popular audience? Is there yet another conception of head in the modern generative tradition? (Similar complaints for 'complement' and 'modifier'.) [CL p168]
 
-**(7) Wh-Movement Parameters.** Can parametric differences explain alternate question forms like "On what can the child sit?" versus "What can the child sit on?" Is this [wh-movement](https://en.wikipedia.org/wiki/Wh-movement) or something else?
+(5) What is the contemporary derivation of 'a good book'? Do we still exclude it from the kernel and instead use Tadj to extract 'good' from a predicate? [CL p174]
 
-**(8) Grammaticalization.** Does "Call me should you need help" represent [grammaticalization](https://en.wikipedia.org/wiki/Grammaticalization) of inverted inflection into a complementizer?
+(6) What is the contemporary derivation of "The students will wear ties if the teachers will do so."? I'm interested because in Syntactic Structures Chomsky calls 'so' a Pro-V, but that would make me expect 'will so' rather than 'will do so'. A derivation should clarify this. [CL p174]
 
-**(9) Transformation Order.** Does the order of application for [Do-support](https://en.wikipedia.org/wiki/Do-support) and Question Inversion matter? Different sources seem to disagree.
+(7) Is there a parametric difference in [Wh movement](https://en.wikipedia.org/wiki/Wh-movement) that causes the pairs 'On what can the child sit?' and 'What can the child sit on?'? I expect the UPenn Syntax book's Wh Movement chapter to help here. [CL p187]
 
-**(10) Trace and Zero Morpheme.** What is the relationship among [traces](https://en.wikipedia.org/wiki/Syntactic_movement#Traces), [zero morphemes](https://en.wikipedia.org/wiki/Null_morpheme), and unfilled phrase structure positions?
+(8) Consider the sentence: "Call me should you need help." Is this a case of [grammaticalization](https://en.wikipedia.org/wiki/Grammaticalization) of an inverted Infl into a complementizer? Are there other cases of this process? [CL p189]
 
-**(11) X-bar Structure Across Languages.** How does [X-bar theory](https://en.wikipedia.org/wiki/X-bar_theory) function in non-S phrases in Thai and free word-order languages like [Warlpiri](https://en.wikipedia.org/wiki/Warlpiri_language) and [Mohawk](https://en.wikipedia.org/wiki/Mohawk_language)?
+(9) Does it matter in what order we apply [Do Insertion](https://en.wikipedia.org/wiki/Do-support) and Question Inversion? The orders in CL and Syntactic Structures differ. [CL p190; SS Appendix II]
 
-**(12) Question Particles.** Can Chinese and Japanese [question particles](https://en.wikipedia.org/wiki/Question_particle) receive a [complementizer](https://en.wikipedia.org/wiki/Complementizer) analysis, similar to Tamil particles?
+(10) What is the relationship among the [trace](https://en.wikipedia.org/wiki/Syntactic_movement#Traces), the [zero morpheme](https://en.wikipedia.org/wiki/Null_morpheme), and unfilled positions in the phrase structure? [CL p192]
 
-**(13) Coordination Rules.** Is the coordination rule consistent across languages? There appear to be differences between English, Japanese, and Thai.
+(11) What is the [X' structure](https://en.wikipedia.org/wiki/X-bar_theory) for non-S phrases in Thai? If the XP rule generates X+Spec+Comp\* then how can X' work? I would expect X and Comp\* to be adjacent. [CL p198] Furthermore, how does the XP rule look for free word-order languages like [Warlpiri](https://en.wikipedia.org/wiki/Warlpiri_language) (case marking) [Baker p26] or [Mohawk](https://en.wikipedia.org/wiki/Mohawk_language) (polysynthetic). At least in the case of Mohawk, it seems that there is an XP-like rule in the morphology.
 
-**(14) Modifier Treatment.** *Contemporary Linguistics* treats modification rather superficially. What are the more rigorous approaches?
+(12) Can the Chinese and Japanese [question particles](https://en.wikipedia.org/wiki/Question_particle) be analyzed as sentence [complementizers](https://en.wikipedia.org/wiki/Complementizer) as is done for Tamil? [CL p199]
 
-**(15) German Head Directionality.** How does [head directionality](https://en.wikipedia.org/wiki/Head-directionality_parameter) currently function in German, and what are the historical trends in [Germanic languages](https://en.wikipedia.org/wiki/Germanic_languages)?
+(13) What is the relationship between the Coordination Rule and the XP Rule? Given Xn->Xn\*+Con+Xn for an XP->Spec+X+Comp\* language like English, I would expect Con to be final in head-final languages, etc.. However, for Japanese we see a final particle 'to' attached to all but the ultimate Xn, and surprisingly in Thai we appear to have the same Coord rule as in English (weak evidence as per Google Translate). [CL p204]
+
+(14) The treatment of Mod in CL seems watered-down. What is the serious approach? [CL p205]
+
+(15) How does [head directionality](https://en.wikipedia.org/wiki/Head-directionality_parameter) work in German today? What are the historical trends in German/[Germanic](https://en.wikipedia.org/wiki/Germanic_languages) head directionality? [Baker p31] Explain the verb finality and words such as 'zweifelsohne'.
 
 ## General Questions
 
-**(A) Historical-Synchronic Integration.** I propose that speakers maintain implicit knowledge of recent grammatical changes, visible in formal register usage. Could we reunify [synchronic and diachronic linguistics](https://en.wikipedia.org/wiki/Synchrony_and_diachrony) into a "language dynamics" theory?
+(A) How can historical linguistics inform synchronic linguistics? Can it play an active role? Saussure seemed to think that diachronic studies could at most passively inform the synchronic science, but I disagree; I believe that speakers have at least implicit knowledge of recent changes in grammar as evidenced by their use of older forms in more formal registers of speech. Through our exposure to older speakers and older writings, we gain a sense of the 'velocity' of the language. (TODO: Read Lightfoot 1991) --- I am tempted to propose a reunification of [synchronic with diachronic linguistics](https://en.wikipedia.org/wiki/Synchrony_and_diachrony) in a theory of 'language dynamics' (this thought came up many times in my reading of Baker), but I'll save that for until after I've had my historical linguistics reading binge.
 
-**(B) Discourse Grammar.** What is the scope of [discourse grammar](https://en.wikipedia.org/wiki/Discourse_analysis) (sentence to text level)? Seeking references.
+(B) How does [discourse grammar](https://en.wikipedia.org/wiki/Discourse_analysis) work? If syntax covers structure from morpheme- to sentence-level, does DG pick up at the sentence level and proceed to the text level? What is a good reference on DG? [CL 172; A Primer for Advanced Beginners of Chinese]
 
-**(C) Generative Syntax History.** I need foundational reading on developments from *Syntactic Structures* to modern [generative syntax](https://en.wikipedia.org/wiki/Generative_grammar), particularly regarding X-bar theory origins and transformation restrictions.
+(C) What is the history between Syntactic Structures and modern [generative syntax](https://en.wikipedia.org/wiki/Generative_grammar)? What should I read to build a foundation? Specifically I'd like to know the origin of the XP/X' idea, and of the formal restrictions on transformations introduced since Syntactic Structures. Is it worth reading The Logical Structure of Linguistic Theory? [CL p188]
 
-**(D) Contemporary Theory.** What constitutes a stable foundational platform in current generative theory?
+(D) What is the contemporary generative theory? What are the stable platforms from which one may work.
 
-**(E) Grammar Induction.** How do [grammar induction](https://en.wikipedia.org/wiki/Grammar_induction) methods tolerate speaker variation? Corpus frequency shouldn't determine grammaticality, yet this creates sensitivity to individual differences.
+(E) How can [grammar induction](https://en.wikipedia.org/wiki/Grammar_induction) tolerate differences in the grammar underlying empirical data? Chomsky argues convincingly that frequency of occurrence in a corpus should not be the basis for grammaticality. [SS p16] However, this makes the program sensitive not only to errors in the corpus but also to real differences in the grammars of speakers. I don't think 'levels of grammaticality' will suffice. Compare Simon Kirby's work on grammar induction in simulated L1 learners. --- More generally, I wonder what the state-of-the-art is in grammar induction by unsupervised methods.
 
-**(F) Word Choice Restriction.** Should syntax prevent anomalous selections like "John frightens sincerity"? This touches on [selectional restriction](https://en.wikipedia.org/wiki/Selection_(linguistics)).
+(F) How does restriction of word choice occur in the phrase-structure grammar? Is it really the role of syntax to prevent such sentences as 'John frightens sincerity'? [SS p42]
 
-**(G) Neurological Correspondence.** How close are generative models to actual neurological processes? The analogy to [Copernicus](https://en.wikipedia.org/wiki/Copernican_heliocentrism) needing [Newton](https://en.wikipedia.org/wiki/Newton%27s_law_of_universal_gravitation) -- descriptive adequacy awaiting mechanistic explanation -- seems apt. Do rule orderings correspond to neurological processing?
+(G) How close is the formal generative model to the real neurological process for sentence generation and understanding? This leads me to make an analogy between [Chomsky](https://en.wikipedia.org/wiki/Noam_Chomsky) and [Copernicus](https://en.wikipedia.org/wiki/Copernican_heliocentrism): we are still waiting for our [Newton](https://en.wikipedia.org/wiki/Newton%27s_law_of_universal_gravitation) to provide a mechanism with sufficient explanatory power. [SS pp43,48] More specifically, do the orderings of rules in [transformational grammar](https://en.wikipedia.org/wiki/Transformational_grammar) or phonetic optimality theory have neurological correspondents?
 
-**(H) Prosody.** I find the transformational explanation for emphatic "do" stress patterns compelling. Do other [prosodic](https://en.wikipedia.org/wiki/Prosody_(linguistics)) patterns receive similar explanation within the generative framework?
+(H) The transformational explanation for the emphatic 'do' in SS p65 is brilliant, especially in that it explains the heavy stress on 'do' in the resulting phonetic string. Can other types of stress be explained in a similar way? How does [prosody](https://en.wikipedia.org/wiki/Prosody_(linguistics)) fit into the generative paradigm?
 
-**(I) Language Evolution.** Baker's discussion of [evolutionary advantages](https://en.wikipedia.org/wiki/Origin_of_language) to group fragmentation through linguistic divergence is interesting but seems unresolved.
+(I) When discussing evolution and language, Baker speaks of "possible advantages to breaking humanity up into smaller teams". This is an interesting question of more general evolutionary theory which I have pondered before but have not reached a conclusion on.
 
 ---
 
