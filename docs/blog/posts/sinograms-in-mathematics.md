@@ -11,7 +11,7 @@ tags:
   - notation
 ---
 
-While taking notes for [ai-class](https://en.wikipedia.org/wiki/Introduction_to_Artificial_Intelligence_(course)), I found myself in a conundrum that any amateur mathematician can relate to: I ran out of appropriate letters in the Roman and Greek alphabets.
+While taking notes for [ai-class](https://en.wikipedia.org/wiki/Udacity), I found myself in a conundrum that any amateur mathematician can relate to: I ran out of appropriate letters in the Roman and Greek alphabets.
 
 <!-- more -->
 

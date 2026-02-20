@@ -10,7 +10,7 @@ tags:
   - chomsky
 ---
 
-This week I have been reading up on [syntax](https://en.wikipedia.org/wiki/Syntax). I started with Baker's *[The Atoms of Language](https://en.wikipedia.org/wiki/The_Atoms_of_Language)*, continued with Chomsky's *[Syntactic Structures](https://en.wikipedia.org/wiki/Syntactic_Structures)*, and have just finished the syntax chapter of the textbook *Contemporary Linguistics* (3rd edition). I have learned a great deal thus far, but the more I read the more questions I have. I write these notes into the margins of my books, but I now feel the need to post the more salient questions for later reference, lest they get buried when I continue my linguistic inquiry.
+This week I have been reading up on [syntax](https://en.wikipedia.org/wiki/Syntax). I started with Baker's *[The Atoms of Language](https://en.wikipedia.org/wiki/Mark_Baker_(linguist))*, continued with Chomsky's *[Syntactic Structures](https://en.wikipedia.org/wiki/Syntactic_Structures)*, and have just finished the syntax chapter of the textbook *Contemporary Linguistics* (3rd edition). I have learned a great deal thus far, but the more I read the more questions I have. I write these notes into the margins of my books, but I now feel the need to post the more salient questions for later reference, lest they get buried when I continue my linguistic inquiry.
 
 <!-- more -->
 
@@ -47,7 +47,7 @@ In brief, my appetite for syntax has been whetted by Syntactic Structures, but n
 
 (11) What is the [X' structure](https://en.wikipedia.org/wiki/X-bar_theory) for non-S phrases in Thai? If the XP rule generates X+Spec+Comp\* then how can X' work? I would expect X and Comp\* to be adjacent. [CL p198] Furthermore, how does the XP rule look for free word-order languages like [Warlpiri](https://en.wikipedia.org/wiki/Warlpiri_language) (case marking) [Baker p26] or [Mohawk](https://en.wikipedia.org/wiki/Mohawk_language) (polysynthetic). At least in the case of Mohawk, it seems that there is an XP-like rule in the morphology.
 
-(12) Can the Chinese and Japanese [question particles](https://en.wikipedia.org/wiki/Question_particle) be analyzed as sentence [complementizers](https://en.wikipedia.org/wiki/Complementizer) as is done for Tamil? [CL p199]
+(12) Can the Chinese and Japanese [question particles](https://en.wikipedia.org/wiki/Interrogative_word) be analyzed as sentence [complementizers](https://en.wikipedia.org/wiki/Complementizer) as is done for Tamil? [CL p199]
 
 (13) What is the relationship between the Coordination Rule and the XP Rule? Given Xn->Xn\*+Con+Xn for an XP->Spec+X+Comp\* language like English, I would expect Con to be final in head-final languages, etc.. However, for Japanese we see a final particle 'to' attached to all but the ultimate Xn, and surprisingly in Thai we appear to have the same Coord rule as in English (weak evidence as per Google Translate). [CL p204]
 
