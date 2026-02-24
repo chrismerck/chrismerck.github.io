@@ -38,17 +38,13 @@ theme:
     - navigation.indexes
     # - navigation.tabs
     # - navigation.tabs.sticky
-    - toc.integrate
+    # toc.integrate disabled — TOC renders in its own right sidebar
+    # - toc.integrate
     - search.highlight
     - search.share
   font:
     # Vintage fonts with 1940s aesthetic:
-    text: "Special Elite"  # Classic weathered typewriter font
-    #text: "Courier Prime"  # Authentic typewriter font with vintage feel
-    #text: "American Typewriter"  # Classic mid-century typewriter style
-    #text: "Josefin Slab"  # Elegant vintage slab serif
-    #text: "Playfair Display"  # Sophisticated vintage typography
-    #text: "Old Standard TT"  # Classic book and newspaper style
+    text: "Newsreader"  # Editorial serif for readable long-form text
     code: "Fira Code"
 
 # Extra CSS files
@@ -81,8 +77,9 @@ markdown_extensions:
   - pymdownx.superfences
 
 plugins:
-  - search 
-  - blog
+  - search
+  - blog:
+      categories: false
   - mermaid2
 
 extra_javascript:

@@ -2,52 +2,43 @@
 title: Chris Merck
 ---
 
-# welcome to my digital lab notebook
+# about me
 
-## about me
+![Chris Merck](assets/chris-merck.jpg){ align=right width="200" }
 
-I'm an entrepreneur-engineer, erstwhile researcher, amateur musician and radio operator (W2CAM), and linguaphile. I am co-founder and CTO at **Olibra ([Bond Home](https://bondhome.io))**, where I lead a team building great smart home experiences. My work combines networks, physics, and philosophy. I advise and collaborate with students, founders, and mystics.
+I'm an entrepreneur-engineer, researcher, and linguaphile. 
+I am co-founder and CTO at **[Bond Home](https://bondhome.io)**, where I lead a team building smart home experiences.
 
-Research directions I'm following with interest:
+Someday I want to build highly-effective and enjoyable language learning software.
 
- - scalable alignment of AI
- - evaluating capabilities of agentic systems, especially as applied to embedded systems
- - agent architectures (esp. multi-agent systems and non-linear chain of thought)
- - automated discovery and explanation of reasoning failures
+In the meantime, we've got a lot of work to do ensuring advances in artificial intelligence are aligned with human interests,
+and so that is getting my research attentions.
 
-## past projects
+## experiences
 
-I'm currently enrolled in the **Frontier Language Models** Fractal U course, and I'm [blogging](blog) my course projects. Currently
-studying reasoning failures in DeepSeek models.
+I have recently been reading interpretability papers and trying to [reproduce their figures](blog/2025/05/14/demonstrating-superposition/).
 
-I'm curious about AI interpretability, so I [reproduced the intro figure](blog/2025/05/14/demonstrating-superposition/)
- from Anthropic's Toy Models of Superposition. I wanted a refresher, so rather than use an autograd I worked out the gradients by hand and implemented in C. My small contribution is animating the embedding during learning which gives a physical intuition about local minima.
+I got a small grant to [investigate reasoning failures in DeepSeek models](blog/2025/08/17/locating-reasoning-errors-with-active-sampling/).
 
----
+I've been dabbling with NLP/ML for a long while, origially inspired by [Manning & Schuetze](blog/2011/06/30/statistical-nlp-book). I'm a fan of [spacial visualizations](blog/2011/12/13/visualizing-knn-regression/) (2011) and [multimodality](blog/2013/08/08/speech-transcript-alignment/) (2013). 
 
-I've been dabbling with NLP/ML for a long while. Here's a [blog post from 2011 on KNN visualization](https://quasiphysics.wordpress.com/2011/12/13/visualizing-k-nearest-neighbor-regression/) that shows how I can make fully custom figures to communicate mathematical ideas.
+I built a [home control demo](https://www.youtube.com/watch?v=F_rlwDuOiXU) the morning that `gpt-4o` was released.
 
----
-
-I once came up with a [backdoor way to align an audio book with the text](https://quasiphysics.wordpress.com/2013/08/08/speech-transcript-alignment/): use even poor quality TTS software that gives timestamps and then use DTW algo to to align the two audio files.
-
-![aligned-spectrograms](assets/aligned-spectrograms.png)
-
----
-
-At my smart home company, we've watched as each successive LLM opens new home control capabilities. 
-Together with a front-end engineer, I built a [home control demo](https://www.youtube.com/watch?v=F_rlwDuOiXU) the morning that `gpt-4o` was released.
-The faster inference dropped the latency to the point it made for a compelling demo. I had originally built this on davinci-003 before tool calling was available, and I still used nearly the same prompt with lots of JSON examples. (1) 
-{ .annotate }
-
-1. I still think it would be amazing to be able to specify a grammar for the LLM to follow. Should be easy to just condition the output probabilities on being grammatical (provided there's no garden paths :hmm:).
-
----
-
-Lastly, I also do the mundane stuff that has to happen around the research. Here's a figure I drew for one of Kleinberg Lab's papers in grad school. I wrote the video annotation software and fabricated a custom table in a woodshop in addition to coding the ML pipeline.
+I studied physics and computer science at [Stevens](stevens.edu), writing a wave tank controller for NASA Wallops, video annotation software to label data for an NIH-funded eating study, and channeled Russel Monroe whenever making figures.
 
 ![Kleinberg Lab](assets/pipeline.png)
 
+
+## blog highlights
+
+- [Humpty Dumpty Successfully Annealed](blog/2026/02/19/humpty-dumpty-successfully-annealed-with-aid-of-hungarian-algorithm-and-svd/) (2026) — Solving a Jane Street puzzle: reassembling a neural network's scrambled layers with the Hungarian algorithm and SVD
+- [Considerations when Building Embedded Databases](blog/2024/07/24/considerations-when-building-embedded-databases/) (2024) — Pitfalls of persisting device state to flash memory, originally published on Memfault's Interrupt blog
+- [Clustering Jane Austen](blog/2011/08/17/clustering-jane-austen/) (2011) — Hierarchical clustering on word bigrams across Austen's novels, with dendrograms and word clouds
+- [Easy Syntax Trees](blog/2011/05/02/easy-syntax-trees/) (2011) — An informal diagramming technique applied to English, Chinese, and a long Kafka sentence
+- [Korean Kuriosities](blog/2011/05/27/korean-kuriosities/) (2011) — Observations on Hanja, borrowed words, and calligraphy from a trip to Seoul
+- [Extending the Knuth Operator](blog/2011/12/18/extending-the-knuth-operator/) (2011) — Exploring fractional extensions of Knuth's up-arrow notation
+- [Option Pricing and Brownian Motion](blog/2011/03/29/option-pricing-and-brownian-motion/) (2011) — Connecting stock option pricing theory to the physics of diffusion
+- [Playing Genetic Doublets in 3D](blog/2010/12/05/playing-genetic-doublets-in-3d/) (2010) — Lewis Carroll's word ladder game solved with genetic algorithms and embedded in 3D
 
 ## selected papers
 
