@@ -69,4 +69,4 @@ I studied physics and computer science at [Stevens](stevens.edu), writing a wave
 
 ## misc
 
-Otherwise I spend my time playing guitar, taking friends foraging, ever so gradually learning Latin, and teaching kids to solder and code. My intent with this site is to share occasional writeups related to work, research, and adjacent. 
+Otherwise I spend my time playing guitar, taking friends [foraging](https://naturalist.substack.com/), ever so gradually [learning](https://african.wisc.edu/kato-lomb-polyglot-how-i-learn-languages-berkeley-tesl-ej-2008/) [Latin](https://www.reddit.com/r/latin/comments/vyjjhn/graphic_showing_progression_of_llpsi_texts/), and teaching kids to solder and code. My intent with this site is to share occasional writeups related to work, research, and adjacent. 
