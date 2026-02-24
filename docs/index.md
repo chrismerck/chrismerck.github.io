@@ -9,25 +9,39 @@ title: Chris Merck
 I'm an entrepreneur-engineer, researcher, and linguaphile. 
 I am co-founder and CTO at **[Bond Home](https://bondhome.io)**, where I lead a team building smart home experiences.
 
-Someday I want to build highly-effective and enjoyable language learning software.
+Someday I shall build delightful language learning software,
+so that anyone may benefit from the wonders of comprehensable input
+and spaced repetition, all while having fun and enhancing 
+international goodwill.
 
-In the meantime, we've got a lot of work to do ensuring advances in artificial intelligence are aligned with human interests,
-and so that is getting my research attentions.
+In the meantime, we have our work cut out for us 
+ensuring advances in artificial intelligence are aligned with human interests.
+I'm encouraged by the successes of 
+[Constitutional Alignment](https://www.anthropic.com/constitution), 
+but we have yet to really grapple with the challenges of 
+[multi-agent reinforcement learning](https://www.marl-book.com/)
+and more generally the coupling of 
+[powerful agentic AI with the economy](https://www.darioamodei.com/essay/the-adolescence-of-technology#4-player-piano).
+
+Looking for collaborations with researchers and safety-focused organizations in the areas of scalable alignment and interpretability. As Nick Bostrom says:
+
+> the most appropriate attitude may be a bitter determination to be as competent as we can, mack as if we were preparing for a difficult exam that will either realize our dreams or obliterate them
+
+Bring it on!
 
 ## experiences
 
-I have recently been reading interpretability papers and trying to [reproduce their figures](blog/2025/05/14/demonstrating-superposition/).
+I have been reading interpretability papers and trying to [reproduce their figures](blog/2025/05/14/demonstrating-superposition/).
 
-I got a small grant to [investigate reasoning failures in DeepSeek models](blog/2025/08/17/locating-reasoning-errors-with-active-sampling/).
-
-I've been dabbling with NLP/ML for a long while, origially inspired by [Manning & Schuetze](blog/2011/06/30/statistical-nlp-book). I'm a fan of [spacial visualizations](blog/2011/12/13/visualizing-knn-regression/) (2011) and [multimodality](blog/2013/08/08/speech-transcript-alignment/) (2013). 
+I received a small grant to [investigate reasoning failures in DeepSeek models](blog/2025/08/17/locating-reasoning-errors-with-active-sampling/).
 
 I built a [home control demo](https://www.youtube.com/watch?v=F_rlwDuOiXU) the morning that `gpt-4o` was released.
+
+I've been dabbling with NLP/ML for a long while, origially inspired by [Manning & Schuetze](blog/2011/06/30/statistical-nlp-book). I'm a fan of [spacial visualizations](blog/2011/12/13/visualizing-knn-regression/) (2011) and [multimodality](blog/2013/08/08/speech-transcript-alignment/) (2013). 
 
 I studied physics and computer science at [Stevens](stevens.edu), writing a wave tank controller for NASA Wallops, video annotation software to label data for an NIH-funded eating study, and channeled Russel Monroe whenever making figures.
 
 ![Kleinberg Lab](assets/pipeline.png)
-
 
 ## blog highlights
 
@@ -55,4 +69,4 @@ I studied physics and computer science at [Stevens](stevens.edu), writing a wave
 
 ## misc
 
-Otherwise I spend my time doodling on guitar, taking friends foraging, ever so gradually learning Latin, and teaching kids to solder and code. My intent with this site is to share occasional writeups related to work, research, and adjacent. Try the sidebar menu.
+Otherwise I spend my time playing guitar, taking friends foraging, ever so gradually learning Latin, and teaching kids to solder and code. My intent with this site is to share occasional writeups related to work, research, and adjacent. 
