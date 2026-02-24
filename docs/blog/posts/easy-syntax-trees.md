@@ -51,7 +51,7 @@ Note that I've left off the arrows indicating direction of the modification rela
 
 ## German Example
 
-I wanted to round the post out with a literary example. I take the second sentence from Kafka's [*Das Urteil*](https://en.wikipedia.org/wiki/The_Judgment_(short_story)):
+I wanted to round the post out with a literary example. I take the second sentence from Kafka's [*Das Urteil*](https://en.wikipedia.org/wiki/The_Judgment):
 
 *"Georg Bendemann, ein junger Kaufmann, sass in seinem Privatzimmer im ersten Stock eines der niedrigen, leichtgebauten Haeuser, die entlang des Flusses in einer langen Reihe, fast nur in der Hoehe und Faerbung unterschieden, sich hinzogen."*
 

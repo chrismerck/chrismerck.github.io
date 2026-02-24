@@ -97,13 +97,11 @@ I am grateful for discussions of this work with Anuj Apte. This work is generous
 
 ## References
 
-- Adams, R. P., & MacKay, D. J. (2007). Bayesian online changepoint detection. arXiv preprint arXiv:0710.3742.
-- Anthropic (2025). Claude 3.5 Sonnet with Computer Use. Available at: https://www.anthropic.com/
-- Bogdan, P., et al. (2025). Thought Experiments: Counterfactual Reasoning in Chain-of-Thought. arXiv preprint.
-- DeepSeek (2025). DeepSeek R1: Reasoning at the Edge of AGI. arXiv preprint.
+- Adams, R. P., & MacKay, D. J. (2007). Bayesian online changepoint detection. [arXiv:0710.3742](https://arxiv.org/abs/0710.3742).
+- Bogdan, P., et al. (2025). Thought Anchors: Which LLM Reasoning Steps Matter? [arXiv:2506.19143v1](https://arxiv.org/abs/2506.19143v1)
+- DeepSeek (2025). DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning [arXiv:2501.12948](https://arxiv.org/abs/2501.12948).
 - Korbak, T., et al. (2025). Chain-of-thought reasoning as a monitoring opportunity. arXiv preprint.
-- Lightman, H., et al. (2023). Let's verify step by step. arXiv preprint.
-- Merck, C., & Kleinberg, S. (2016). Causal explanation under indeterminacy: A sampling approach. In Proceedings of the AAAI Conference on Artificial Intelligence.
-- Tyen, G., et al. (2024). LLMs cannot correct reasoning errors yet. arXiv preprint.
-- Wu, Y., et al. (2022). Autoformalization with large language models. arXiv preprint.
-- Xia, M., Li, X., Liu, F., Wu, B., & Liu, P. (2025). Reasoning structure in chain-of-thought beyond accuracy. arXiv preprint.
+- Lightman, H., et al. (2023). Let's verify step by step. [arXiv:2305.20050](https://arxiv.org/abs/2305.20050).
+- Merck, C., & Kleinberg, S. (2016). Causal explanation under indeterminacy: A sampling approach. In Proceedings of the AAAI Conference on Artificial Intelligence, vol. 30, no. 1. AAAI 2016
+- Tyen, G., et al. (2024). LLMs cannot find reasoning errors, but can correct them given the error location. [arXiv:2311.08516](https://arxiv.org/abs/2311.08516).
+- Wu, Y., et al. (2022). Autoformalization with large language models. [arXiv:2205.12615](https://arxiv.org/abs/2205.12615).
