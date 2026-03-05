@@ -1,5 +1,6 @@
 ---
 title: "elfvis - binary size treemap viewer"
+slug: elfvis
 date: 2026-03-05
 description: "where have all the kibibytes have gone"
 categories:
