@@ -6,37 +6,35 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Research Notebook">
+        <meta name="description" content="where have all the kibibytes have gone">
       
       
         <meta name="author" content="Chris Merck">
       
       
-        <link rel="canonical" href="https://chrismerck.github.io/blog/archive/2024/">
+        <link rel="canonical" href="https://chrismerck.github.io/blog/2026/03/05/elfvis---binary-size-treemap-viewer/">
       
       
-        <link rel="prev" href="../2025/">
+        <link rel="prev" href="../../../02/19/humpty-dumpty-successfully-annealed-with-aid-of-hungarian-algorithm-and-svd/">
       
-      
-        <link rel="next" href="../2013/">
       
       
         
       
       
-      <link rel="icon" href="../../../assets/favicon.png">
+      <link rel="icon" href="../../../../../assets/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
     
     
       
-        <title>2024 - Chris Merck</title>
+        <title>elfvis - binary size treemap viewer - Chris Merck</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,9 +53,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/custom.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/custom.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -82,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#2024" class="md-skip">
+        <a href="#elfvis-binary-size-treemap-viewer" class="md-skip">
           Skip to content
         </a>
       
@@ -98,9 +96,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Chris Merck" class="md-header__button md-logo" aria-label="Chris Merck" data-md-component="logo">
+    <a href="../../../../.." title="Chris Merck" class="md-header__button md-logo" aria-label="Chris Merck" data-md-component="logo">
       
-  <img src="../../../assets/favicon.png" alt="logo">
+  <img src="../../../../../assets/favicon.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -117,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              2024
+              elfvis - binary size treemap viewer
             
           </span>
         </div>
@@ -229,7 +227,9 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -238,9 +238,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Chris Merck" class="md-nav__button md-logo" aria-label="Chris Merck" data-md-component="logo">
+    <a href="../../../../.." title="Chris Merck" class="md-nav__button md-logo" aria-label="Chris Merck" data-md-component="logo">
       
-  <img src="../../../assets/favicon.png" alt="logo">
+  <img src="../../../../../assets/favicon.png" alt="logo">
 
     </a>
     Chris Merck
@@ -267,7 +267,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../../../../.." class="md-nav__link">
         
   
   
@@ -321,7 +321,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../" class="md-nav__link ">
+            <a href="../../../../" class="md-nav__link ">
               
   
   
@@ -362,10 +362,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -391,11 +389,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
         
           
           <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
@@ -416,7 +416,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -436,7 +436,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../2026/" class="md-nav__link">
+      <a href="../../../../archive/2026/" class="md-nav__link">
         
   
   
@@ -466,7 +466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../2025/" class="md-nav__link">
+      <a href="../../../../archive/2025/" class="md-nav__link">
         
   
   
@@ -491,23 +491,12 @@
                 
   
   
-    
-  
   
     
-      
-    
   
   
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../../archive/2024/" class="md-nav__link">
         
   
   
@@ -523,7 +512,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -538,7 +526,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../2013/" class="md-nav__link">
+      <a href="../../../../archive/2013/" class="md-nav__link">
         
   
   
@@ -568,7 +556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../2012/" class="md-nav__link">
+      <a href="../../../../archive/2012/" class="md-nav__link">
         
   
   
@@ -598,7 +586,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../2011/" class="md-nav__link">
+      <a href="../../../../archive/2011/" class="md-nav__link">
         
   
   
@@ -628,7 +616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../2010/" class="md-nav__link">
+      <a href="../../../../archive/2010/" class="md-nav__link">
         
   
   
@@ -658,7 +646,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../2009/" class="md-nav__link">
+      <a href="../../../../archive/2009/" class="md-nav__link">
         
   
   
@@ -702,6 +690,8 @@
             
             
               
+                
+              
               <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
@@ -714,6 +704,36 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learnings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learnings
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -721,62 +741,127 @@
             
           
           
-  <div class="md-content" data-md-component="content">
-    <div class="md-content__inner">
-      <header class="md-typeset">
-        <h1 id="2024">2024<a class="headerlink" href="#2024" title="Permanent link">&para;</a></h1>
-      </header>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2024-07-24 00:00:00+00:00">July 24, 2024</time></li>
-        
-        
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2026-03-05 00:00:00+00:00" class="md-ellipsis">March 5, 2026</time>
+                      </div>
+                    </li>
+                    
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              2 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
           
-          <li class="md-meta__item">
-            
-              11 min read
-            
-          </li>
-        
-        
-      </ul>
-      
+        </div>
+      </div>
     </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="considerations-when-building-embedded-databases"><a class="toclink" href="../../2024/07/24/considerations-when-building-embedded-databases/">Considerations when Building Embedded Databases</a></h2>
-<p><em>Originally published on <a href="https://interrupt.memfault.com/blog/choosing-or-building-an-embedded-db">Memfault's Interrupt blog</a>.</em></p>
-<p>Persisting to flash is a necessary evil for many embedded devices. Let's take a
-look at some of the pitfalls and how they may be avoided.</p>
-
-    
-      <nav class="md-post__action">
-        <a href="../../2024/07/24/considerations-when-building-embedded-databases/">
-          Continue reading
-        </a>
-      </nav>
-    
-    
-  </div>
-</article>
-      
+    <article class="md-content__inner md-typeset">
       
         
-          
-
-
-
-<nav class="md-pagination">
   
-</nav>
-        
+
+
+
+  
+  
+
+
+<h1 id="elfvis-binary-size-treemap-viewer">elfvis - binary size treemap viewer<a class="headerlink" href="#elfvis-binary-size-treemap-viewer" title="Permanent link">&para;</a></h1>
+<p><em>Originally published on <a href="https://merck.substack.com/p/elfvis-binary-size-treemap-viewer">Substack</a>.</em></p>
+<p><strong>tl;dr:</strong> i built a webpage that shows you where all the flash space in your firmware project has gone.</p>
+<p><a href="https://bondhome.github.io/elfvis/">Elfvis</a> has entered the building:</p>
+<!-- more -->
+
+<p><img alt="visualization of where all the flash space goes in the ESP32 hello world example" src="../../../../../assets/elfvis-treemap.png" /></p>
+<p>Let's say you've run out of flash on your embedded project. Whoops. Now every time you want to add a feature, you need to squeeze out some KiB from somewhere else. The trouble is, running <code>nm</code> is such a bore and <a href="https://github.com/google/bloaty">Bloaty</a> is still tricky to see the whole project at once.</p>
+<p>So, inspired by Simon Willison's recent <a href="https://simonw.substack.com/p/agentic-engineering-patterns">remark</a> about the Go ecosystem having a <a href="https://github.com/Zxilly/go-size-analyzer">Go binary visualizer</a>, I went and built a little binary size visualizer of my own, that you can run right from your browser.</p>
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<ol>
+<li>build your firmware</li>
+<li>find the <code>.elf</code> file<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></li>
+<li>go to <a href="https://bondhome.github.io/elfvis/">https://bondhome.github.io/elfvis/</a></li>
+<li>drag and drop the elf</li>
+<li><strong>the elf does not leave your machine</strong></li>
+</ol>
+<p>So far I've only tested this on STM32 and ESP32 binaries. Does not (yet) work for macOS binaries.</p>
+<h2 id="learnings">Learnings<a class="headerlink" href="#learnings" title="Permanent link">&para;</a></h2>
+<p>Made in one morning with Claude Code / Opus 4.6, <a href="https://en.wikipedia.org/wiki/Jesse_Vincent">Jesse Vincent</a>'s <a href="https://github.com/obra/superpowers">superpowers</a>, and copious amounts of <a href="https://www.stumptowncoffee.com/">Stumptown</a>.</p>
+<p>The key steering I did was to <strong>build entirely in Rust/WASM</strong>, even the file upload. The frontend is just <strong>Rust writing directly to HTML5 Canvas.</strong> This is very performant and "Keeps It Simple Siegfried." I've never been much for frameworks, having always just preferred to go straight to Canvas, and now Rust can do it. 🤯</p>
+<p>The coloring works by starting out with the full <a href="https://en.wikipedia.org/wiki/Hue">hue</a> interval from 0°–360°. Then, each time we branch off down the file tree, we apportion the hue interval of the parent relative to the area of the subtrees. This way all the colors of the color wheel are distributed evenly across the screen.</p>
+<p>When testing on some binaries from work, I got lots of memory in the <code>.rodata</code> section, many of which did not even have any symbols attached. To solve this, elfvis peeks into the code<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> and tries to trace out which files reference that memory and attributes the data under that file.</p>
+<p>It's hard to fit all the symbol and file names, so if space runs out I try to show the end of the name, because the prefixes are often already clear from the tree context. Mouse over to get details.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>be sure to build with debug symbols (<code>-g</code>)&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Actually it uses something called <a href="https://calabro.io/dwarf/die">DWARF Debug Information Entries.</a>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
       
-    </div>
+    </article>
   </div>
 
           
@@ -818,10 +903,10 @@ look at some of the pitfalls and how they may be avoided.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "search.highlight", "search.share"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
