@@ -55,6 +55,7 @@ nav:
   - Home: index.md
   - Blog:
     - blog/index.md
+  - Flower Pot Calculator: flowerpot/index.html
 
 markdown_extensions:
   - admonition

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>N-Sided Flower Pot Calculator</title>
+<style>
+  :root {
+    --bg: #f7f6f3;
+    --panel: #ffffff;
+    --ink: #1f2024;
+    --muted: #6b6f76;
+    --line: #d9d6cf;
+    --accent: #3f51b5;
+    --accent-soft: #e8eaf6;
+    --wood: #c8965a;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Newsreader", Georgia, "Times New Roman", serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 24px 18px 64px; }
+  h1 { font-weight: 600; font-size: 30px; margin: 0 0 4px; }
+  .lede { color: var(--muted); margin: 0 0 22px; max-width: 760px; }
+  .grid { display: grid; grid-template-columns: 320px 1fr; gap: 20px; align-items: start; }
+  @media (max-width: 880px) { .grid { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .card h2 { font-size: 17px; margin: 0 0 12px; font-weight: 600; }
+  label { display: block; font-size: 14px; color: var(--muted); margin: 10px 0 3px; }
+  .field { display: flex; align-items: baseline; gap: 8px; }
+  .field .sym { font-style: italic; font-weight: 600; width: 24px; color: var(--ink); }
+  input[type="number"] {
+    flex: 1; width: 100%; font: inherit; font-size: 15px;
+    padding: 7px 9px; border: 1px solid var(--line); border-radius: 6px; background: #fff;
+  }
+  input:focus { outline: 2px solid var(--accent-soft); border-color: var(--accent); }
+  .units { display:flex; gap:6px; margin-top:6px; }
+  .units button {
+    font: inherit; font-size: 13px; padding: 4px 10px; cursor: pointer;
+    border: 1px solid var(--line); background:#fff; border-radius: 6px; color: var(--muted);
+  }
+  .units button.active { background: var(--accent); color:#fff; border-color: var(--accent); }
+  .err { color: #b3261e; font-size: 13px; min-height: 18px; margin-top: 6px; }
+
+  table.res { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  table.res td { padding: 6px 4px; border-bottom: 1px solid var(--line); vertical-align: baseline; }
+  table.res tr:last-child td { border-bottom: none; }
+  table.res .name { color: var(--muted); }
+  table.res .sym { font-style: italic; font-weight: 600; padding-right: 2px; }
+  table.res .val { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+  .grp-head td { font-weight:600; color: var(--ink); padding-top: 12px; border-bottom: 2px solid var(--line); }
+
+  .views { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 1080px) { .views { grid-template-columns: 1fr; } }
+  .viewbox { display:flex; flex-direction: column; }
+  #three { width: 100%; height: 440px; border-radius: 8px; background:
+      radial-gradient(circle at 50% 35%, #fbfaf7, #e9e6df); border: 1px solid var(--line);
+      touch-action: none; }
+  .controls { display:flex; align-items:center; gap: 12px; margin-top: 10px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
+  .controls input[type=range] { flex: 1; min-width: 120px; }
+  .controls button { font: inherit; font-size: 13px; padding: 5px 11px; cursor: pointer;
+    border: 1px solid var(--line); background:#fff; border-radius: 6px; }
+  svg { width: 100%; height: auto; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
+  .caption { font-size: 13px; color: var(--muted); margin: 8px 2px 0; }
+  .legend { font-size: 13px; color: var(--muted); margin-top: 10px; }
+  .legend b { color: var(--ink); }
+  code { font-family: "Fira Code", ui-monospace, Menlo, Consolas, monospace; font-size: 13px;
+    background: var(--accent-soft); padding: 1px 5px; border-radius: 4px; }
+  .toplink { font-size: 14px; }
+  .toplink a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="toplink"><a href="../">&larr; chrismerck.github.io</a></p>
+  <h1>N-Sided Flower Pot Calculator</h1>
+  <p class="lede">
+    Design a tapered flower pot built from <em>n</em> identical mitered boards. The top and bottom
+    are regular <em>n</em>-gons. Enter the apothems (center-to-face distance) and height, and get the
+    board widths, the cut angles, an exploded 3&nbsp;D model, and a fully-dimensioned board diagram.
+  </p>
+
+  <div class="grid">
+    <!-- ---------- INPUTS + RESULTS ---------- -->
+    <div>
+      <div class="card">
+        <h2>Inputs</h2>
+        <label for="n">Number of sides</label>
+        <div class="field"><span class="sym">n</span><input id="n" type="number" min="3" step="1" value="6"></div>
+
+        <label for="a2">Top apothem (center &rarr; face, top)</label>
+        <div class="field"><span class="sym">a&#8322;</span><input id="a2" type="number" min="0" step="any" value="120"></div>
+
+        <label for="a1">Bottom apothem (center &rarr; face, bottom)</label>
+        <div class="field"><span class="sym">a&#8321;</span><input id="a1" type="number" min="0" step="any" value="80"></div>
+
+        <label for="h">Height</label>
+        <div class="field"><span class="sym">h</span><input id="h" type="number" min="0" step="any" value="150"></div>
+
+        <div class="units" id="units">
+          <button data-u="mm" class="active">mm</button>
+          <button data-u="cm">cm</button>
+          <button data-u="in">in</button>
+        </div>
+        <div class="err" id="err"></div>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <h2>Results</h2>
+        <table class="res">
+          <tr class="grp-head"><td colspan="3">Board dimensions</td></tr>
+          <tr><td><span class="sym">w&#8322;</span></td><td class="name">Outside width, top edge</td><td class="val" id="r_w2"></td></tr>
+          <tr><td><span class="sym">w&#8321;</span></td><td class="name">Outside width, bottom edge</td><td class="val" id="r_w1"></td></tr>
+          <tr><td><span class="sym">L</span></td><td class="name">Board length (along slope)</td><td class="val" id="r_L"></td></tr>
+
+          <tr class="grp-head"><td colspan="3">Cut angles</td></tr>
+          <tr><td><span class="sym">B</span></td><td class="name">Long-side bevel (joint)</td><td class="val" id="r_bside"></td></tr>
+          <tr><td><span class="sym">&beta;</span></td><td class="name">Top &amp; bottom bevel (level)</td><td class="val" id="r_beta"></td></tr>
+          <tr><td><span class="sym">&delta;</span></td><td class="name">Side taper (board outline)</td><td class="val" id="r_delta"></td></tr>
+
+          <tr class="grp-head"><td colspan="3">Reference</td></tr>
+          <tr><td><span class="sym">&Phi;</span></td><td class="name">Dihedral between boards</td><td class="val" id="r_phi"></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ---------- VIEWS ---------- -->
+    <div>
+      <div class="views">
+        <div class="viewbox card">
+          <h2>3&nbsp;D model &amp; exploded view</h2>
+          <div id="three"></div>
+          <div class="controls">
+            <span>Explode</span>
+            <input id="explode" type="range" min="0" max="100" value="0">
+            <button id="resetView">Reset view</button>
+          </div>
+          <p class="caption">Drag to orbit &middot; scroll to zoom &middot; slide to separate the boards.</p>
+        </div>
+
+        <div class="viewbox card">
+          <h2>One board &mdash; flat outline</h2>
+          <svg id="boardSvg" viewBox="0 0 400 440" preserveAspectRatio="xMidYMid meet"></svg>
+          <p class="caption">The board is an isosceles trapezoid. Long edges get bevel <b>B</b>; the
+            top &amp; bottom edges get bevel <b>&beta;</b>.</p>
+          <h2 style="margin-top:18px;">Elevation (cross-section)</h2>
+          <svg id="elevSvg" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet"></svg>
+          <p class="caption">Vertical section through the pot's center showing <b>a&#8321;</b>,
+            <b>a&#8322;</b>, <b>h</b> and the lean angle <b>&beta;</b>.</p>
+        </div>
+      </div>
+
+      <div class="card legend" style="margin-top:16px;">
+        <p style="margin:0 0 6px"><b>How the angles are defined</b> (all measured from a square cut, i.e. 0&deg; = straight through the board):</p>
+        <ul style="margin:0; padding-left:20px;">
+          <li><b>Long-side bevel B</b> &mdash; tilt the saw blade this much for the rip cut along each of the two long edges, so neighboring boards close up into the polygon. <code>B = 90&deg; &minus; &Phi;/2</code>.</li>
+          <li><b>End bevel &beta;</b> &mdash; tilt for the top and bottom cuts so the rim and base sit level. <code>&beta; = atan((a&#8322;&minus;a&#8321;)/h)</code>.</li>
+          <li><b>Side taper &delta;</b> &mdash; in-plane angle of the long edges when you mark the trapezoid on the board face.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+/* ----------------------------- geometry ----------------------------- */
+function compute(n, a1, a2, h) {
+  const g = Math.PI / n;          // half-angle at center per side
+  const th = 2 * Math.PI / n;     // full central angle per side
+  const d = a2 - a1;              // horizontal run, bottom -> top
+  const w1 = 2 * a1 * Math.tan(g);
+  const w2 = 2 * a2 * Math.tan(g);
+  const L = Math.hypot(d, h);     // board length along the slope
+  const beta = Math.atan2(d, h);  // lean from vertical => end bevel
+  const cosPhi = -(h * h * Math.cos(th) + d * d) / (h * h + d * d);
+  const Phi = Math.acos(Math.min(1, Math.max(-1, cosPhi)));
+  const Bside = Math.PI / 2 - Phi / 2;
+  const delta = Math.atan2((w2 - w1) / 2, L);
+  return { n, a1, a2, h, g, th, d, w1, w2, L, beta, Phi, Bside, delta };
+}
+const deg = r => r * 180 / Math.PI;
+
+/* ----------------------------- state ----------------------------- */
+let unit = 'mm';
+const $ = id => document.getElementById(id);
+const inputs = ['n', 'a1', 'a2', 'h'].map($);
+
+function readInputs() {
+  const n = parseInt($('n').value, 10);
+  const a1 = parseFloat($('a1').value);
+  const a2 = parseFloat($('a2').value);
+  const h  = parseFloat($('h').value);
+  let err = '';
+  if (!Number.isInteger(n) || n < 3) err = 'n must be a whole number ≥ 3.';
+  else if (![a1, a2, h].every(v => Number.isFinite(v) && v > 0)) err = 'a₁, a₂ and h must be positive numbers.';
+  $('err').textContent = err;
+  if (err) return null;
+  return { n, a1, a2, h };
+}
+
+const fmtLen = v => (Math.round(v * 100) / 100).toLocaleString(undefined, { maximumFractionDigits: 2 }) + ' ' + unit;
+const fmtAng = r => (Math.round(deg(r) * 100) / 100).toFixed(2) + '°';
+
+/* ----------------------------- 2D: flat board ----------------------------- */
+function drawBoard(m) {
+  const W = 400, H = 440, pad = 64;
+  const maxW = Math.max(m.w1, m.w2);
+  const sx = (W - 2 * pad) / maxW;
+  const sy = (H - 2 * pad) / m.L;
+  const s = Math.min(sx, sy);
+  const cx = W / 2;
+  const yTop = pad, yBot = H - pad;            // top edge near top of svg
+  const half = (w) => (w / 2) * s;
+  const tl = [cx - half(m.w2), yTop], tr = [cx + half(m.w2), yTop];
+  const bl = [cx - half(m.w1), yBot], br = [cx + half(m.w1), yBot];
+
+  const P = (a) => a[0].toFixed(1) + ',' + a[1].toFixed(1);
+  const mid = (a, b) => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+  let svg = '';
+  // wood fill
+  svg += `<polygon points="${P(tl)} ${P(tr)} ${P(br)} ${P(bl)}" fill="#e9cfa6" stroke="#8a5a2b" stroke-width="2"/>`;
+  // center line
+  svg += `<line x1="${cx}" y1="${yTop}" x2="${cx}" y2="${yBot}" stroke="#b99" stroke-width="1" stroke-dasharray="4 4"/>`;
+
+  // dimension: top width w2
+  const dyT = yTop - 24;
+  svg += dim(tl[0], dyT, tr[0], dyT, `w₂ = ${fmtLen(m.w2)}`, 'up');
+  svg += tick(tl[0], yTop, tl[0], dyT) + tick(tr[0], yTop, tr[0], dyT);
+  // dimension: bottom width w1
+  const dyB = yBot + 24;
+  svg += dim(bl[0], dyB, br[0], dyB, `w₁ = ${fmtLen(m.w1)}`, 'down');
+  svg += tick(bl[0], yBot, bl[0], dyB) + tick(br[0], yBot, br[0], dyB);
+  // dimension: length L (right side)
+  const dxR = Math.max(tr[0], br[0]) + 30;
+  svg += dim(dxR, yTop, dxR, yBot, `L = ${fmtLen(m.L)}`, 'right');
+  svg += tick(tr[0], yTop, dxR, yTop) + tick(br[0], yBot, dxR, yBot);
+
+  // taper angle delta at bottom-left corner
+  const ang = mid(bl, tl);
+  svg += `<text x="${bl[0] + 14}" y="${bl[1] - 16}" font-size="13" fill="#3f51b5">δ = ${fmtAng(m.delta)}</text>`;
+  // bevel callouts on edges
+  svg += edgeLabel(mid(tl, tr), `β = ${fmtAng(m.beta)}`, 0, -8, '#1f7a3d');
+  svg += edgeLabel(mid(bl, br), `β = ${fmtAng(m.beta)}`, 0, 16, '#1f7a3d');
+  svg += edgeLabel(mid(tr, br), `B = ${fmtAng(m.Bside)}`, 8, 0, '#b3261e', 'start');
+  svg += edgeLabel(mid(tl, bl), `B = ${fmtAng(m.Bside)}`, -8, 0, '#b3261e', 'end');
+
+  $('boardSvg').innerHTML = svg;
+}
+function dim(x1, y1, x2, y2, label, side) {
+  let tx, ty, anchor = 'middle', rot = '';
+  if (side === 'up') { tx = (x1 + x2) / 2; ty = y1 - 5; }
+  else if (side === 'down') { tx = (x1 + x2) / 2; ty = y1 + 15; }
+  else { tx = x1 + 6; ty = (y1 + y2) / 2; anchor = 'start'; rot = `transform="rotate(90 ${tx} ${ty})"`; }
+  return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#555" stroke-width="1"/>`
+    + `<text x="${tx}" y="${ty}" font-size="13" fill="#333" text-anchor="${anchor}">${label}</text>`;
+}
+function tick(x1, y1, x2, y2) { return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#999" stroke-width="1"/>`; }
+function edgeLabel(p, t, dx, dy, color, anchor = 'middle') {
+  return `<text x="${p[0] + dx}" y="${p[1] + dy}" font-size="12.5" fill="${color}" text-anchor="${anchor}">${t}</text>`;
+}
+
+/* ----------------------------- 2D: elevation ----------------------------- */
+function drawElev(m) {
+  const W = 400, H = 300, pad = 50;
+  const maxA = Math.max(m.a1, m.a2);
+  const sx = (W / 2 - pad) / maxA;
+  const sy = (H - 2 * pad) / m.h;
+  const s = Math.min(sx, sy);
+  const cx = W / 2, yBot = H - pad, yTop = H - pad - m.h * s;
+  const bl = [cx - m.a1 * s, yBot], br = [cx + m.a1 * s, yBot];
+  const tl = [cx - m.a2 * s, yTop], tr = [cx + m.a2 * s, yTop];
+  const P = a => a[0].toFixed(1) + ',' + a[1].toFixed(1);
+  let svg = '';
+  svg += `<polygon points="${P(tl)} ${P(tr)} ${P(br)} ${P(bl)}" fill="#f0e6d2" stroke="#8a5a2b" stroke-width="2"/>`;
+  svg += `<line x1="${cx}" y1="${yTop}" x2="${cx}" y2="${yBot}" stroke="#b99" stroke-width="1" stroke-dasharray="4 4"/>`;
+  // a2 (top, right half)
+  svg += `<line x1="${cx}" y1="${yTop}" x2="${tr[0]}" y2="${yTop}" stroke="#3f51b5" stroke-width="1.5"/>`;
+  svg += `<text x="${(cx + tr[0]) / 2}" y="${yTop - 6}" font-size="13" fill="#3f51b5" text-anchor="middle">a₂ = ${fmtLen(m.a2)}</text>`;
+  // a1 (bottom, left half)
+  svg += `<line x1="${cx}" y1="${yBot}" x2="${bl[0]}" y2="${yBot}" stroke="#3f51b5" stroke-width="1.5"/>`;
+  svg += `<text x="${(cx + bl[0]) / 2}" y="${yBot + 16}" font-size="13" fill="#3f51b5" text-anchor="middle">a₁ = ${fmtLen(m.a1)}</text>`;
+  // h on right
+  const dxR = Math.max(tr[0], br[0]) + 26;
+  svg += `<line x1="${dxR}" y1="${yTop}" x2="${dxR}" y2="${yBot}" stroke="#555" stroke-width="1"/>`;
+  svg += tick(tr[0], yTop, dxR, yTop) + tick(br[0], yBot, dxR, yBot);
+  svg += `<text x="${dxR + 6}" y="${(yTop + yBot) / 2}" font-size="13" fill="#333" transform="rotate(90 ${dxR + 6} ${(yTop + yBot) / 2})" text-anchor="middle">h = ${fmtLen(m.h)}</text>`;
+  // beta angle at top-right (between board edge and vertical)
+  svg += `<text x="${tr[0] - 40}" y="${yTop + 26}" font-size="13" fill="#1f7a3d">β = ${fmtAng(m.beta)}</text>`;
+  $('elevSvg').innerHTML = svg;
+}
+
+/* ----------------------------- 3D ----------------------------- */
+let renderer, scene, camera, controls, potGroup;
+let panels = [], normals = [], baseR = 100;
+function initThree() {
+  const el = $('three');
+  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.setSize(el.clientWidth, el.clientHeight);
+  el.appendChild(renderer.domElement);
+
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera(45, el.clientWidth / el.clientHeight, 0.1, 5000);
+  controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.65));
+  const dl = new THREE.DirectionalLight(0xffffff, 0.9); dl.position.set(1, 1.4, 1); scene.add(dl);
+  const dl2 = new THREE.DirectionalLight(0xffffff, 0.35); dl2.position.set(-1, 0.5, -1); scene.add(dl2);
+
+  potGroup = new THREE.Group(); scene.add(potGroup);
+  window.addEventListener('resize', onResize);
+  animate();
+}
+function onResize() {
+  const el = $('three');
+  if (!el.clientWidth) return;
+  camera.aspect = el.clientWidth / el.clientHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(el.clientWidth, el.clientHeight);
+}
+function buildPot(m) {
+  while (potGroup.children.length) potGroup.remove(potGroup.children[0]);
+  panels = []; normals = [];
+  const { n, a1, a2, h, g } = m;
+  const woodMat = new THREE.MeshLambertMaterial({ color: 0xc8965a, side: THREE.DoubleSide });
+  const edgeMat = new THREE.LineBasicMaterial({ color: 0x4a2f15 });
+  const halfW1 = a1 * Math.tan(g), halfW2 = a2 * Math.tan(g);
+
+  for (let i = 0; i < n; i++) {
+    const phi = i * 2 * Math.PI / n;
+    const N = new THREE.Vector3(Math.cos(phi), 0, Math.sin(phi));        // outward (xz plane)
+    const T = new THREE.Vector3(-Math.sin(phi), 0, Math.cos(phi));       // tangent
+    const Z = new THREE.Vector3(0, 1, 0);
+    const bl = N.clone().multiplyScalar(a1).addScaledVector(T, -halfW1);
+    const br = N.clone().multiplyScalar(a1).addScaledVector(T, halfW1);
+    const tl = N.clone().multiplyScalar(a2).addScaledVector(T, -halfW2).addScaledVector(Z, h);
+    const tr = N.clone().multiplyScalar(a2).addScaledVector(T, halfW2).addScaledVector(Z, h);
+    const verts = [bl, br, tr, tl];
+
+    const geo = new THREE.BufferGeometry();
+    const pos = [];
+    [bl, br, tr, bl, tr, tl].forEach(v => pos.push(v.x, v.y, v.z));
+    geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+    geo.computeVertexNormals();
+    const mesh = new THREE.Mesh(geo, woodMat);
+
+    const eg = new THREE.BufferGeometry().setFromPoints([bl, br, tr, tl, bl]);
+    const line = new THREE.Line(eg, edgeMat);
+
+    const grp = new THREE.Group();
+    grp.add(mesh); grp.add(line);
+    potGroup.add(grp);
+    panels.push(grp);
+    normals.push(N.clone());
+  }
+  // center vertically
+  potGroup.position.set(0, -h / 2, 0);
+  baseR = Math.max(a2, h) * 1.1;
+  applyExplode();
+  fitCamera(m);
+}
+function applyExplode() {
+  const f = parseFloat($('explode').value) / 100;
+  const dist = f * baseR * 1.4;
+  panels.forEach((p, i) => p.position.copy(normals[i].clone().multiplyScalar(dist)));
+}
+function fitCamera(m) {
+  const r = Math.max(m.a2, m.a1, m.h) * 2.6;
+  camera.position.set(r * 0.9, r * 0.7, r * 0.9);
+  controls.target.set(0, 0, 0);
+  controls.update();
+}
+function animate() { requestAnimationFrame(animate); controls.update(); renderer.render(scene, camera); }
+
+/* ----------------------------- wire-up ----------------------------- */
+let model = null;
+function update() {
+  const v = readInputs();
+  if (!v) return;
+  model = compute(v.n, v.a1, v.a2, v.h);
+  $('r_w2').textContent = fmtLen(model.w2);
+  $('r_w1').textContent = fmtLen(model.w1);
+  $('r_L').textContent  = fmtLen(model.L);
+  $('r_bside').textContent = fmtAng(model.Bside);
+  $('r_beta').textContent  = fmtAng(model.beta);
+  $('r_delta').textContent = fmtAng(model.delta);
+  $('r_phi').textContent   = fmtAng(model.Phi);
+  drawBoard(model);
+  drawElev(model);
+  if (renderer) buildPot(model);
+}
+inputs.forEach(el => el.addEventListener('input', update));
+$('units').addEventListener('click', e => {
+  if (e.target.tagName !== 'BUTTON') return;
+  unit = e.target.dataset.u;
+  [...$('units').children].forEach(b => b.classList.toggle('active', b === e.target));
+  update();
+});
+$('explode').addEventListener('input', applyExplode);
+$('resetView').addEventListener('click', () => { if (model) fitCamera(model); });
+
+window.addEventListener('load', () => { initThree(); update(); onResize(); });
+</script>
+</body>
+</html>
