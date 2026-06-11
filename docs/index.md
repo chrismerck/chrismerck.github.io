@@ -25,7 +25,7 @@ and more generally the coupling of
 
 Looking for collaborations with researchers and safety-focused organizations in the areas of scalable alignment and interpretability. As Nick Bostrom says:
 
-> the most appropriate attitude may be a bitter determination to be as competent as we can, mack as if we were preparing for a difficult exam that will either realize our dreams or obliterate them
+> the most appropriate attitude may be a bitter determination to be as competent as we can, much as if we were preparing for a difficult exam that will either realize our dreams or obliterate them
 
 Bring it on!
 
