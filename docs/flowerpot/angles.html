@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flower Pot Angle Guide</title>
+<style>
+  :root {
+    --bg: #f7f6f3;
+    --panel: #ffffff;
+    --ink: #1f2024;
+    --muted: #6b6f76;
+    --line: #d9d6cf;
+    --accent: #3f51b5;
+    --accent-soft: #e8eaf6;
+    --green: #1f7a3d;
+    --red: #b3261e;
+    --wood: #e9cfa6;
+    --woodline: #8a5a2b;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Newsreader", Georgia, "Times New Roman", serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 24px 18px 72px; }
+  h1 { font-weight: 600; font-size: 30px; margin: 0 0 4px; }
+  h2 { font-weight: 600; font-size: 20px; margin: 0 0 6px; }
+  .lede { color: var(--muted); margin: 0 0 20px; max-width: 760px; }
+  .toplink { font-size: 14px; }
+  .toplink a, a { color: var(--accent); }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 22px;
+  }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: center; }
+  @media (max-width: 760px) { .split { grid-template-columns: 1fr; } }
+  svg { width: 100%; height: auto; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
+  .explain { font-size: 15.5px; }
+  .explain p { margin: 0 0 10px; }
+  .formula {
+    font-size: 16px; background: var(--accent-soft); border-radius: 6px;
+    padding: 8px 12px; margin: 10px 0; display: inline-block;
+    font-variant-numeric: tabular-nums;
+  }
+  .sym { font-style: italic; font-weight: 600; }
+  .val { font-weight: 700; white-space: nowrap; }
+  .cB { color: var(--red); } .cBeta { color: var(--green); } .cDelta { color: var(--accent); } .cPhi { color: #8a4baf; }
+  .params { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; }
+  .params label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 2px; }
+  .params input {
+    width: 90px; font: inherit; font-size: 15px; padding: 6px 8px;
+    border: 1px solid var(--line); border-radius: 6px;
+  }
+  .params input:focus { outline: 2px solid var(--accent-soft); border-color: var(--accent); }
+  .units { display:flex; gap:6px; }
+  .units button {
+    font: inherit; font-size: 13px; padding: 5px 10px; cursor: pointer;
+    border: 1px solid var(--line); background:#fff; border-radius: 6px; color: var(--muted);
+  }
+  .units button.active { background: var(--accent); color:#fff; border-color: var(--accent); }
+  .err { color: var(--red); font-size: 13px; min-height: 16px; width: 100%; }
+  table.setup { width: 100%; border-collapse: collapse; font-size: 15px; margin-top: 6px; }
+  table.setup th { text-align: left; font-weight: 600; border-bottom: 2px solid var(--line); padding: 6px 8px; }
+  table.setup td { border-bottom: 1px solid var(--line); padding: 7px 8px; vertical-align: top; }
+  table.setup tr:last-child td { border-bottom: none; }
+  code { font-family: "Fira Code", ui-monospace, Menlo, Consolas, monospace; font-size: 13px;
+    background: var(--accent-soft); padding: 1px 5px; border-radius: 4px; }
+  .note { font-size: 13.5px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="toplink"><a href="./">&larr; back to the calculator</a></p>
+  <h1>Flower Pot Angle Guide</h1>
+  <p class="lede">
+    Every angle the calculator reports, drawn to its true value for your parameters.
+    Change the numbers below (or arrive here from the calculator link) and every
+    diagram redraws.
+  </p>
+
+  <div class="card">
+    <div class="params">
+      <div><label>sides <span class="sym">n</span></label><input id="n" type="number" min="3" step="1" value="6"></div>
+      <div><label>top apothem <span class="sym">a&#8322;</span></label><input id="a2" type="number" min="0" step="any" value="120"></div>
+      <div><label>bottom apothem <span class="sym">a&#8321;</span></label><input id="a1" type="number" min="0" step="any" value="80"></div>
+      <div><label>height <span class="sym">h</span></label><input id="h" type="number" min="0" step="any" value="150"></div>
+      <div class="units" id="units">
+        <button data-u="mm" class="active">mm</button>
+        <button data-u="cm">cm</button>
+        <button data-u="in">in</button>
+      </div>
+      <div class="err" id="err"></div>
+    </div>
+  </div>
+
+  <!-- 1. PLAN VIEW -->
+  <div class="card">
+    <h2>1&nbsp;&middot;&nbsp;The polygon &mdash; where the widths come from</h2>
+    <div class="split">
+      <svg id="planSvg" viewBox="0 0 420 400"></svg>
+      <div class="explain">
+        <p>Looking straight down at the pot: the rim is a regular
+          <span class="sym">n</span>-gon. Each board spans one side, which subtends the
+          central angle <span class="sym">&theta;</span> at the pot&rsquo;s axis:</p>
+        <p class="formula">&theta; = 360&deg;/n = <span class="val" id="v_theta"></span></p>
+        <p>The <b>apothem</b> <span class="sym">a</span> is the distance from the center
+          to the middle of a face. Half a side subtends the half-angle
+          <span class="sym">g</span> = &theta;/2, so the outside face width follows from
+          simple trigonometry:</p>
+        <p class="formula">w = 2&thinsp;a&thinsp;tan(&theta;/2)</p>
+        <p class="formula">w&#8322; = <span class="val" id="v_w2"></span> &emsp; w&#8321; = <span class="val" id="v_w1"></span></p>
+        <p class="note">Solid outline: top rim at apothem <span class="sym">a&#8322;</span>.
+          Dashed: bottom rim at <span class="sym">a&#8321;</span>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. ELEVATION / BETA -->
+  <div class="card">
+    <h2>2&nbsp;&middot;&nbsp;The slope &mdash; lean angle <span class="cBeta">&beta;</span> and board length <span class="sym">L</span></h2>
+    <div class="split">
+      <svg id="slopeSvg" viewBox="0 0 420 340"></svg>
+      <div class="explain">
+        <p>Seen from the side, each board leans outward. Going from bottom rim to top
+          rim it rises <span class="sym">h</span> while stepping outward by
+          <span class="sym">d</span> = a&#8322; &minus; a&#8321; =
+          <span class="val" id="v_d"></span>. That right triangle gives both the lean
+          angle and the true board length along the slope:</p>
+        <p class="formula">&beta; = atan(&thinsp;d / h&thinsp;) = <span class="val cBeta" id="v_beta"></span></p>
+        <p class="formula">L = &radic;(d&sup2; + h&sup2;) = <span class="val" id="v_L"></span></p>
+        <p><span class="cBeta"><b>&beta;</b></span> shows up twice: it is how far the board
+          leans from vertical, <em>and</em> it is the blade tilt for the top and bottom
+          cuts (section&nbsp;4), because those cuts must end up horizontal.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. THE JOINT / PHI, B -->
+  <div class="card">
+    <h2>3&nbsp;&middot;&nbsp;The joint &mdash; dihedral <span class="cPhi">&Phi;</span> and long-side bevel <span class="cB">B</span></h2>
+    <div class="split">
+      <svg id="jointSvg" viewBox="0 0 420 320"></svg>
+      <div class="explain">
+        <p>This is a section cut <em>perpendicular to the sloped seam</em> where two
+          neighboring boards meet. Their inside faces open up at the dihedral angle
+          <span class="cPhi"><span class="sym">&Phi;</span></span>:</p>
+        <p class="formula">cos&thinsp;&Phi; = &minus;(h&sup2;cos&thinsp;&theta; + d&sup2;)&thinsp;/&thinsp;(h&sup2; + d&sup2;) &nbsp;&rArr;&nbsp; &Phi; = <span class="val cPhi" id="v_phi"></span></p>
+        <p>For a snug glue joint, each board gives up half of the corner. The bevel is
+          measured from a square cut (dashed line, 90&deg; to the board face):</p>
+        <p class="formula">B = 90&deg; &minus; &Phi;/2 = <span class="val cB" id="v_B"></span></p>
+        <p class="note" id="taperNote"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. END CUTS / BETA -->
+  <div class="card">
+    <h2>4&nbsp;&middot;&nbsp;The end cuts &mdash; bevel <span class="cBeta">&beta;</span> keeps the rim level</h2>
+    <div class="split">
+      <svg id="endSvg" viewBox="0 0 420 340"></svg>
+      <div class="explain">
+        <p>Section through one board&rsquo;s thickness, viewed from the side. The board
+          leans <span class="cBeta"><span class="sym">&beta;</span></span> from vertical, so
+          a square end cut (dashed) would leave the rim tilted. Tilting the blade the same
+          <span class="cBeta"><span class="sym">&beta;</span></span> makes the top and
+          bottom faces horizontal &mdash; a level rim and a base that sits flat.</p>
+        <p class="formula">end bevel = &beta; = <span class="val cBeta" id="v_beta2"></span></p>
+        <p class="note">A straight-sided planter (a&#8321; = a&#8322;) has &beta; = 0&deg;
+          &mdash; plain square end cuts.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. BOARD FACE / DELTA -->
+  <div class="card">
+    <h2>5&nbsp;&middot;&nbsp;The board face &mdash; taper angle <span class="cDelta">&delta;</span></h2>
+    <div class="split">
+      <svg id="faceSvg" viewBox="0 0 420 400"></svg>
+      <div class="explain">
+        <p>Laid flat, each board is an isosceles trapezoid. When you mark it out, the two
+          long edges converge toward the bottom. Each long edge makes the in-plane angle
+          <span class="cDelta"><span class="sym">&delta;</span></span> with the board&rsquo;s
+          centerline:</p>
+        <p class="formula">&delta; = atan(&thinsp;(w&#8322; &minus; w&#8321;) / 2L&thinsp;) = <span class="val cDelta" id="v_delta"></span></p>
+        <p>The top and bottom edges are drawn <em>square to the centerline</em> &mdash; all
+          the top/bottom trickiness is in the blade tilt <span class="cBeta">&beta;</span>,
+          not in the layout.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. SUMMARY -->
+  <div class="card">
+    <h2>6&nbsp;&middot;&nbsp;Saw setup summary</h2>
+    <table class="setup">
+      <tr><th>Cut</th><th>Mark on the face</th><th>Blade tilt (bevel)</th></tr>
+      <tr>
+        <td>Two long edges</td>
+        <td>lines converging at <span class="cDelta"><span class="sym">&delta;</span> = <span class="val" id="t_delta"></span></span> to the centerline</td>
+        <td><span class="cB"><span class="sym">B</span> = <span class="val" id="t_B"></span></span></td>
+      </tr>
+      <tr>
+        <td>Top &amp; bottom edges</td>
+        <td>square across the face (90&deg; to centerline)</td>
+        <td><span class="cBeta"><span class="sym">&beta;</span> = <span class="val" id="t_beta"></span></span></td>
+      </tr>
+    </table>
+    <p class="note" style="margin-top:10px;">
+      In woodworking terms: the long edges are beveled rips along a tapered layout line;
+      the ends are square crosscuts with the blade tilted. None of the angles depend on
+      the board thickness &mdash; thickness only changes how wide the beveled faces are.
+      Cut list: <span class="val" id="t_cutlist"></span>.
+    </p>
+  </div>
+</div>
+
+<script>
+/* ----------------------------- geometry (same as calculator) ----------------------------- */
+function compute(n, a1, a2, h) {
+  const g = Math.PI / n;
+  const th = 2 * Math.PI / n;
+  const d = a2 - a1;
+  const w1 = 2 * a1 * Math.tan(g);
+  const w2 = 2 * a2 * Math.tan(g);
+  const L = Math.hypot(d, h);
+  const beta = Math.atan2(d, h);
+  const cosPhi = -(h * h * Math.cos(th) + d * d) / (h * h + d * d);
+  const Phi = Math.acos(Math.min(1, Math.max(-1, cosPhi)));
+  const Bside = Math.PI / 2 - Phi / 2;
+  const delta = Math.atan2((w2 - w1) / 2, L);
+  return { n, a1, a2, h, g, th, d, w1, w2, L, beta, Phi, Bside, delta };
+}
+const deg = r => r * 180 / Math.PI;
+const $ = id => document.getElementById(id);
+let unit = 'mm';
+const fmtLen = v => (Math.round(v * 100) / 100).toLocaleString(undefined, { maximumFractionDigits: 2 }) + ' ' + unit;
+const fmtAng = r => (Math.round(deg(r) * 100) / 100).toFixed(2) + '°';
+
+/* ----------------------------- svg helpers ----------------------------- */
+const F = x => x.toFixed(1);
+function line(x1,y1,x2,y2,stroke,w,dash) {
+  return `<line x1="${F(x1)}" y1="${F(y1)}" x2="${F(x2)}" y2="${F(y2)}" stroke="${stroke}" stroke-width="${w||1.5}"${dash?` stroke-dasharray="${dash}"`:''}/>`;
+}
+function poly(pts, fill, stroke, w, dash) {
+  const p = pts.map(q => F(q[0]) + ',' + F(q[1])).join(' ');
+  return `<polygon points="${p}" fill="${fill}" stroke="${stroke}" stroke-width="${w||2}"${dash?` stroke-dasharray="${dash}"`:''}/>`;
+}
+function txt(x,y,t,fill,size,anchor,rot) {
+  return `<text x="${F(x)}" y="${F(y)}" font-size="${size||14}" fill="${fill||'#333'}" text-anchor="${anchor||'middle'}"${rot?` transform="rotate(${rot} ${F(x)} ${F(y)})"`:''}>${t}</text>`;
+}
+/* arc between two direction angles (radians, screen coords: y down), centered (cx,cy) */
+function arc(cx,cy,r,aFrom,aTo,color) {
+  while (aTo < aFrom) aTo += 2*Math.PI;
+  const large = (aTo - aFrom) > Math.PI ? 1 : 0;
+  const p0 = [cx + r*Math.cos(aFrom), cy + r*Math.sin(aFrom)];
+  const p1 = [cx + r*Math.cos(aTo),   cy + r*Math.sin(aTo)];
+  return `<path d="M ${F(p0[0])} ${F(p0[1])} A ${r} ${r} 0 ${large} 1 ${F(p1[0])} ${F(p1[1])}" fill="none" stroke="${color}" stroke-width="1.6"/>`;
+}
+function arcLabel(cx,cy,r,aFrom,aTo,label,color,size) {
+  while (aTo < aFrom) aTo += 2*Math.PI;
+  const am = (aFrom + aTo) / 2;
+  return arc(cx,cy,r,aFrom,aTo,color)
+    + txt(cx + (r+15)*Math.cos(am), cy + (r+15)*Math.sin(am) + 4, label, color, size||13.5);
+}
+const C = { B:'#b3261e', beta:'#1f7a3d', delta:'#3f51b5', phi:'#8a4baf', dim:'#555', wood:'#e9cfa6', woodline:'#8a5a2b', ghost:'#aaa' };
+
+/* ----------------------------- diagram 1: plan view ----------------------------- */
+function drawPlan(m) {
+  const W=420, H=400, cx=W/2, cy=H/2+18;
+  const R2 = m.a2 / Math.cos(m.g);
+  const s = 138 / R2;
+  const vert = (a, k, nOff) => {
+    const al = -Math.PI/2 - m.g + k * m.th;
+    const R = (a / Math.cos(m.g)) * s;
+    return [cx + R*Math.cos(al), cy + R*Math.sin(al)];
+  };
+  let svg = '';
+  const outer = [], inner = [];
+  for (let k = 0; k < m.n; k++) { outer.push(vert(m.a2, k)); inner.push(vert(m.a1, k)); }
+  svg += poly(inner, 'none', C.ghost, 1.5, '5 4');
+  svg += poly(outer, C.wood, C.woodline, 2);
+  // highlighted side 0 (top of svg) between vertices 0 and 1
+  const V0 = outer[0], V1 = outer[1 % m.n];
+  svg += line(V0[0],V0[1],V1[0],V1[1], C.delta, 4);
+  // radii + apothem
+  const M = [(V0[0]+V1[0])/2, (V0[1]+V1[1])/2];
+  svg += line(cx,cy,V0[0],V0[1], '#888', 1.2);
+  svg += line(cx,cy,V1[0],V1[1], '#888', 1.2);
+  svg += line(cx,cy,M[0],M[1], C.delta, 1.6, '6 3');
+  svg += `<circle cx="${cx}" cy="${cy}" r="2.5" fill="#333"/>`;
+  // theta arc between directions to V0 and V1
+  const a0 = Math.atan2(V0[1]-cy, V0[0]-cx), a1 = Math.atan2(V1[1]-cy, V1[0]-cx);
+  svg += arcLabel(cx, cy, 34, a0, a1, '&theta;', '#333', 15);
+  // g arc between apothem (up) and V1 direction
+  svg += arcLabel(cx, cy, 56, -Math.PI/2, a1, 'g', '#777', 13);
+  // apothem label a2 (midway along the dashed apothem)
+  svg += txt(cx + 14, (cy + M[1])/2, 'a&#8322;', C.delta, 15, 'start');
+  // a1 label toward bottom inner face
+  const Mi = [(inner[Math.floor(m.n/2)][0]+inner[(Math.floor(m.n/2)+1)%m.n][0])/2,
+              (inner[Math.floor(m.n/2)][1]+inner[(Math.floor(m.n/2)+1)%m.n][1])/2];
+  svg += line(cx,cy,Mi[0],Mi[1], C.ghost, 1.2, '3 3');
+  svg += txt((cx+Mi[0])/2 + 12, (cy+Mi[1])/2, 'a&#8321;', '#888', 14, 'start');
+  // w2 dimension above side 0
+  const dy = Math.min(V0[1], V1[1]) - 18;
+  svg += line(V0[0], dy, V1[0], dy, C.dim, 1);
+  svg += line(V0[0], V0[1], V0[0], dy, '#bbb', 1) + line(V1[0], V1[1], V1[0], dy, '#bbb', 1);
+  svg += txt((V0[0]+V1[0])/2, dy - 6, `w&#8322; = ${fmtLen(m.w2)}`, '#333', 13);
+  $('planSvg').innerHTML = svg;
+}
+
+/* ----------------------------- diagram 2: slope / beta ----------------------------- */
+function drawSlope(m) {
+  const W=420, H=340, pad=56;
+  const s = Math.min((W/2 - pad) / Math.max(m.a1, m.a2), (H - 2*pad) / m.h);
+  const cx = W/2 - 30, yB = H - pad, yT = yB - m.h*s;
+  const bl=[cx - m.a1*s, yB], br=[cx + m.a1*s, yB], tl=[cx - m.a2*s, yT], tr=[cx + m.a2*s, yT];
+  let svg = '';
+  svg += poly([tl,tr,br,bl], '#f0e6d2', C.woodline, 2);
+  svg += line(cx, yT-8, cx, yB+8, '#b99', 1, '4 4');
+  // right triangle: vertical from br up, horizontal d at top, hypotenuse = right board edge
+  svg += line(br[0], yB, br[0], yT, C.dim, 1.2, '5 3');           // vertical h
+  svg += line(br[0], yT, tr[0], yT, C.dim, 1.2, '5 3');           // horizontal d
+  svg += txt(br[0] - 8, (yB+yT)/2, 'h', '#333', 15, 'end');
+  svg += txt((br[0]+tr[0])/2, yT - 8, 'd = a&#8322;&minus;a&#8321;', '#333', 13.5);
+  // L along hypotenuse
+  const mx = (br[0]+tr[0])/2 + 14, my = (yB+yT)/2 + 6;
+  svg += txt(mx + 22, my, `L = ${fmtLen(m.L)}`, C.woodline, 13.5, 'start');
+  // beta arc at bottom-right corner between vertical and hypotenuse
+  const aV = Math.atan2(yT - yB, 0);                               // straight up
+  const aHyp = Math.atan2(yT - yB, tr[0] - br[0]);
+  svg += arcLabel(br[0], yB, 48, aHyp, aV, '&beta;', C.beta, 15);
+  // level lines top/bottom
+  svg += line(tl[0]-24, yT, tr[0]+24, yT, C.beta, 1, '2 4');
+  svg += line(bl[0]-24, yB, br[0]+24, yB, C.beta, 1, '2 4');
+  svg += txt(tr[0]+28, yT+4, 'level rim', C.beta, 12, 'start');
+  svg += txt(br[0]+28, yB+4, 'level base', C.beta, 12, 'start');
+  $('slopeSvg').innerHTML = svg;
+}
+
+/* ----------------------------- diagram 3: joint / Phi, B ----------------------------- */
+function drawJoint(m) {
+  const W=420, H=320;
+  const t = 34;                                  // illustrative thickness (px)
+  const half = m.Phi / 2;
+  const sn = Math.sin(half), cs = Math.cos(half);
+  const J = [W/2, H - 46];                       // outside corner
+  const Jp = [W/2, J[1] - t/sn];                 // inside corner (top of seam)
+  const len = 168;
+  // board A (left): outer face dir uA, inner offset nA
+  const uA = [-sn, -cs], nA = [cs, -sn];
+  const A1 = [J[0] + len*uA[0], J[1] + len*uA[1]];
+  const A2 = [A1[0] + t*nA[0], A1[1] + t*nA[1]];
+  // board B mirrored
+  const uB = [sn, -cs], nB = [-cs, -sn];
+  const B1 = [J[0] + len*uB[0], J[1] + len*uB[1]];
+  const B2 = [B1[0] + t*nB[0], B1[1] + t*nB[1]];
+  let svg = '';
+  svg += poly([J, A1, A2, Jp], C.wood, C.woodline, 2);
+  svg += poly([J, B1, B2, Jp], C.wood, C.woodline, 2);
+  // seam
+  svg += line(J[0], J[1], Jp[0], Jp[1], C.woodline, 2.5);
+  svg += txt(J[0] + 8, (J[1]+Jp[1])/2 + 3, 'glue face', '#777', 11.5, 'start');
+  // Phi arc at inside corner between the two inner-face directions
+  const aA = Math.atan2(A2[1]-Jp[1], A2[0]-Jp[0]);
+  const aB = Math.atan2(B2[1]-Jp[1], B2[0]-Jp[0]);
+  svg += arcLabel(Jp[0], Jp[1], 40, aA, aB, `&Phi; = ${fmtAng(m.Phi)}`, C.phi, 13.5);
+  // square-cut dashed line at J, perpendicular to board A's outer face
+  const sq = [J[0] + (t+26)*nA[0], J[1] + (t+26)*nA[1]];
+  svg += line(J[0], J[1], sq[0], sq[1], C.B, 1.5, '5 4');
+  svg += txt(sq[0]-4, sq[1]-6, 'square cut', C.B, 11.5, 'end');
+  // B arc at J between seam (up) and square-cut line
+  const aSq = Math.atan2(sq[1]-J[1], sq[0]-J[0]);
+  const aSeam = -Math.PI/2;
+  svg += arcLabel(J[0], J[1], 58, aSq, aSeam, `B = ${fmtAng(m.Bside)}`, C.B, 13.5);
+  // labels: inside / outside
+  svg += txt(J[0], Jp[1] - 78, 'inside of pot', '#999', 12);
+  svg += txt(J[0], J[1] + 24, 'outside', '#999', 12);
+  // thickness marker on board B
+  const tm1 = [J[0] + 0.72*len*uB[0], J[1] + 0.72*len*uB[1]];
+  const tm2 = [tm1[0] + t*nB[0], tm1[1] + t*nB[1]];
+  svg += line(tm1[0], tm1[1], tm2[0], tm2[1], C.dim, 1);
+  svg += txt((tm1[0]+tm2[0])/2 + 12, (tm1[1]+tm2[1])/2, 't', '#555', 13, 'start');
+  $('jointSvg').innerHTML = svg;
+}
+
+/* ----------------------------- diagram 4: end cut / beta ----------------------------- */
+function drawEnd(m) {
+  const W=420, H=340;
+  const t = 34, b = m.beta;
+  const sn = Math.sin(b), cs = Math.cos(b);
+  const P0 = [150, H-40];                        // outer face, bottom
+  const u = [sn, -cs];                           // board axis, leaning beta from vertical
+  const nrm = [cs, sn];                          // toward inside
+  const yTop = 78;
+  const lOut = (P0[1] - yTop) / cs;              // outer face length to the horizontal cut
+  const P0i = [P0[0] + t*nrm[0], P0[1] + t*nrm[1]];
+  const lIn  = (P0i[1] - yTop) / cs;
+  const Ot = [P0[0] + lOut*u[0], yTop];
+  const It = [P0i[0] + lIn*u[0], yTop];
+  let svg = '';
+  svg += poly([P0, Ot, It, P0i], C.wood, C.woodline, 2);
+  // horizontal cut line extended
+  svg += line(Ot[0]-58, yTop, It[0]+70, yTop, C.beta, 1.4);
+  svg += txt(It[0]+74, yTop+4, 'level cut', C.beta, 12, 'start');
+  // square-cut dashed at the top of the outer face: perpendicular to axis
+  const sq = [Ot[0] + (t+30)*nrm[0], Ot[1] + (t+30)*nrm[1]];
+  svg += line(Ot[0], Ot[1], sq[0], sq[1], C.B, 1.5, '5 4');
+  svg += txt(sq[0]+4, sq[1]+12, 'square cut', C.B, 11.5, 'start');
+  // beta arc between horizontal (toward +x) and the square-cut direction
+  const aH = 0;
+  const aSq = Math.atan2(sq[1]-Ot[1], sq[0]-Ot[0]);
+  svg += arcLabel(Ot[0], Ot[1], 46, aH, aSq, `&beta; = ${fmtAng(m.beta)}`, C.beta, 13.5);
+  // vertical dashed reference at bottom + lean arc
+  svg += line(P0[0], P0[1], P0[0], P0[1]-84, '#999', 1.2, '4 4');
+  const aAxis = Math.atan2(u[1], u[0]);
+  svg += arcLabel(P0[0], P0[1], 62, aAxis, -Math.PI/2, '&beta;', C.beta, 13.5);
+  svg += txt(P0[0]-6, P0[1]-90, 'vertical', '#999', 11.5, 'end');
+  // ground
+  svg += line(60, P0[1], W-40, P0[1], '#bbb', 1.4);
+  svg += txt(W-42, P0[1]+16, 'ground', '#999', 12, 'end');
+  svg += txt((P0[0]+It[0])/2 + 30, (P0[1]+yTop)/2, 'board (side view)', '#8a5a2b', 12, 'start', 90 - deg(b) > 45 ? -(90 - deg(b)) : 0);
+  $('endSvg').innerHTML = svg;
+}
+
+/* ----------------------------- diagram 5: board face / delta ----------------------------- */
+function drawFace(m) {
+  const W=420, H=400, pad=62;
+  const s = Math.min((W - 2*pad) / Math.max(m.w1, m.w2), (H - 2*pad) / m.L);
+  const cx = W/2, yT = pad, yB = pad + m.L*s;
+  const tl=[cx - m.w2*s/2, yT], tr=[cx + m.w2*s/2, yT];
+  const bl=[cx - m.w1*s/2, yB], br=[cx + m.w1*s/2, yB];
+  let svg = '';
+  svg += poly([tl,tr,br,bl], C.wood, C.woodline, 2);
+  svg += line(cx, yT-14, cx, yB+14, '#b99', 1.2, '5 4');
+  svg += txt(cx+6, yB+26, 'centerline', '#b99', 11.5, 'start');
+  // delta: dashed line parallel to centerline through bottom-right corner, arc to long edge
+  svg += line(br[0], br[1], br[0], br[1]-92, C.delta, 1.2, '4 4');
+  const aEdge = Math.atan2(tr[1]-br[1], tr[0]-br[0]);
+  svg += arcLabel(br[0], br[1], 62, aEdge, -Math.PI/2, `&delta; = ${fmtAng(m.delta)}`, C.delta, 13);
+  // right-angle marks where centerline meets top and bottom edges
+  const ra = 9;
+  svg += `<path d="M ${F(cx-ra)} ${F(yT)} L ${F(cx-ra)} ${F(yT+ra)} L ${F(cx)} ${F(yT+ra)}" fill="none" stroke="#777" stroke-width="1.2"/>`;
+  svg += `<path d="M ${F(cx-ra)} ${F(yB)} L ${F(cx-ra)} ${F(yB-ra)} L ${F(cx)} ${F(yB-ra)}" fill="none" stroke="#777" stroke-width="1.2"/>`;
+  // dims
+  svg += line(tl[0], yT-22, tr[0], yT-22, C.dim, 1) + txt(cx, yT-28, `w&#8322; = ${fmtLen(m.w2)}`, '#333', 13);
+  svg += line(bl[0], yB+22, br[0], yB+22, C.dim, 1) + txt(cx, yB+40, `w&#8321; = ${fmtLen(m.w1)}`, '#333', 13);
+  const dx = Math.max(tr[0], br[0]) + 30;
+  svg += line(dx, yT, dx, yB, C.dim, 1);
+  svg += txt(dx+8, (yT+yB)/2, `L = ${fmtLen(m.L)}`, '#333', 13, 'middle', 90);
+  // bevel tags on edges
+  svg += txt((tl[0]+bl[0])/2 - 10, (yT+yB)/2, 'bevel B', C.B, 12, 'end');
+  svg += txt(cx - 40, yT + 16, 'bevel &beta;', C.beta, 12, 'end');
+  $('faceSvg').innerHTML = svg;
+}
+
+/* ----------------------------- wire-up ----------------------------- */
+function readInputs() {
+  const n = parseInt($('n').value, 10);
+  const a1 = parseFloat($('a1').value);
+  const a2 = parseFloat($('a2').value);
+  const h  = parseFloat($('h').value);
+  let err = '';
+  if (!Number.isInteger(n) || n < 3) err = 'n must be a whole number ≥ 3.';
+  else if (![a1, a2, h].every(v => Number.isFinite(v) && v > 0)) err = 'a₁, a₂ and h must be positive numbers.';
+  $('err').textContent = err;
+  return err ? null : { n, a1, a2, h };
+}
+function update() {
+  const v = readInputs();
+  if (!v) return;
+  const m = compute(v.n, v.a1, v.a2, v.h);
+  $('v_theta').textContent = fmtAng(m.th);
+  $('v_w2').textContent = fmtLen(m.w2);
+  $('v_w1').textContent = fmtLen(m.w1);
+  $('v_d').textContent = fmtLen(m.d);
+  $('v_beta').textContent = fmtAng(m.beta);
+  $('v_beta2').textContent = fmtAng(m.beta);
+  $('v_L').textContent = fmtLen(m.L);
+  $('v_phi').textContent = fmtAng(m.Phi);
+  $('v_B').textContent = fmtAng(m.Bside);
+  $('v_delta').textContent = fmtAng(m.delta);
+  $('t_delta').textContent = fmtAng(m.delta);
+  $('t_B').textContent = fmtAng(m.Bside);
+  $('t_beta').textContent = fmtAng(m.beta);
+  $('t_cutlist').textContent = `${m.n} boards, ${fmtLen(m.w2)} wide at the top, ${fmtLen(m.w1)} at the bottom, ${fmtLen(m.L)} long`;
+  const prismB = deg(m.th) / 2;
+  $('taperNote').innerHTML = (Math.abs(m.d) < 1e-9)
+    ? `With straight sides this is exactly half the corner angle: B = &theta;/2 = ${prismB.toFixed(2)}&deg;.`
+    : `Note the taper correction: a straight-sided version would need B = &theta;/2 = ${prismB.toFixed(2)}&deg;, but the lean opens the joint, so B = ${fmtAng(m.Bside)}.`;
+  drawPlan(m); drawSlope(m); drawJoint(m); drawEnd(m); drawFace(m);
+}
+['n','a1','a2','h'].forEach(id => $(id).addEventListener('input', update));
+$('units').addEventListener('click', e => {
+  if (e.target.tagName !== 'BUTTON') return;
+  unit = e.target.dataset.u;
+  [...$('units').children].forEach(b => b.classList.toggle('active', b === e.target));
+  update();
+});
+/* init from query string (?n=&a1=&a2=&h=&u=) */
+(function initFromQuery() {
+  const q = new URLSearchParams(location.search);
+  ['n','a1','a2','h'].forEach(k => { if (q.has(k)) $(k).value = q.get(k); });
+  const u = q.get('u');
+  if (u && ['mm','cm','in'].includes(u)) {
+    unit = u;
+    [...$('units').children].forEach(b => b.classList.toggle('active', b.dataset.u === u));
+  }
+})();
+update();
+</script>
+</body>
+</html>
