@@ -166,6 +166,7 @@
           <li><b>End bevel &beta;</b> &mdash; tilt for the top and bottom cuts so the rim and base sit level. <code>&beta; = atan((a&#8322;&minus;a&#8321;)/h)</code>.</li>
           <li><b>Side taper &delta;</b> &mdash; in-plane angle of the long edges when you mark the trapezoid on the board face.</li>
         </ul>
+        <p style="margin:10px 0 0;"><a id="angleLink" href="angles.html">Illustrated angle guide &rarr;</a> &mdash; every angle drawn to scale for your parameters.</p>
       </div>
     </div>
   </div>
@@ -406,6 +407,8 @@ function update() {
   $('r_phi').textContent   = fmtAng(model.Phi);
   drawBoard(model);
   drawElev(model);
+  const link = document.getElementById('angleLink');
+  if (link) link.href = `angles.html?n=${v.n}&a1=${v.a1}&a2=${v.a2}&h=${v.h}&u=${unit}`;
   if (renderer) buildPot(model);
 }
 inputs.forEach(el => el.addEventListener('input', update));
