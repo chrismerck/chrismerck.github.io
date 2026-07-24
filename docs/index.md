@@ -31,6 +31,8 @@ Bring it on!
 
 ## experiences
 
+I compile **[The Machine Vernacular](https://chrismerck.github.io/TheMachineVernacular/)** — a dictionary of emergent machine usage: the coinages, new senses, and vogue words observable in the speech of large language models, each attested to a dated first use.
+
 I have been reading interpretability papers and trying to [reproduce their figures](blog/2025/05/14/demonstrating-superposition/).
 
 I received a small grant to [investigate reasoning failures in DeepSeek models](blog/2025/08/17/locating-reasoning-errors-with-active-sampling/).
