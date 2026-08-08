@@ -18,9 +18,8 @@ In the meantime, we have our work cut out for us
 ensuring advances in artificial intelligence are aligned with human interests.
 I'm encouraged by the successes of 
 [Constitutional Alignment](https://www.anthropic.com/constitution), 
-but we have yet to really grapple with the challenges of 
-[multi-agent reinforcement learning](https://www.marl-book.com/)
-and more generally the coupling of 
+but we have yet to really grapple with the 
+coupling of 
 [powerful agentic AI with the economy](https://www.darioamodei.com/essay/the-adolescence-of-technology#4-player-piano).
 
 Looking for collaborations with researchers and safety-focused organizations in the areas of scalable alignment and interpretability. As Nick Bostrom says:
