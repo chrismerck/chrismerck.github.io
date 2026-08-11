@@ -58,33 +58,38 @@ def fig_cliff(data, t, path):
     r = [x["pearson"] for x in rows]
     fig, ax = plt.subplots(figsize=(7.6, 4.6))
 
-    for i, (key, label) in enumerate([
-            ("vecmap", "stochastic self-learning"),
-            ("profile", "similarity profile + Hungarian")]):
+    for i, (key, label, mk) in enumerate([
+            ("vecmap", "stochastic self-learning", "o"),
+            ("profile", "similarity profile + Hungarian", "s")]):
         y = [x[key] * 100 for x in rows]
-        ax.plot(r, y, "-o", color=t["series"][i], lw=2, ms=6,
+        ax.plot(r, y, "-", marker=mk, color=t["series"][i], lw=2, ms=6,
                 label=label, zorder=3,
                 markeredgecolor=t["surface"], markeredgewidth=1.5)
 
-    marks = [
-        ("German–French\n(web vectors)", data["de_fr_embeddings"]["pearson"]),
-        ("German–German\n(disjoint corpora)", data["de_de_split_counts"]["pearson"]),
-        ("German–French\n(small corpora)", data["de_fr_counts"]["pearson"]),
-    ]
-    for label, xv in marks:
+    # staggered so the two close-together markers don't collide
+    marks = sorted([
+        ("German–French, web vectors", data["de_fr_embeddings"]["pearson"]),
+        ("German–German, disjoint corpora",
+         data["de_de_split_counts"]["pearson"]),
+        ("German–French, small corpora", data["de_fr_counts"]["pearson"]),
+    ], key=lambda m: m[1])
+    levels = [118, 108, 118]
+    for (label, xv), ly in zip(marks, levels):
         ax.axvline(xv, color=t["muted"], ls=(0, (4, 3)), lw=1.2, zorder=2)
-        ax.text(xv, 103, label, rotation=0, ha="center", va="bottom",
-                color=t["text"], fontsize=8.5, linespacing=1.25)
+        ax.annotate(label, xy=(xv, 104), xytext=(xv, ly),
+                    ha="center", va="bottom", color=t["text"], fontsize=8.5,
+                    annotation_clip=False,
+                    arrowprops=dict(arrowstyle="-", color=t["muted"], lw=0.8))
 
     ax.set_xlabel("relational correlation between the two spaces")
     ax.set_ylabel("words matched correctly (%)")
     ax.set_ylim(-4, 104)
     ax.set_xlim(-0.03, 1.03)
-    leg = ax.legend(frameon=False, loc="center left", fontsize=10)
+    leg = ax.legend(frameon=False, fontsize=10, ncol=2,
+                    loc="upper center", bbox_to_anchor=(0.5, -0.16))
     for txt in leg.get_texts():
         txt.set_color(t["text"])
     finish(ax, t, None)
-    fig.subplots_adjust(top=0.78)
     fig.savefig(path, bbox_inches="tight")
     plt.close(fig)
 
@@ -136,6 +141,7 @@ def fig_methods(emb, t, path):
         ("hungarian-profile", "similarity profile + Hungarian"),
         ("wasserstein-procrustes", "Wasserstein–Procrustes"),
         ("vecmap-unsupervised", "stochastic self-learning"),
+        ("self-learning", "stochastic self-learning"),
         ("procrustes-supervised", "Procrustes with a dictionary"),
     ]
     res = emb["results"]
@@ -225,6 +231,42 @@ def fig_anisotropy(struct, dist, t, path):
     plt.close(fig)
 
 
+# ---------------------------------------------------------------- figure 6
+def fig_vocab(rows, t, path, title_note=None):
+    """The variable that decided the whole experiment."""
+    style(t)
+    rows = sorted(rows, key=lambda r: r["vocab"])
+    x = [r["vocab"] for r in rows]
+    fig, ax = plt.subplots(figsize=(7.6, 4.4))
+
+    ax.plot(x, [r["supervised_p1"] * 100 for r in rows], "-s",
+            color=t["series"][1], lw=2, ms=6,
+            label="with a seed dictionary", zorder=3,
+            markeredgecolor=t["surface"], markeredgewidth=1.5)
+    ax.plot(x, [r["unsupervised_p1"] * 100 for r in rows], "-o",
+            color=t["series"][0], lw=2, ms=6,
+            label="no bilingual signal at all", zorder=4,
+            markeredgecolor=t["surface"], markeredgewidth=1.5)
+
+    ax.set_xscale("log")
+    ax.set_xticks(x)
+    ax.set_xticklabels([f"{v//1000}k" if v >= 1000 else str(v) for v in x])
+    ax.minorticks_off()
+    ax.set_xlabel("vocabulary size (words, frequency-ranked)")
+    ax.set_ylabel("translation retrieved at rank 1 (%)")
+    ax.set_ylim(-3, max(max(r["supervised_p1"] for r in rows),
+                        max(r["unsupervised_p1"] for r in rows)) * 100 + 8)
+    leg = ax.legend(frameon=False, fontsize=10, loc="upper left")
+    for txt in leg.get_texts():
+        txt.set_color(t["text"])
+    if title_note:
+        ax.text(0, 1.03, title_note, transform=ax.transAxes,
+                color=t["muted"], fontsize=9.5, va="bottom")
+    finish(ax, t)
+    fig.savefig(path, bbox_inches="tight")
+    plt.close(fig)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--results", default="/tmp/results")
@@ -253,6 +295,8 @@ def main():
     emb = load("embeddings-20k.json")
     sweep = load("sweep.json")
     struct = load("structure.json")
+    vocab = load("vocab-sweep.json")
+    vocab_dede = load("vocab-sweep-dede.json")
 
     for mode, t in THEMES.items():
         if dist:
@@ -265,6 +309,12 @@ def main():
         if struct and dist:
             fig_anisotropy(struct, dist, t,
                            f"{assets}/wordalign-anisotropy-{mode}.png")
+        if vocab:
+            fig_vocab(vocab, t, f"{assets}/wordalign-vocab-{mode}.png",
+                      "German and French web vectors, no bilingual signal")
+        if vocab_dede:
+            fig_vocab(vocab_dede, t, f"{assets}/wordalign-vocab-dede-{mode}.png",
+                      "German against German, two disjoint treebank halves")
     print(f"figures written to {assets}")
 
 

@@ -379,8 +379,16 @@ def procrustes_supervised(x, y, pairs):
 
 
 def csls_scores(x, y, k=10):
-    """Cross-domain similarity local scaling (Conneau et al. 2018)."""
-    sim = x @ y.T
-    rx = np.sort(sim, axis=1)[:, -k:].mean(axis=1)
-    ry = np.sort(sim, axis=0)[-k:, :].mean(axis=0)
-    return 2 * sim - rx[:, None] - ry[None, :]
+    """Cross-domain similarity local scaling (Conneau et al. 2018).
+
+    Uses float32 and a partial selection rather than a full sort; at a
+    20k x 20k vocabulary the naive version allocates several gigabytes per
+    intermediate and spends most of its time sorting values it discards.
+    """
+    sim = np.asarray(x, dtype=np.float32) @ np.asarray(y, dtype=np.float32).T
+    rx = np.partition(sim, -k, axis=1)[:, -k:].mean(axis=1)
+    ry = np.partition(sim, -k, axis=0)[-k:, :].mean(axis=0)
+    sim *= 2.0
+    sim -= rx[:, None]
+    sim -= ry[None, :]
+    return sim
