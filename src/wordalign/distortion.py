@@ -74,7 +74,11 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--vocab", type=int, default=20000)
     ap.add_argument("--pairs", type=int, default=1500)
-    ap.add_argument("--noise", default="0.0,0.02,0.05,0.1,0.15,0.25,0.4,0.6")
+    ap.add_argument("--noise",
+                    default="0.0,0.15,0.3,0.5,0.75,1.0,1.5,2.0,3.0")
+    ap.add_argument("--only-synthetic", action="store_true",
+                    help="skip the real-corpus measurements and just refine "
+                         "the calibration curve")
     ap.add_argument("--out", default="/tmp/results/distortion.json")
     a = ap.parse_args()
 
@@ -100,6 +104,11 @@ def main():
     print(f"  DE-FR (spaCy vectors): "
           f"r={report['de_fr_embeddings']['pearson']:.3f} "
           f"overlap@10={report['de_fr_embeddings']['overlap_10']:.3f}")
+
+    if a.only_synthetic:
+        print("skipping corpus-based measurements")
+        _run_synthetic(a, x, report)
+        return
 
     # -------------------------------------------------- same-language control
     print("building German count vectors from two disjoint corpora ...",
@@ -146,6 +155,10 @@ def main():
           f"r={report['de_fr_counts']['pearson']:.3f} "
           f"overlap@10={report['de_fr_counts']['overlap_10']:.3f}")
 
+    _run_synthetic(a, x, report)
+
+
+def _run_synthetic(a, x, report):
     # ------------------------------------------------------ synthetic axis
     print("calibrating against synthetic distortion ...", flush=True)
     base = x[:3000]
