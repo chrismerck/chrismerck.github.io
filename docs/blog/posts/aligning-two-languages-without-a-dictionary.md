@@ -193,10 +193,9 @@ either locks on or it produces noise.
 
 ## The variable that decided it
 
-My first run of this experiment used a 2,000-word vocabulary and concluded,
-confidently and wrongly, that none of it worked. Vocabulary size is not a
-tuning knob here. It is the difference between a total failure and a working
-dictionary.
+Vocabulary size is not a tuning knob here. Below a threshold the search has
+nothing to lock onto, above it the thing works, and the threshold is sharp
+enough to cross in a single step.
 
 ![unsupervised accuracy against vocabulary size](../../assets/wordalign-vocab-light.png#only-light)
 ![unsupervised accuracy against vocabulary size](../../assets/wordalign-vocab-dark.png#only-dark)
@@ -207,6 +206,12 @@ gap closes to ten points. By four thousand it is under seven, and at the
 twenty thousand of the headline result it is 2.3. One extra thousand words is
 the difference between a broken method and a working one.
 
+The reason is that the rotation has to be pinned down by the shape of the
+cloud, and a thousand points in 300 dimensions barely constrain it. Every
+additional word is another constraint on the same 300×300 orthogonal matrix.
+Below the threshold there are too many equally good answers to choose
+between; above it, the right one stands out.
+
 The gap is the thing to watch, not either curve on its own. Both drift
 downward as the vocabulary grows, for the boring reason that a bigger
 vocabulary means more wrong answers to be distracted by; the supervised curve
@@ -214,28 +219,23 @@ is measuring that effect alone, since its rotation was handed to it. The
 unsupervised curve is measuring that *plus* whether the search found the
 rotation at all. Where the two run together, the search has succeeded.
 
-The reason is that the rotation has to be pinned down by the shape of the
-cloud, and a thousand points in 300 dimensions barely constrain anything.
-Every extra word is another constraint on the same 300×300 orthogonal
-matrix. There is a threshold below which the search has too many equally good
-answers to choose between, and above which the right one stands out. For
-German and French it sits somewhere between one and two thousand words.
-
-That also disposes of the natural objection to a null result in this area:
-"did you just not have enough data?" Here the answer was yes, and the fix was
-not more text but *more of the vocabulary you already have*.
+This is worth remembering the next time a null result in this area is
+explained by "not enough data." Here the fix was not more text at all. It was
+more of the vocabulary already sitting in the file.
 
 !!! warning "A bug worth confessing"
     My first spaCy condition looked up vectors by lowercased lemma. German
     capitalises its nouns, so `haus` fetched a rare, badly-estimated vector
     instead of the good one attached to `Haus` — and half the German
-    vocabulary was quietly degraded. Combined with the small vocabulary, it
-    produced a clean, confident, entirely wrong negative result, complete
-    with a plausible mechanistic story about why the languages were too
-    different. The numbers above come from the corrected pipeline. This is
-    the second scoring bug this experiment produced; the first inverted a
-    permutation and reported that supervised Procrustes couldn't align a
-    point cloud with a rotated copy of itself.
+    vocabulary was quietly degraded. That run produced a clean, confident,
+    entirely wrong negative result, and I had already drafted several
+    paragraphs explaining why German and French were too different for this
+    to work. The numbers here come from the corrected pipeline. It was the
+    second such bug in this experiment; the first inverted a permutation and
+    reported that supervised Procrustes could not align a point cloud with a
+    rotated copy of itself. Both were caught by results that were *too*
+    clean — a method that fails at exactly chance, on a problem where the
+    answer provably exists, is telling you about your code.
 
 ## How alike are the two shapes, actually?
 
@@ -262,10 +262,28 @@ the vectors yourself from the treebanks, and German against French drops to
 corpus size, and every method fails. Notably, aligning German against
 *German*, from two disjoint halves of the same treebank, only reaches
 **r = 0.45**: re-estimating the same geometry from different documents costs
-nearly as much as changing language entirely.
+nearly as much as changing language entirely, and unsupervised alignment on
+that pair fails too — 4.3% against a 60.4% supervised ceiling at 2,000 words,
+and 3.5% against 55.8% at 4,000.
 
-Corpus size and vocabulary size are two separate walls, and small treebanks
-run into both.
+That last comparison matters, because it rules out the easy explanation.
+Doubling the vocabulary rescued German–French on web vectors; it does nothing
+for German–German on treebank vectors. Corpus size and vocabulary size are
+two independent walls, and a small corpus is not a problem you can vocabulary
+your way out of.
+
+How much distortion can the search actually absorb? Rotate real German
+vectors, add increasing noise, and watch:
+
+![where the methods stop working](../../assets/wordalign-cliff-light.png#only-light)
+![where the methods stop working](../../assets/wordalign-cliff-dark.png#only-dark)
+
+Self-learning is untroubled down to r = 0.58 and dead by r = 0.34. Everything
+interesting happens inside that window — and German–French, at 0.52, lands
+squarely in it. Which is the honest reason this had to be settled by running
+the thing rather than by reasoning about a correlation coefficient: the
+calibration puts German and French in exactly the interval where it could
+have gone either way.
 
 ## What parallelism is worth
 
@@ -286,9 +304,10 @@ tested directly.
 
 This is the part I'd most want to argue about.
 
-At 20,000 words, stochastic self-learning gets 49.7% and every
-assignment-based method gets essentially zero. Same vectors, same evaluation,
-same vocabulary. The difference is not the objective — Gromov–Wasserstein's
+Asked for the same strict one-to-one matching over the same 3,000 words,
+stochastic self-learning gets 49.7% and every assignment-based method gets
+essentially zero. Same vectors, same evaluation, same task. The difference is
+not the objective — Gromov–Wasserstein's
 objective is arguably a *better* formalisation of "do these two shapes
 match" than anything self-learning optimises. The difference is what each
 method is allowed to believe on the way.
