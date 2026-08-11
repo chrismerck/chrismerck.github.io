@@ -81,8 +81,10 @@ def sweep_embeddings(sizes, out):
               f"  supervised P@1={r['supervised_p1']*100:6.2f}%"
               f"  ({r['n_evaluable']} scoreable, {time.time()-t0:.0f}s)",
               flush=True)
-    with open(out, "w") as fh:
-        json.dump(rows, fh, indent=1)
+        # write after every size: the large vocabularies take a long time and
+        # a partial curve is still a usable curve
+        with open(out, "w") as fh:
+            json.dump(rows, fh, indent=1)
     print(f"wrote {out}")
     return rows
 
@@ -125,8 +127,8 @@ def sweep_counts(sizes, out, condition="ud-indep"):
               f"  supervised P@1={r['supervised_p1']*100:6.2f}%"
               f"  ({r['n_evaluable']} scoreable, {time.time()-t0:.0f}s)",
               flush=True)
-    with open(out, "w") as fh:
-        json.dump(rows, fh, indent=1)
+        with open(out, "w") as fh:
+            json.dump(rows, fh, indent=1)
     print(f"wrote {out}")
     return rows
 

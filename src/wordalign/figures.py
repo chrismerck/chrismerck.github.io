@@ -256,7 +256,8 @@ def fig_vocab(rows, t, path, title_note=None):
     ax.set_ylabel("translation retrieved at rank 1 (%)")
     ax.set_ylim(-3, max(max(r["supervised_p1"] for r in rows),
                         max(r["unsupervised_p1"] for r in rows)) * 100 + 8)
-    leg = ax.legend(frameon=False, fontsize=10, loc="upper left")
+    leg = ax.legend(frameon=False, fontsize=10, ncol=2,
+                    loc="upper center", bbox_to_anchor=(0.5, -0.16))
     for txt in leg.get_texts():
         txt.set_color(t["text"])
     if title_note:
