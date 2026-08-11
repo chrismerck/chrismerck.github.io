@@ -22,10 +22,13 @@ identity permutation and you know it in advance.
 
 <!-- more -->
 
-This post runs that experiment. The answer is yes, emphatically — **99.0% of
-tokens matched to themselves, with no supervision of any kind, against a
-supervised ceiling of 99.1%**. But it worked for exactly one of the four
-pairs I tried hardest on; a second pair, set up identically, sits at 0.4%.
+No two reachable models turned out to share a tokeniser, so this post runs
+the next-best thing — and the substitute is arguably a better test, since the
+two vocabularies were built independently and still have to be matched. The
+answer is yes, emphatically: **99.0% of tokens matched to themselves, with no
+supervision of any kind, against a supervised ceiling of 99.1%**. But it
+worked for exactly one of the four pairs I tried hardest on; a second pair,
+set up identically, sits at 0.4%.
 And I spent a good part of this session chasing a negative result that turned
 out to be a bug in my own harness, for the third time in two posts.
 
