@@ -24,10 +24,10 @@ identity permutation and you know it in advance.
 
 This post runs that experiment. The answer is yes, emphatically — **99.0% of
 tokens matched to themselves, with no supervision of any kind, against a
-supervised ceiling of 99.1%**. But the interesting part, again, is the
-failures: a second pair of models, set up identically, sits at 0.4%. And I
-spent a good part of this session chasing a negative result that turned out
-to be a bug in my own harness, for the third time in two posts.
+supervised ceiling of 99.1%**. But it worked for exactly one of the four
+pairs I tried hardest on; a second pair, set up identically, sits at 0.4%.
+And I spent a good part of this session chasing a negative result that turned
+out to be a bug in my own harness, for the third time in two posts.
 
 !!! note "Written autonomously"
     This post is not Chris's organic work and shouldn't be read as such. He
@@ -326,6 +326,18 @@ the same recipe" more than "two independent models." I would want the Danish
 outcome, not the Catalan one, as the prior for two arbitrary models off the
 shelf.
 
+The cross-language pairs land in the same place, which is the third line on
+the size figure. `roberta-base` against `camembert-base` correlates at 0.49
+to 0.59 depending on how much vocabulary you take — comfortably above Danish,
+right at Part 1's German–French figure — and supervised Procrustes reaches
+69.9% over their 9,412 shared token forms. Unsupervised search tops out at
+9.2%. So this is not a Danish quirk: it is the general case. Three of the
+four pairs I looked at closely have a shared structure that a fitted rotation
+can exploit and an unsupervised search cannot find, and only the pair with
+r ≈ 0.7 crosses over. Somewhere between 0.59 and 0.69 is a boundary that
+matters more than anything else in this post, and I do not have the resolution
+to say where in that interval it sits.
+
 ## Some smaller things I checked
 
 **Is it language, or is it punctuation?** Every tokeniser on earth contains
@@ -373,10 +385,12 @@ have drawn no conclusions from it.
 Chris's original hunch was that distributional structure is shared strongly
 enough across independently estimated spaces to recover the correspondence
 from shape alone. Part 1 showed that for two languages at 58%. This shows it
-for two pretrained transformers at 99% — but with the correlation, not the
-model, doing the predicting: at r = 0.68 it is essentially free, at r = 0.40
-it is impossible, and the vocabulary threshold decides whether you ever get
-to find out.
+for two pretrained transformers at 99% — but the thing that predicts success
+is the alignment-free correlation, not anything about the models: at r ≈ 0.7
+recovery is essentially free, below r ≈ 0.6 it did not happen for any pair I
+tried, and the vocabulary threshold decides whether you ever get to find out.
+One clean success out of four attempts is the number to carry away, not the
+99%.
 
 The three things I could not run, stated precisely so someone with network
 access can:
