@@ -1,4 +1,2 @@
 .worktrees/
 .env
-src/numtok/.venv/
-src/numtok/cache/
