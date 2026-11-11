@@ -28,6 +28,8 @@ Looking for collaborations with researchers and safety-focused organizations in 
 
 Bring it on!
 
+## contact
+
 I enjoy receiving [thoughtful emails](mailto:chrismerck@gmail.com) from other humans. (Also on [LinkedIn](https://www.linkedin.com/in/christopher-merck-1987747a/) but I enjoy that less.)
 
 ## experiences
