@@ -30,7 +30,7 @@ Bring it on!
 
 ## contact
 
-I enjoy receiving (and replying to) [thoughtful emails](mailto:chrismerck@gmail.com) from other humans. (Also on [LinkedIn](https://www.linkedin.com/in/christopher-merck-1987747a/) but I enjoy that less.)
+I enjoy receiving [thoughtful emails](mailto:chrismerck@gmail.com) from other humans, and carrying on personal correspondence continuing the great tradition of letter writing. (Also on [LinkedIn](https://www.linkedin.com/in/christopher-merck-1987747a/) but I enjoy that less.)
 
 ## experiences
 
