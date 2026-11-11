@@ -85,3 +85,15 @@ plugins:
 
 extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra:
+  social:
+    - icon: fontawesome/solid/envelope
+      link: mailto:chrismerck@gmail.com
+      name: Email
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/christopher-merck-1987747a/
+      name: LinkedIn
+    - icon: fontawesome/brands/github
+      link: https://github.com/chrismerck
+      name: GitHub

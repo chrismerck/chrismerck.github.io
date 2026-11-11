@@ -28,6 +28,8 @@ Looking for collaborations with researchers and safety-focused organizations in 
 
 Bring it on!
 
+Reach me by [email](mailto:chrismerck@gmail.com) or connect on [LinkedIn](https://www.linkedin.com/in/christopher-merck-1987747a/).
+
 ## experiences
 
 I compile **[The Machine Vernacular](https://chrismerck.github.io/TheMachineVernacular/)** — a dictionary of emergent machine usage: the coinages, new senses, and vogue words observable in the speech of large language models, each attested to a dated first use.
